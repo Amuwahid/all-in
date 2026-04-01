@@ -1,0 +1,2927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All In</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --surface3: #212d42;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #00e5a0;
+    --accent2: #00b07a;
+    --accent-dim: rgba(0,229,160,0.12);
+    --accent-dim2: rgba(0,229,160,0.06);
+    --gold: #f5c842;
+    --silver: #b0bec5;
+    --bronze: #cd8b5a;
+    --text: #f0f4ff;
+    --muted: #8b95b0;
+    --muted2: #5a6380;
+    --danger: #ff5f6d;
+    --info: #4facfe;
+    --warn: #f5c842;
+    --win: #00e5a0;
+    --lose: #ff5f6d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    font-size: 14px;
+  }
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+  /* ── LOGIN SCREEN ── */
+  #login-screen {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 999; padding: 20px;
+  }
+  .login-box {
+    width: 100%; max-width: 420px;
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 20px; padding: 36px 32px;
+    animation: fadeUp 0.4s ease;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .login-logo { display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .login-logo-icon { width:42px; height:42px; background:var(--accent); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+  .login-logo h2 { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+  .login-logo span { color:var(--accent); }
+  .login-tabs { display:flex; background:var(--surface2); border-radius:10px; padding:4px; gap:4px; margin-bottom:24px; }
+  .login-tab-btn {
+    flex:1; background:none; border:none; color:var(--muted);
+    font-family:'Syne',sans-serif; font-size:13px; font-weight:600;
+    padding:8px; border-radius:7px; cursor:pointer; transition:all 0.2s;
+  }
+  .login-tab-btn.active { background:var(--surface); color:var(--text); }
+  .login-form { display:flex; flex-direction:column; gap:14px; }
+  .login-field { display:flex; flex-direction:column; gap:6px; }
+  .login-field label { font-size:11px; color:var(--muted); font-weight:500; letter-spacing:0.8px; text-transform:uppercase; }
+  .login-field input {
+    background:var(--surface2); border:1px solid var(--border2);
+    border-radius:10px; color:var(--text); padding:11px 14px;
+    font-family:'DM Sans',sans-serif; font-size:14px; outline:none; transition:border 0.2s;
+  }
+  .login-field input:focus { border-color:var(--accent); }
+  .login-btn {
+    background:var(--accent); color:#0a0f1e; border:none; border-radius:10px;
+    font-family:'Syne',sans-serif; font-weight:700; font-size:14px;
+    padding:12px; cursor:pointer; transition:opacity 0.2s; margin-top:4px;
+    letter-spacing:0.3px;
+  }
+  .login-btn:hover { opacity:0.88; }
+  .login-error { font-size:12px; color:var(--danger); text-align:center; min-height:16px; }
+  .login-divider { display:flex; align-items:center; gap:10px; margin:4px 0; }
+  .login-divider span { font-size:11px; color:var(--muted2); }
+  .login-divider::before, .login-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* ── HEADER USER PILL ── */
+  .user-pill {
+    display:flex; align-items:center; gap:8px;
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:20px; padding:5px 12px 5px 6px; cursor:pointer;
+    transition:border-color 0.2s;
+  }
+  .user-pill:hover { border-color:var(--border2); }
+  .user-pill-name { font-size:13px; font-weight:500; }
+  .user-pill-logout { font-size:11px; color:var(--muted2); margin-left:4px; }
+
+  /* ── PROFILE TAB ── */
+  .profile-hero {
+    background: var(--surface); border:1px solid var(--border);
+    border-radius:16px; padding:28px 24px; margin-bottom:16px;
+    display:flex; align-items:center; gap:20px;
+  }
+  .profile-avatar-lg {
+    width:72px; height:72px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-size:24px; font-weight:800;
+    flex-shrink:0; border:3px solid var(--accent);
+  }
+  .profile-name { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; letter-spacing:-0.3px; }
+  .profile-email { font-size:13px; color:var(--muted); margin-top:2px; }
+  .profile-joined { font-size:11px; color:var(--muted2); margin-top:4px; }
+  .profile-stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
+  .profile-history { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px; }
+  .ph-title { font-size:11px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+  .edit-profile-row { display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+  .profile-match-row {
+    display:flex; align-items:center; gap:10px; padding:9px 0;
+    border-bottom:1px solid var(--border); font-size:12px;
+  }
+  .profile-match-row:last-child { border:none; }
+  .pmr-result { width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; }
+  .pmr-w { background:rgba(0,229,160,0.15); color:var(--accent); }
+  .pmr-l { background:rgba(255,95,109,0.15); color:var(--danger); }
+  .pmr-info { flex:1; }
+  .pmr-score { font-family:'Syne',sans-serif; font-weight:700; font-size:13px; }
+  .pmr-date { font-size:11px; color:var(--muted2); }
+
+  /* ── RTL / ARABIC ── */
+  [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+  [dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4 { font-family: 'Cairo', sans-serif; }
+  [dir="rtl"] .nav-btn { font-family: 'Cairo', sans-serif; }
+  [dir="rtl"] .btn, [dir="rtl"] .btn-outline, [dir="rtl"] .btn-danger { font-family: 'Cairo', sans-serif; }
+  [dir="rtl"] .logo h1 { letter-spacing: 0; }
+  [dir="rtl"] .header { direction: rtl; }
+  [dir="rtl"] .nav { direction: rtl; }
+  [dir="rtl"] .main { direction: rtl; }
+  [dir="rtl"] .form-group label { letter-spacing: 0; }
+  [dir="rtl"] .card-title { letter-spacing: 0; }
+  [dir="rtl"] .stat-label { letter-spacing: 0; }
+  [dir="rtl"] .login-box { direction: rtl; }
+  [dir="rtl"] .login-field label { letter-spacing: 0; }
+  [dir="rtl"] .edit-modal-box { direction: rtl; }
+  [dir="rtl"] .rule-body { padding: 0 56px 14px 16px; }
+  [dir="rtl"] .rule-body ul { padding-right: 16px; padding-left: 0; }
+  [dir="rtl"] .pc-item { padding-left: 0; padding-right: 10px; }
+  [dir="rtl"] .pc-item::before { left: auto; right: 0; }
+  [dir="rtl"] .debate-banner { direction: rtl; }
+  [dir="rtl"] .profile-hero { direction: rtl; }
+  [dir="rtl"] .psm-label { letter-spacing: 0; }
+  [dir="rtl"] .form-section-title { letter-spacing: 0; }
+  [dir="rtl"] .score-row { direction: ltr; }
+  [dir="rtl"] .match-teams { direction: rtl; }
+  [dir="rtl"] .stat-val { font-family: 'Syne', sans-serif; }
+  [dir="rtl"] .match-score { font-family: 'Syne', sans-serif; }
+  [dir="rtl"] .lb-points { font-family: 'Syne', sans-serif; }
+  [dir="rtl"] .pair-stat-v { font-family: 'Syne', sans-serif; }
+
+  .lang-toggle {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 5px; cursor: pointer; transition: border-color 0.2s;
+  }
+  .lang-toggle:hover { border-color: var(--border2); }
+  .lang-opt {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 14px;
+    transition: all 0.2s; color: var(--muted); letter-spacing: 0.3px;
+  }
+  .lang-opt.active { background: var(--accent); color: #0a0f1e; }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+
+
+  #edit-modal {
+    position:fixed; inset:0; background:rgba(0,0,0,0.6);
+    display:none; align-items:center; justify-content:center; z-index:500; padding:20px;
+  }
+  #edit-modal.open { display:flex; }
+  .edit-modal-box {
+    background:var(--surface); border:1px solid var(--border2);
+    border-radius:16px; padding:28px; width:100%; max-width:380px;
+    animation:fadeUp 0.25s ease;
+  }
+  .modal-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:20px; }
+  .modal-actions { display:flex; gap:10px; margin-top:20px; justify-content:flex-end; }
+
+
+  /* LAYOUT */
+  .app { display: flex; flex-direction: column; min-height: 100vh; }
+  .header {
+    padding: 20px 28px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-top {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--accent);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  .nav { display: flex; gap: 4px; }
+  .nav-btn {
+    background: none; border: none; color: var(--muted);
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: 8px 8px 0 0; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.3px; border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-btn:hover:not(.active) { color: var(--text); background: var(--accent-dim2); }
+  .main { padding: 24px 28px; max-width: 1100px; margin: 0 auto; width: 100%; flex: 1; }
+
+  /* TABS */
+  .tab { display: none; }
+  .tab.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+  }
+
+  /* DASHBOARD GRID */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+  .stat-val { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; }
+  .stat-val.accent { color: var(--accent); }
+  .stat-sub { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .dashboard-grid .card.full { grid-column: 1 / -1; }
+
+  /* LEADERBOARD */
+  .lb-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: 10px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .lb-row:hover { background: var(--accent-dim2); }
+  .lb-rank { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; width: 24px; text-align: center; }
+  .rank-1 { color: var(--gold); }
+  .rank-2 { color: var(--silver); }
+  .rank-3 { color: var(--bronze); }
+  .avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .lb-name { flex: 1; font-weight: 500; font-size: 13px; }
+  .lb-points {
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--accent);
+  }
+  .lb-wr { font-size: 11px; color: var(--muted); }
+  .lb-sep { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+
+  /* MATCH LOG */
+  .match-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: var(--surface2);
+  }
+  .match-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .match-date { font-size: 11px; color: var(--muted); }
+  .match-score { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 1px; }
+  .match-teams { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .team-tag {
+    display: flex; gap: 4px; align-items: center;
+    background: var(--surface3); border-radius: 6px; padding: 4px 8px;
+    font-size: 12px; font-weight: 500;
+  }
+  .vs-badge {
+    font-size: 10px; font-weight: 700; color: var(--muted2);
+    letter-spacing: 1px; padding: 0 4px;
+  }
+  .win-badge { background: rgba(0,229,160,0.15); color: var(--accent); border-radius: 5px; font-size: 10px; font-weight: 700; padding: 2px 6px; }
+  .lose-badge { background: rgba(255,95,109,0.15); color: var(--danger); border-radius: 5px; font-size: 10px; font-weight: 700; padding: 2px 6px; }
+
+  /* FORM */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; }
+  .form-group input, .form-group select {
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 8px; color: var(--text); padding: 9px 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    outline: none; transition: border 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group select option { background: var(--surface2); }
+  .team-builder {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+  }
+  .team-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+  .score-row { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 8px; }
+  .score-input {
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 8px; color: var(--text); padding: 9px;
+    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+    width: 64px; text-align: center; outline: none;
+  }
+  .score-sep { font-size: 20px; color: var(--muted2); font-weight: 700; }
+  .btn {
+    background: var(--accent); color: #0a0f1e;
+    border: none; border-radius: 8px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+    padding: 10px 20px; cursor: pointer; transition: opacity 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn-outline {
+    background: none; border: 1px solid var(--border2); color: var(--text);
+    border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 12px;
+    padding: 7px 14px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-danger {
+    background: none; border: 1px solid rgba(255,95,109,0.3); color: var(--danger);
+    border-radius: 6px; font-size: 11px; font-weight: 600; padding: 4px 8px; cursor: pointer;
+  }
+
+  /* PLAYERS */
+  .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .player-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    transition: border-color 0.2s;
+  }
+  .player-card:hover { border-color: var(--border2); }
+  .player-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .player-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .psm { background: var(--surface2); border-radius: 8px; padding: 8px 10px; }
+  .psm-label { font-size: 10px; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.7px; }
+  .psm-val { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+  .win-rate-bar { margin-top: 12px; }
+  .wr-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .bar-track { background: var(--surface3); border-radius: 4px; height: 5px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.5s; }
+  .streak-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 5px; margin-top: 8px;
+  }
+  .streak-w { background: rgba(0,229,160,0.12); color: var(--accent); }
+  .streak-l { background: rgba(255,95,109,0.12); color: var(--danger); }
+
+  /* BEST PAIRS */
+  .pairs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .pair-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    position: relative; overflow: hidden;
+  }
+  .pair-card.top-pair { border-color: rgba(0,229,160,0.3); }
+  .top-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: var(--accent-dim); color: var(--accent);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+    padding: 3px 7px; border-radius: 5px; text-transform: uppercase;
+  }
+  .pair-players { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .pair-vs { color: var(--muted2); font-size: 11px; font-weight: 700; }
+  .pair-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; text-align: center; }
+  .pair-stat-v { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+  .pair-stat-l { font-size: 10px; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.6px; }
+  .pair-wr { font-size: 12px; font-weight: 600; margin-top: 10px; text-align: center; }
+
+  /* ADD PLAYER */
+  .add-player-form { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 20px; }
+  .add-player-form .form-group { flex: 1; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--surface); border: 1px solid var(--accent);
+    border-radius: 10px; padding: 12px 18px;
+    font-size: 13px; font-weight: 500; color: var(--accent);
+    z-index: 999; opacity: 0; transform: translateY(8px);
+    transition: all 0.3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* EMPTY */
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
+  .empty-state p { margin-top: 8px; font-size: 13px; }
+
+  /* RECENT MATCHES MINI */
+  .match-mini {
+    display: flex; align-items: center; gap: 10px; padding: 8px 0;
+    border-bottom: 1px solid var(--border); font-size: 12px;
+  }
+  .match-mini:last-child { border: none; }
+  .mm-teams { flex: 1; }
+  .mm-score { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
+  .mm-date { font-size: 11px; color: var(--muted2); }
+
+  /* FORM SECTIONS */
+  .form-section { margin-bottom: 20px; }
+  .form-section-title { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+
+  /* AVATAR COLORS */
+  .av0 { background: rgba(0,229,160,0.18); color: #00e5a0; }
+  .av1 { background: rgba(79,172,254,0.18); color: #4facfe; }
+  .av2 { background: rgba(245,200,66,0.18); color: #f5c842; }
+  .av3 { background: rgba(255,95,109,0.18); color: #ff5f6d; }
+  .av4 { background: rgba(167,139,250,0.18); color: #a78bfa; }
+  .av5 { background: rgba(251,146,60,0.18); color: #fb923c; }
+  .av6 { background: rgba(52,211,153,0.18); color: #34d399; }
+  .av7 { background: rgba(236,72,153,0.18); color: #ec4899; }
+  .av8 { background: rgba(56,189,248,0.18); color: #38bdf8; }
+  .av9 { background: rgba(163,230,53,0.18); color: #a3e635; }
+
+  @media (max-width: 700px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .main { padding: 16px; }
+    .header { padding: 14px 16px 0; }
+  }
+
+  /* ── RULES & DISPUTES ── */
+  .debate-banner {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: linear-gradient(135deg, rgba(0,229,160,0.08) 0%, rgba(79,172,254,0.06) 100%);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 14px; padding: 20px; margin-bottom: 20px;
+  }
+  .debate-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+  .debate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 32px; }
+  .debate-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px; position: relative; overflow: hidden;
+  }
+  .debate-card.popular { border-color: rgba(245,200,66,0.35); }
+  .debate-card.popular::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold);
+  }
+  .debate-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; margin-bottom:4px; }
+  .debate-pill {
+    display: inline-block; font-size:10px; font-weight:700; letter-spacing:0.8px;
+    padding: 2px 8px; border-radius:4px; text-transform:uppercase; margin-bottom:12px;
+  }
+  .pill-hot { background: rgba(245,200,66,0.15); color: var(--gold); }
+  .pill-fair { background: rgba(0,229,160,0.12); color: var(--accent); }
+  .pill-complex { background: rgba(79,172,254,0.12); color: var(--info); }
+  .pill-simple { background: rgba(167,139,250,0.12); color: #a78bfa; }
+  .debate-formula {
+    background: var(--surface2); border-radius:8px; padding:10px 14px;
+    font-family:'Syne',sans-serif; font-size:13px; font-weight:700;
+    color: var(--accent); margin-bottom:12px; text-align:center; letter-spacing:0.3px;
+  }
+  .debate-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px; }
+  .debate-pros-cons { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .pro-con-box { background:var(--surface2); border-radius:8px; padding:10px; }
+  .pc-label { font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px; }
+  .pro-label { color:var(--accent); }
+  .con-label { color:var(--danger); }
+  .pc-item { font-size:12px; color:var(--muted); line-height:1.5; padding-left:10px; position:relative; }
+  .pc-item::before { content:'•'; position:absolute; left:0; }
+
+  .section-heading {
+    font-family:'Syne',sans-serif; font-size:18px; font-weight:800;
+    letter-spacing:-0.3px;
+  }
+  .rules-nav {
+    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;
+  }
+  .rnav-btn {
+    background:var(--surface2); border:1px solid var(--border); color:var(--muted);
+    border-radius:8px; padding:7px 14px; font-size:12px; font-weight:600;
+    cursor:pointer; font-family:'Syne',sans-serif; transition:all 0.2s;
+  }
+  .rnav-btn.active { background:var(--accent-dim); border-color:rgba(0,229,160,0.3); color:var(--accent); }
+  .rnav-btn:hover:not(.active) { color:var(--text); border-color:var(--border2); }
+
+  .rules-section { display:none; }
+  .rules-section.active { display:block; }
+  .rule-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; margin-bottom:12px; overflow:hidden;
+  }
+  .rule-header {
+    display:flex; align-items:center; gap:12px; padding:14px 16px;
+    cursor:pointer; user-select:none; transition:background 0.15s;
+  }
+  .rule-header:hover { background:var(--accent-dim2); }
+  .rule-num {
+    width:28px; height:28px; border-radius:8px;
+    background:var(--accent-dim); color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-size:12px; font-weight:700; flex-shrink:0;
+  }
+  .rule-title { flex:1; font-weight:600; font-size:14px; }
+  .rule-chevron { color:var(--muted2); font-size:12px; transition:transform 0.2s; }
+  .rule-body {
+    display:none; padding:0 16px 14px 56px;
+    font-size:13px; color:var(--muted); line-height:1.7;
+    border-top:1px solid var(--border);
+  }
+  .rule-body.open { display:block; }
+  .rule-body ul { padding-left:16px; margin-top:6px; }
+  .rule-body li { margin-bottom:4px; }
+  .rule-body .highlight {
+    background:var(--accent-dim); color:var(--accent);
+    border-radius:4px; padding:1px 6px; font-size:12px; font-weight:600;
+  }
+  .rule-body .warn-tag {
+    background:rgba(255,95,109,0.12); color:var(--danger);
+    border-radius:4px; padding:1px 6px; font-size:12px; font-weight:600;
+  }
+  .debate-vote-row { display:flex; gap:8px; margin-top:14px; }
+  .vote-btn {
+    flex:1; background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; color:var(--muted); font-size:12px; font-weight:600;
+    padding:8px; cursor:pointer; transition:all 0.2s; font-family:'DM Sans',sans-serif;
+  }
+  .vote-btn:hover { border-color:var(--border2); color:var(--text); }
+  .vote-btn.voted { background:var(--accent-dim); border-color:rgba(0,229,160,0.3); color:var(--accent); }
+  .vote-count { font-family:'Syne',sans-serif; font-weight:700; }
+
+  /* ── INFOGRAPHICS ── */
+  .infographics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .infographics-grid .chart-card.full { grid-column: 1 / -1; }
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+  }
+  .chart-card-title {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  .chart-card-sub { font-size: 11px; color: var(--muted); margin-bottom: 16px; }
+  .chart-wrap { position: relative; }
+  .podium-row {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 10px; margin-bottom: 20px;
+  }
+  .podium-block {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .podium-av {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800;
+  }
+  .podium-name { font-size: 11px; font-weight: 600; text-align: center; max-width: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .podium-pts { font-size: 10px; color: var(--accent); font-weight: 700; }
+  .podium-bar {
+    border-radius: 6px 6px 0 0; width: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; padding-top: 8px;
+  }
+  .podium-1 { background: rgba(245,200,66,0.2); border: 1px solid rgba(245,200,66,0.4); height: 90px; }
+  .podium-2 { background: rgba(176,190,197,0.15); border: 1px solid rgba(176,190,197,0.3); height: 66px; }
+  .podium-3 { background: rgba(205,139,90,0.15); border: 1px solid rgba(205,139,90,0.3); height: 48px; }
+  .hbar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .hbar-label { width: 80px; font-size: 12px; font-weight: 500; flex-shrink: 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  [dir="rtl"] .hbar-label { text-align: left; }
+  .hbar-track { flex: 1; background: var(--surface3); border-radius: 4px; height: 22px; overflow: hidden; position: relative; }
+  .hbar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; transition: width 0.6s ease; }
+  .hbar-val { font-size: 11px; font-weight: 700; color: #0a0f1e; white-space: nowrap; }
+  .stat-badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat-badge {
+    background: var(--surface2); border-radius: 10px; padding: 14px 12px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .sb-icon { font-size: 22px; margin-bottom: 6px; }
+  .sb-val { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--accent); }
+  .sb-name { font-size: 12px; font-weight: 600; margin-top: 2px; }
+  .sb-label { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .form-chart-legend { display: flex; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+  .fcl-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .fcl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .infographics-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+  .infographics-empty .ei-icon { font-size: 48px; margin-bottom: 14px; opacity: 0.4; }
+  .infographics-empty p { font-size: 14px; }
+
+  @media (max-width: 700px) {
+    .infographics-grid { grid-template-columns: 1fr; }
+    .infographics-grid .chart-card.full { grid-column: 1; }
+  }
+
+  /* ── GAME PICKER ── */
+  #game-picker.show { display: flex; }
+  .picker-box {
+    width: 100%; max-width: 520px; animation: fadeUp 0.4s ease;
+  }
+  .picker-greeting {
+    font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800;
+    margin-bottom: 6px; letter-spacing: -0.5px;
+  }
+  .picker-sub { font-size: 14px; color: var(--muted); margin-bottom: 30px; }
+  .picker-games { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .game-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 18px; padding: 28px 24px; cursor: pointer;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .game-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .game-card.jackaroo-card:hover { border-color: var(--gold); }
+  .game-card-icon { font-size: 40px; margin-bottom: 14px; display: block; }
+  .game-card-name {
+    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .game-card-name.padel { color: var(--accent); }
+  .game-card-name.jackaroo { color: var(--gold); }
+  .game-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .game-card-badge {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 10px; font-weight: 700; padding: 3px 8px;
+    border-radius: 5px; letter-spacing: 0.5px;
+  }
+  .badge-padel { background: var(--accent-dim); color: var(--accent); }
+  .badge-jackaroo { background: rgba(245,200,66,0.12); color: var(--gold); }
+  .picker-logout {
+    text-align: center; margin-top: 20px;
+    font-size: 12px; color: var(--muted); cursor: pointer;
+  }
+  .picker-logout:hover { color: var(--text); }
+
+  /* ── GAME INDICATOR IN HEADER ── */
+  .game-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; padding: 4px 10px;
+    border-radius: 6px; cursor: pointer; letter-spacing: 0.3px;
+  }
+  .game-badge.padel { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(0,229,160,0.2); }
+  .game-badge.jackaroo { background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.2); }
+
+  /* ── JACKAROO ── */
+  .jk-section { display: none; }
+  .jk-section.active { display: block; }
+  .jk-rounds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .jk-round-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px; margin-bottom: 10px;
+  }
+  .jk-round-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .jk-round-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--gold); }
+  .jk-player-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .jk-score-input {
+    background: var(--surface3); border: 1px solid var(--border2);
+    border-radius: 6px; color: var(--text); padding: 6px 10px;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    width: 70px; text-align: center; outline: none;
+  }
+  .jk-score-input:focus { border-color: var(--gold); }
+  .jk-winner-badge {
+    background: rgba(245,200,66,0.15); color: var(--gold);
+    border-radius: 5px; font-size: 10px; font-weight: 700; padding: 2px 6px;
+  }
+  .jk-lb-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 10px;
+  }
+  .jk-lb-row:hover { background: rgba(245,200,66,0.04); }
+  .jk-sep { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+  .jk-pts { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--gold); }
+  .jk-stat-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .jk-empty { text-align: center; padding: 30px 20px; color: var(--muted); font-size: 13px; }
+  .jk-players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .jk-player-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px;
+  }
+  .jk-bar-fill { height: 100%; border-radius: 4px; background: var(--gold); }
+
+</style>
+</head>
+<body>
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+      <div class="login-logo" style="margin-bottom:0;">
+        <div class="login-logo-icon">🎾</div>
+        <h2>All <span>In</span></h2>
+      </div>
+      <div class="lang-toggle" onclick="toggleLang()" style="margin-bottom:0;">
+        <span class="lang-opt active" id="login-lang-en">EN</span>
+        <span class="lang-opt" id="login-lang-ar">عر</span>
+      </div>
+    </div>
+    <div class="login-tabs">
+      <button class="login-tab-btn active" id="lt-signin" onclick="switchLoginTab('signin')" data-i18n="signIn">Sign In</button>
+      <button class="login-tab-btn" id="lt-register" onclick="switchLoginTab('register')" data-i18n="register">Register</button>
+    </div>
+    <div class="login-form" id="login-form-signin">
+      <div class="login-field"><label data-i18n="email">Email</label><input type="email" id="si-email" placeholder="you@example.com" autocomplete="email"></div>
+      <div class="login-field"><label data-i18n="password">Password</label><input type="password" id="si-pass" placeholder="••••••••" autocomplete="current-password"></div>
+      <div class="login-error" id="si-error"></div>
+      <button class="login-btn" onclick="doSignIn()" data-i18n="signIn">Sign In</button>
+      <div class="login-divider"><span data-i18n="or">or</span></div>
+      <button class="login-btn" style="background:var(--surface2);color:var(--text);border:1px solid var(--border2);" onclick="guestLogin()" data-i18n="continueGuest">Continue as Guest</button>
+    </div>
+    <div class="login-form" id="login-form-register" style="display:none;">
+      <div class="login-field"><label data-i18n="displayName">Display Name</label><input type="text" id="reg-name" placeholder="e.g. Ahmad" maxlength="20"></div>
+      <div class="login-field"><label data-i18n="email">Email</label><input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email"></div>
+      <div class="login-field"><label data-i18n="password">Password</label><input type="password" id="reg-pass" placeholder="Min. 6 characters" autocomplete="new-password"></div>
+      <div class="login-field"><label data-i18n="confirmPassword">Confirm Password</label><input type="password" id="reg-pass2" placeholder="Repeat password"></div>
+      <div class="login-error" id="reg-error"></div>
+      <button class="login-btn" onclick="doRegister()" data-i18n="createAccount">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div id="edit-modal">
+  <div class="edit-modal-box">
+    <div class="modal-title" data-i18n="editProfile">Edit Profile</div>
+    <div class="login-form">
+      <div class="login-field"><label data-i18n="displayName">Display Name</label><input type="text" id="ep-name" maxlength="20"></div>
+      <div class="login-field"><label data-i18n="newPassword">New Password <span style="color:var(--muted2);font-size:10px;" data-i18n="leaveBlank">(leave blank to keep current)</span></label><input type="password" id="ep-pass" placeholder="New password"></div>
+      <div class="login-field"><label data-i18n="confirmNewPassword">Confirm New Password</label><input type="password" id="ep-pass2" placeholder="Repeat new password"></div>
+      <div class="login-error" id="ep-error"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeEditModal()" data-i18n="cancel">Cancel</button>
+      <button class="btn" onclick="saveProfile()" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="app" style="display:none;">
+  <!-- GAME PICKER -->
+  <div id="game-picker" style="display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;z-index:998;padding:20px;">
+    <div class="picker-box">
+      <div class="picker-greeting" id="picker-greeting">Welcome back 👋</div>
+      <div class="picker-sub" id="picker-sub">What are we playing tonight?</div>
+      <div class="picker-games">
+        <div class="game-card" onclick="selectGame('padel')">
+          <span class="game-card-badge badge-padel">ACTIVE</span>
+          <span class="game-card-icon">🎾</span>
+          <div class="game-card-name padel">Padel</div>
+          <div class="game-card-desc">Track matches, rankings, best pairs and stats for your padel games</div>
+        </div>
+        <div class="game-card jackaroo-card" onclick="selectGame('jackaroo')">
+          <span class="game-card-badge badge-jackaroo">ACTIVE</span>
+          <span class="game-card-icon">🎲</span>
+          <div class="game-card-name jackaroo">Jackaroo</div>
+          <div class="game-card-desc">Log rounds, track points per player and see who rules the board</div>
+        </div>
+      </div>
+      <div class="picker-logout" onclick="doLogout()">Sign out</div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="header-top">
+      <div class="logo">
+        <div class="logo-icon">🎾</div>
+        <h1>All <span>In</span></h1>
+      </div>
+      <div class="header-right">
+        <div id="game-badge-header"></div>
+        <div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">
+          <span class="lang-opt active" id="lang-en">EN</span>
+          <span class="lang-opt" id="lang-ar">عر</span>
+        </div>
+        <div id="header-user"></div>
+      </div>
+    </div>
+    <nav class="nav" id="padel-nav">
+      <button class="nav-btn active" onclick="showTab('dashboard')" data-i18n="dashboard">Dashboard</button>
+      <button class="nav-btn" onclick="showTab('log-match')" data-i18n="logMatch">Log Match</button>
+      <button class="nav-btn" onclick="showTab('players')" data-i18n="players">Players</button>
+      <button class="nav-btn" onclick="showTab('rankings')" data-i18n="rankings">Rankings</button>
+      <button class="nav-btn" onclick="showTab('best-pairs')" data-i18n="bestPairs">Best Pairs</button>
+      <button class="nav-btn" onclick="showTab('rules')" data-i18n="rulesDisputes">Rules & Disputes</button>
+      <button class="nav-btn" id="nav-profile" onclick="showTab('profile')" data-i18n="myProfile">My Profile</button>
+      <button class="nav-btn" onclick="showTab('infographics')" data-i18n="infographics">Infographics</button>
+    </nav>
+    <nav class="nav" id="jackaroo-nav" style="display:none;">
+      <button class="nav-btn active" onclick="showJkTab('jk-dashboard')">Dashboard</button>
+      <button class="nav-btn" onclick="showJkTab('jk-log')">Log Round</button>
+      <button class="nav-btn" onclick="showJkTab('jk-players')">Players</button>
+      <button class="nav-btn" onclick="showJkTab('jk-rankings')">Rankings</button>
+      <button class="nav-btn" onclick="showJkTab('jk-history')">History</button>
+      <button class="nav-btn" onclick="showJkTab('jk-rules')">Rules & Disputes</button>
+    </nav>
+  </div>
+
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div id="tab-dashboard" class="tab active">
+      <div class="stats-grid" id="dash-stats"></div>
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-title" data-i18n="topPlayers">Top Players</div>
+          <div id="dash-leaderboard"></div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="recentMatches">Recent Matches</div>
+          <div id="dash-matches"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG MATCH -->
+    <div id="tab-log-match" class="tab">
+      <div class="card" style="max-width:600px;">
+        <div class="card-title" data-i18n="logMatch">Log a Match</div>
+        <div class="form-section">
+          <div class="form-section-title" data-i18n="teamA">Team A</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label data-i18n="player1">Player 1</label>
+              <select id="teamA1"><option value="" data-i18n="selectPlayer">Select player</option></select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="player2">Player 2</label>
+              <select id="teamA2"><option value="" data-i18n="selectPlayer">Select player</option></select>
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title" data-i18n="teamB">Team B</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label data-i18n="player1">Player 1</label>
+              <select id="teamB1"><option value="" data-i18n="selectPlayer">Select player</option></select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="player2">Player 2</label>
+              <select id="teamB2"><option value="" data-i18n="selectPlayer">Select player</option></select>
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title" data-i18n="score">Score</div>
+          <div class="score-row">
+            <input type="number" class="score-input" id="scoreA" min="0" max="99" value="0">
+            <span class="score-sep">–</span>
+            <input type="number" class="score-input" id="scoreB" min="0" max="99" value="0">
+          </div>
+          <div style="text-align:center; margin-top:6px; font-size:12px; color:var(--muted);" data-i18n="teamAvsB">Team A &nbsp;–&nbsp; Team B</div>
+        </div>
+        <div class="form-section">
+          <div class="form-group">
+            <label data-i18n="date">Date</label>
+            <input type="date" id="matchDate">
+          </div>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn" onclick="logMatch()" data-i18n="saveMatch">Save Match</button>
+          <button class="btn-outline" onclick="clearForm()" data-i18n="clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" style="max-width:600px; margin-top:16px;">
+        <div class="card-title" data-i18n="matchHistory">Match History</div>
+        <div id="match-log-list"></div>
+      </div>
+    </div>
+
+    <!-- PLAYERS -->
+    <div id="tab-players" class="tab">
+      <div class="card" style="max-width:480px; margin-bottom:20px;">
+        <div class="card-title" data-i18n="addPlayer">Add Player</div>
+        <div class="add-player-form">
+          <div class="form-group">
+            <label data-i18n="name">Name</label>
+            <input type="text" id="newPlayerName" placeholder="e.g. Ahmed" maxlength="20">
+          </div>
+          <button class="btn" onclick="addPlayer()" data-i18n="add">Add</button>
+        </div>
+      </div>
+      <div class="players-grid" id="players-grid"></div>
+    </div>
+
+    <!-- RANKINGS -->
+    <div id="tab-rankings" class="tab">
+      <div class="card" style="max-width:600px;">
+        <div class="card-title" data-i18n="playerRankings">Player Rankings</div>
+        <div id="rankings-list"></div>
+      </div>
+    </div>
+
+    <!-- BEST PAIRS -->
+    <div id="tab-best-pairs" class="tab">
+      <div style="margin-bottom:14px; color:var(--muted); font-size:13px;" data-i18n="pairsSubtitle">Team combinations ranked by win rate (min. 2 matches together)</div>
+      <div class="pairs-grid" id="pairs-grid"></div>
+    </div>
+
+    <!-- RULES & DISPUTES -->
+    <div id="tab-rules" class="tab">
+      <div class="debate-banner">
+        <div class="debate-icon">⚡</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;" data-i18n="pointsDisputes">Points System Disputes</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;" data-i18n="pointsDisputesDesc">The most disputed topic in casual padel groups — how should we award points? Here are the most popular systems and the arguments for each.</div>
+        </div>
+      </div>
+      <div class="debate-grid" id="debate-cards"></div>
+      <div style="margin:28px 0 12px;">
+        <div class="section-heading" data-i18n="officialRules">Official Rules & Regulations</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;" data-i18n="officialRulesDesc">Based on the World Padel Tour & International Padel Federation (FIP) official rulebook</div>
+      </div>
+      <div class="rules-nav" id="rules-nav"></div>
+      <div id="rules-content"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="tab-profile" class="tab">
+      <div id="profile-content"></div>
+    </div>
+
+    <!-- INFOGRAPHICS -->
+    <div id="tab-infographics" class="tab">
+      <div id="infographics-content"></div>
+    </div>
+
+    <!-- ── JACKAROO TABS ── -->
+    <div id="jk-dashboard" class="jk-section active">
+      <div class="stats-grid" id="jk-dash-stats"></div>
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-title" style="color:var(--gold);">🎲 Top Players</div>
+          <div id="jk-dash-leaderboard"></div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:var(--gold);">Recent Rounds</div>
+          <div id="jk-dash-recent"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jk-log" class="jk-section">
+      <div class="card" style="max-width:600px;">
+        <div class="card-title" style="color:var(--gold);">Log a Round</div>
+
+        <!-- Format toggle -->
+        <div class="form-section">
+          <div class="form-section-title">Format</div>
+          <div style="display:flex;gap:8px;">
+            <button id="fmt-1v1" class="btn" style="background:var(--gold);color:#0a0f1e;flex:1;" onclick="setJkFormat('1v1')">1 v 1</button>
+            <button id="fmt-2v2" class="btn-outline" style="flex:1;" onclick="setJkFormat('2v2')">2 v 2</button>
+          </div>
+        </div>
+
+        <!-- 1v1 inputs -->
+        <div id="jk-form-1v1">
+          <div class="form-section">
+            <div class="form-section-title">Players & Points</div>
+            <div id="jk-1v1-inputs"></div>
+          </div>
+        </div>
+
+        <!-- 2v2 inputs -->
+        <div id="jk-form-2v2" style="display:none;">
+          <div class="form-section">
+            <div class="form-section-title">Team A</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Player 1</label>
+                <select id="jk-a1" class="form-group select"><option value="">Select</option></select>
+              </div>
+              <div class="form-group">
+                <label>Player 2</label>
+                <select id="jk-a2"><option value="">Select</option></select>
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;">Team Score</label>
+              <input type="number" class="jk-score-input" id="jk-score-a" min="0" value="0" style="margin-top:6px;width:80px;">
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-section-title">Team B</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Player 1</label>
+                <select id="jk-b1"><option value="">Select</option></select>
+              </div>
+              <div class="form-group">
+                <label>Player 2</label>
+                <select id="jk-b2"><option value="">Select</option></select>
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;">Team Score</label>
+              <input type="number" class="jk-score-input" id="jk-score-b" min="0" value="0" style="margin-top:6px;width:80px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="jkMatchDate">
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn" style="background:var(--gold);color:#0a0f1e;" onclick="logJkRound()">Save Round</button>
+          <button class="btn-outline" onclick="clearJkForm()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="jk-players" class="jk-section">
+      <div class="card" style="max-width:480px;margin-bottom:20px;">
+        <div class="card-title" style="color:var(--gold);">Add Player</div>
+        <div class="add-player-form">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="jkNewPlayerName" placeholder="e.g. Ahmed" maxlength="20">
+          </div>
+          <button class="btn" style="background:var(--gold);color:#0a0f1e;" onclick="addJkPlayer()">Add</button>
+        </div>
+      </div>
+      <div class="jk-players-grid" id="jk-players-grid"></div>
+    </div>
+
+    <div id="jk-rankings" class="jk-section">
+      <div class="card" style="max-width:600px;">
+        <div class="card-title" style="color:var(--gold);">Player Rankings</div>
+        <div id="jk-rankings-list"></div>
+      </div>
+    </div>
+
+    <div id="jk-history" class="jk-section">
+      <div class="card" style="max-width:640px;">
+        <div class="card-title" style="color:var(--gold);">Round History</div>
+        <div id="jk-history-list"></div>
+      </div>
+    </div>
+
+    <!-- JACKAROO RULES & DISPUTES -->
+    <div id="jk-rules" class="jk-section">
+      <div class="debate-banner" style="background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(245,200,66,0.03));border-color:rgba(245,200,66,0.25);">
+        <div class="debate-icon">⚡</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;" id="jk-disputes-title">Points System Disputes</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;" id="jk-disputes-desc">The most argued topics in your Jackaroo group — scoring, formats, and house rules.</div>
+        </div>
+      </div>
+      <div class="debate-grid" id="jk-debate-cards"></div>
+      <div style="margin:28px 0 12px;">
+        <div class="section-heading" id="jk-rules-heading">Official Rules & How to Play</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;" id="jk-rules-desc">Jackaroo board game rules — the classic Middle Eastern favourite</div>
+      </div>
+      <div class="rules-nav" id="jk-rules-nav"></div>
+      <div id="jk-rules-content"></div>
+    </div>
+
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── I18N ─────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    dashboard:'Dashboard', logMatch:'Log Match', players:'Players',
+    rankings:'Rankings', bestPairs:'Best Pairs', rulesDisputes:'Rules & Disputes',
+    myProfile:'My Profile', signIn:'Sign In', register:'Register',
+    email:'Email', password:'Password', or:'or', continueGuest:'Continue as Guest',
+    displayName:'Display Name', confirmPassword:'Confirm Password',
+    createAccount:'Create Account', editProfile:'Edit Profile',
+    newPassword:'New Password', leaveBlank:'(leave blank to keep current)',
+    confirmNewPassword:'Confirm New Password', cancel:'Cancel', save:'Save',
+    topPlayers:'Top Players', recentMatches:'Recent Matches',
+    teamA:'Team A', teamB:'Team B', player1:'Player 1', player2:'Player 2',
+    selectPlayer:'Select player', score:'Score', teamAvsB:'Team A – Team B',
+    saveMatch:'Save Match', clear:'Clear', matchHistory:'Match History',
+    addPlayer:'Add Player', name:'Name', add:'Add',
+    playerRankings:'Player Rankings',
+    pairsSubtitle:'Team combinations ranked by win rate (min. 2 matches together)',
+    pointsDisputes:'Points System Disputes',
+    pointsDisputesDesc:'The most disputed topic in casual padel groups — how should we award points? Here are the most popular systems and the arguments for each.',
+    officialRules:'Official Rules & Regulations',
+    officialRulesDesc:'Based on the World Padel Tour & International Padel Federation (FIP) official rulebook',
+    registeredPlayers:'registered', matchesLogged:'logged',
+    noMatches:'No matches logged yet', noPlayers:'No players yet — add some above!',
+    noPlayersYet:'No players yet', needTwoPlayers:'Add at least 2 players to see pair stats',
+    needOneMatch:'Log at least one match to see pair performance',
+    winRate:'Win rate', wins:'Wins', losses:'Losses', points:'Points',
+    played:'Played', bestPairBadge:'BEST PAIR',
+    winStreak:'match win streak', loseStreak:'match loss streak',
+    remove:'Remove', needMoreMatches:'Need 2+ matches to rank',
+    with:'With', vs:'vs', memberSince:'Member since',
+    playingAsGuest:'Playing as guest', rank:'Rank', goalDiff:'Goal Diff',
+    matchHistoryCount:'Match History', noMatchesYet:'No matches recorded yet',
+    signUpPrompt:'Create an account to save your profile and stats permanently.',
+    signUpBtn:'Sign Up / Sign In', editProfileBtn:'Edit Profile',
+    playerAdded:'Player added!', playerRemoved:'Player removed',
+    matchSaved:'Match saved! ✓', matchDeleted:'Match deleted',
+    profileUpdated:'Profile updated!', selectAllPlayers:'Select all 4 players',
+    playersDifferent:'All players must be different', noDraw:'Score cannot be a draw',
+    fillAllFields:'Please fill in all fields', validEmail:'Enter a valid email address',
+    minPassword:'Password must be at least 6 characters', passwordsMatch:'Passwords do not match',
+    accountExists:'An account with this email already exists',
+    noAccount:'No account found with this email', wrongPassword:'Incorrect password',
+    enterName:'Enter a player name', playerExists:'Player already exists',
+    nameCannotBeEmpty:'Name cannot be empty', removeConfirm:'Remove this player? Their match history will remain.',
+    deleteMatchConfirm:'Delete this match?',
+    for:'For', against:'Against', courtSetup:'Court & Setup', scoring:'Scoring',
+    service:'Service', duringPlay:'During Play', faultsLets:'Faults & Lets',
+    ofPlayers:'of', ofPlayersLabel:'players',
+    infographics:'Infographics',
+    infographicsEmpty:'Log some matches to see infographics',
+    podiumTitle:'🏆 Champion Podium', podiumSub:'Top 3 players by points',
+    winRateTitle:'Win Rate by Player', winRateSub:'% of matches won per player',
+    pointsTitle:'Points Leaderboard', pointsSub:'Total points scored (Win ×3 − Loss)',
+    formTitle:'Recent Form', formSub:'Last 5 matches per player  W = win  L = loss',
+    awardsTitle:'Player Awards', awardsSub:'Standout performers',
+    mostWins:'Most Wins', bestWinRate:'Best Win Rate', mostMatches:'Most Active',
+    topScorer:'Top Scorer', bestPartner:'Best Pair', longestStreak:'Longest Streak',
+    pairChartTitle:'Top Pair Win Rates', pairChartSub:'Best team combos (min. 2 matches)',
+    goalDiffTitle:'Goal Difference', goalDiffSub:'Goals scored minus goals conceded',
+  },
+  ar: {
+    dashboard:'لوحة التحكم', logMatch:'تسجيل مباراة', players:'اللاعبون',
+    rankings:'الترتيب', bestPairs:'أفضل الأزواج', rulesDisputes:'القواعد والنزاعات',
+    myProfile:'ملفي الشخصي', signIn:'تسجيل الدخول', register:'إنشاء حساب',
+    email:'البريد الإلكتروني', password:'كلمة المرور', or:'أو', continueGuest:'المتابعة كضيف',
+    displayName:'الاسم المعروض', confirmPassword:'تأكيد كلمة المرور',
+    createAccount:'إنشاء حساب', editProfile:'تعديل الملف الشخصي',
+    newPassword:'كلمة مرور جديدة', leaveBlank:'(اتركه فارغاً للإبقاء على الحالية)',
+    confirmNewPassword:'تأكيد كلمة المرور الجديدة', cancel:'إلغاء', save:'حفظ',
+    topPlayers:'أفضل اللاعبين', recentMatches:'المباريات الأخيرة',
+    teamA:'الفريق أ', teamB:'الفريق ب', player1:'اللاعب 1', player2:'اللاعب 2',
+    selectPlayer:'اختر لاعباً', score:'النتيجة', teamAvsB:'الفريق أ – الفريق ب',
+    saveMatch:'حفظ المباراة', clear:'مسح', matchHistory:'سجل المباريات',
+    addPlayer:'إضافة لاعب', name:'الاسم', add:'إضافة',
+    playerRankings:'ترتيب اللاعبين',
+    pairsSubtitle:'تصنيف الأزواج حسب نسبة الفوز (الحد الأدنى مباراتان معاً)',
+    pointsDisputes:'نزاعات نظام النقاط',
+    pointsDisputesDesc:'الموضوع الأكثر جدلاً في مجموعات البادل — كيف نحسب النقاط؟ إليك أشهر الأنظمة والحجج لكل منها.',
+    officialRules:'القواعد واللوائح الرسمية',
+    officialRulesDesc:'استناداً إلى الدليل الرسمي لـ World Padel Tour والاتحاد الدولي للبادل (FIP)',
+    registeredPlayers:'مسجل', matchesLogged:'مسجلة',
+    noMatches:'لا توجد مباريات مسجلة بعد', noPlayers:'لا يوجد لاعبون — أضفهم أعلاه!',
+    noPlayersYet:'لا يوجد لاعبون بعد', needTwoPlayers:'أضف لاعبين على الأقل لرؤية إحصائيات الأزواج',
+    needOneMatch:'سجل مباراة واحدة على الأقل لرؤية أداء الأزواج',
+    winRate:'نسبة الفوز', wins:'انتصارات', losses:'خسائر', points:'نقاط',
+    played:'المباريات', bestPairBadge:'أفضل زوج',
+    winStreak:'سلسلة انتصارات', loseStreak:'سلسلة خسائر',
+    remove:'حذف', needMoreMatches:'يلزم مباراتان على الأقل للترتيب',
+    with:'مع', vs:'ضد', memberSince:'عضو منذ',
+    playingAsGuest:'اللعب كضيف', rank:'الترتيب', goalDiff:'فارق الأهداف',
+    matchHistoryCount:'سجل المباريات', noMatchesYet:'لا توجد مباريات مسجلة بعد',
+    signUpPrompt:'أنشئ حساباً لحفظ ملفك الشخصي وإحصائياتك بشكل دائم.',
+    signUpBtn:'إنشاء حساب / تسجيل الدخول', editProfileBtn:'تعديل الملف',
+    playerAdded:'تمت إضافة اللاعب!', playerRemoved:'تم حذف اللاعب',
+    matchSaved:'تم حفظ المباراة! ✓', matchDeleted:'تم حذف المباراة',
+    profileUpdated:'تم تحديث الملف الشخصي!', selectAllPlayers:'اختر جميع اللاعبين الأربعة',
+    playersDifferent:'يجب أن يكون جميع اللاعبين مختلفين', noDraw:'لا يمكن أن تكون النتيجة تعادلاً',
+    fillAllFields:'يرجى ملء جميع الحقول', validEmail:'أدخل بريداً إلكترونياً صحيحاً',
+    minPassword:'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل', passwordsMatch:'كلمات المرور غير متطابقة',
+    accountExists:'يوجد حساب بهذا البريد الإلكتروني مسبقاً',
+    noAccount:'لا يوجد حساب بهذا البريد الإلكتروني', wrongPassword:'كلمة المرور غير صحيحة',
+    enterName:'أدخل اسم اللاعب', playerExists:'اللاعب موجود مسبقاً',
+    nameCannotBeEmpty:'لا يمكن أن يكون الاسم فارغاً', removeConfirm:'حذف هذا اللاعب؟ سيبقى سجل مبارياته.',
+    deleteMatchConfirm:'هل تريد حذف هذه المباراة؟',
+    for:'له', against:'عليه', courtSetup:'الملعب والإعداد', scoring:'التسجيل',
+    service:'الإرسال', duringPlay:'أثناء اللعب', faultsLets:'الأخطاء والإعادات',
+    ofPlayers:'من', ofPlayersLabel:'لاعبين',
+    infographics:'الرسوم البيانية',
+    infographicsEmpty:'سجّل بعض المباريات لرؤية الرسوم البيانية',
+    podiumTitle:'🏆 منصة التتويج', podiumSub:'أفضل 3 لاعبين بالنقاط',
+    winRateTitle:'نسبة الفوز لكل لاعب', winRateSub:'نسبة المباريات المكسوبة',
+    pointsTitle:'قائمة النقاط', pointsSub:'النقاط الكلية (فوز ×3 − خسارة)',
+    formTitle:'الشكل الأخير', formSub:'آخر 5 مباريات لكل لاعب  F = فوز  X = خسارة',
+    awardsTitle:'جوائز اللاعبين', awardsSub:'أبرز اللاعبين',
+    mostWins:'الأكثر انتصاراً', bestWinRate:'أفضل نسبة فوز', mostMatches:'الأكثر نشاطاً',
+    topScorer:'أكثر تسجيلاً', bestPartner:'أفضل زوج', longestStreak:'أطول سلسلة',
+    pairChartTitle:'نسبة فوز أفضل الأزواج', pairChartSub:'أفضل الأزواج (الحد الأدنى مباراتان)',
+    goalDiffTitle:'فارق الأهداف', goalDiffSub:'الأهداف المسجلة ناقص المستقبلة',
+  }
+};
+
+let currentLang = localStorage.getItem('pt_lang') || 'en';
+
+function t(key) {
+  return (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key]) || TRANSLATIONS['en'][key] || key;
+}
+
+function applyLang() {
+  const isAr = currentLang === 'ar';
+  document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', currentLang);
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+  // Update lang toggle buttons (main header + login)
+  ['lang-en','lang-ar','login-lang-en','login-lang-ar'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('active', id.endsWith(isAr ? 'ar' : 'en'));
+  });
+  // Update title
+  document.title = 'All In';
+  // Update placeholder texts
+  const placeholders = {
+    'si-email': isAr ? 'بريدك@مثال.com' : 'you@example.com',
+    'reg-email': isAr ? 'بريدك@مثال.com' : 'you@example.com',
+    'reg-name': isAr ? 'مثل: أحمد' : 'e.g. Ahmad',
+    'reg-pass': isAr ? 'الحد الأدنى 6 أحرف' : 'Min. 6 characters',
+    'reg-pass2': isAr ? 'كرر كلمة المرور' : 'Repeat password',
+    'ep-pass': isAr ? 'كلمة مرور جديدة' : 'New password',
+    'ep-pass2': isAr ? 'كرر كلمة المرور' : 'Repeat new password',
+    'newPlayerName': isAr ? 'مثل: أحمد' : 'e.g. Ahmed',
+  };
+  Object.entries(placeholders).forEach(([id, ph]) => {
+    const el = document.getElementById(id);
+    if(el) el.placeholder = ph;
+  });
+  // Re-render all dynamic content
+  if(document.getElementById('login-screen').style.display === 'none') {
+    renderAll();
+  }
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('pt_lang', currentLang);
+  // Save to user preference if logged in
+  const user = getCurrentUser();
+  if(user) { user.lang = currentLang; setCurrentUser(user); }
+  applyLang();
+}
+
+// ─── AUTH ─────────────────────────────────────────────
+function hashPass(str) {
+  let h = 0;
+  for(let i=0;i<str.length;i++) h = (Math.imul(31,h)+str.charCodeAt(i))|0;
+  return h.toString(36);
+}
+
+function getCurrentUser() { return JSON.parse(sessionStorage.getItem('pt_user') || 'null'); }
+function setCurrentUser(u) { sessionStorage.setItem('pt_user', JSON.stringify(u)); }
+
+function switchLoginTab(tab) {
+  document.getElementById('lt-signin').classList.toggle('active', tab==='signin');
+  document.getElementById('lt-register').classList.toggle('active', tab==='register');
+  document.getElementById('login-form-signin').style.display = tab==='signin'?'flex':'none';
+  document.getElementById('login-form-register').style.display = tab==='register'?'flex':'none';
+  document.getElementById('si-error').textContent = '';
+  document.getElementById('reg-error').textContent = '';
+}
+
+function doLogout() {
+  sessionStorage.removeItem('pt_user');
+  sessionStorage.removeItem('allin_game');
+  location.reload();
+}
+
+// ─── SUPABASE ─────────────────────────────────────────
+const SUPA_URL = 'https://dnypzxxodaaplyoeahna.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueXB6eHhvZGFhcGx5b2VhaG5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTU2MDgsImV4cCI6MjA5MDU5MTYwOH0.WqDkhV5hIEpnTS1IPQ3bDvDQ4SqCiXs3AUhmTADRgfQ';
+
+const SB_HEADERS = {
+  'Content-Type': 'application/json',
+  'apikey': SUPA_KEY,
+  'Authorization': `Bearer ${SUPA_KEY}`,
+  'Prefer': 'return=representation'
+};
+
+async function sbGet(table, filter='') {
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}`, { headers: SB_HEADERS });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function sbInsert(table, row) {
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method:'POST', headers: SB_HEADERS, body: JSON.stringify(row)
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function sbDelete(table, filter) {
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}`, {
+    method:'DELETE', headers: SB_HEADERS
+  });
+  if(!res.ok) throw new Error(await res.text());
+}
+
+async function sbUpdate(table, filter, data) {
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}`, {
+    method:'PATCH', headers: SB_HEADERS, body: JSON.stringify(data)
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+// ─── AUTH (Supabase-backed) ───────────────────────────
+function getCurrentUser() { return JSON.parse(sessionStorage.getItem('pt_user') || 'null'); }
+function setCurrentUser(u) { sessionStorage.setItem('pt_user', JSON.stringify(u)); }
+
+async function doSignIn() {
+  const email = document.getElementById('si-email').value.trim().toLowerCase();
+  const pass = document.getElementById('si-pass').value;
+  const errEl = document.getElementById('si-error');
+  if(!email||!pass) { errEl.textContent=t('fillAllFields'); return; }
+  errEl.textContent = '...';
+  try {
+    const rows = await sbGet('accounts', `email=eq.${encodeURIComponent(email)}&select=*`);
+    if(!rows.length) { errEl.textContent=t('noAccount'); return; }
+    const acc = rows[0];
+    if(acc.pass_hash !== hashPass(pass)) { errEl.textContent=t('wrongPassword'); return; }
+    setCurrentUser({email, name:acc.name, joined:acc.joined});
+    errEl.textContent='';
+    await bootApp();
+  } catch(e) { errEl.textContent='Connection error. Try again.'; console.error(e); }
+}
+
+async function doRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim().toLowerCase();
+  const pass = document.getElementById('reg-pass').value;
+  const pass2 = document.getElementById('reg-pass2').value;
+  const errEl = document.getElementById('reg-error');
+  if(!name||!email||!pass||!pass2) { errEl.textContent=t('fillAllFields'); return; }
+  if(!email.includes('@')||!email.includes('.')) { errEl.textContent=t('validEmail'); return; }
+  if(pass.length<6) { errEl.textContent=t('minPassword'); return; }
+  if(pass!==pass2) { errEl.textContent=t('passwordsMatch'); return; }
+  errEl.textContent='...';
+  try {
+    const existing = await sbGet('accounts', `email=eq.${encodeURIComponent(email)}&select=email`);
+    if(existing.length) { errEl.textContent=t('accountExists'); return; }
+    const joined = new Date().toISOString().split('T')[0];
+    await sbInsert('accounts', { email, name, pass_hash: hashPass(pass), joined });
+    // auto-create padel player
+    const pId = Date.now().toString();
+    await sbInsert('players', { id: pId, name, email, game: 'padel' });
+    setCurrentUser({email, name, joined});
+    errEl.textContent='';
+    await bootApp();
+  } catch(e) { errEl.textContent='Connection error. Try again.'; console.error(e); }
+}
+
+function guestLogin() {
+  setCurrentUser({email:'guest', name:'Guest', joined: new Date().toISOString().split('T')[0], isGuest:true});
+  bootApp();
+}
+
+async function saveProfile() {
+  const user = getCurrentUser();
+  if(user.isGuest) { closeEditModal(); toast(t('signUpPrompt')); return; }
+  const newName = document.getElementById('ep-name').value.trim();
+  const newPass = document.getElementById('ep-pass').value;
+  const newPass2 = document.getElementById('ep-pass2').value;
+  const errEl = document.getElementById('ep-error');
+  if(!newName) { errEl.textContent=t('nameCannotBeEmpty'); return; }
+  if(newPass && newPass.length<6) { errEl.textContent=t('minPassword'); return; }
+  if(newPass && newPass!==newPass2) { errEl.textContent=t('passwordsMatch'); return; }
+  try {
+    const updates = { name: newName };
+    if(newPass) updates.pass_hash = hashPass(newPass);
+    await sbUpdate('accounts', `email=eq.${encodeURIComponent(user.email)}`, updates);
+    // update player name
+    await sbUpdate('players', `email=eq.${encodeURIComponent(user.email)}`, { name: newName });
+    user.name = newName;
+    setCurrentUser(user);
+    // refresh local state
+    await loadState();
+    closeEditModal();
+    renderHeaderUser();
+    renderAll();
+    toast(t('profileUpdated'));
+  } catch(e) { errEl.textContent='Save failed. Try again.'; }
+}
+
+// ─── STATE (Supabase-backed) ──────────────────────────
+let state = { players: [], matches: [] };
+let jkState = { players: [], rounds: [] };
+
+async function loadState() {
+  try {
+    const [padelPlayers, padelMatches, jkPlayers, jkRounds] = await Promise.all([
+      sbGet('players', 'game=eq.padel&select=*&order=created_at.asc'),
+      sbGet('matches', 'game=eq.padel&select=*&order=created_at.asc'),
+      sbGet('players', 'game=eq.jackaroo&select=*&order=created_at.asc'),
+      sbGet('matches', 'game=eq.jackaroo&select=*&order=created_at.asc'),
+    ]);
+    state.players = padelPlayers.map(p => ({ id: p.id, name: p.name, email: p.email||'' }));
+    state.matches = padelMatches.map(m => ({
+      id: m.id, date: m.date,
+      teamA: m.team_a || [], teamB: m.team_b || [],
+      scoreA: m.score_a, scoreB: m.score_b
+    }));
+    jkState.players = jkPlayers.map(p => ({ id: p.id, name: p.name }));
+    jkState.rounds = jkRounds.map(r => ({
+      id: r.id, date: r.date, format: r.format,
+      teams: r.teams || null,
+      scores: r.scores || null
+    }));
+  } catch(e) { console.error('loadState error', e); toast('Sync error — check connection'); }
+}
+
+function save() {} // no-op — writes go directly to Supabase
+function saveJk() {} // no-op
+
+// ─── PADEL ACTIONS (Supabase) ─────────────────────────
+async function addPlayer() {
+  const nameEl = document.getElementById('newPlayerName');
+  const name = nameEl.value.trim();
+  if(!name) { toast(t('enterName')); return; }
+  if(state.players.find(p=>p.name.toLowerCase()===name.toLowerCase())) { toast(t('playerExists')); return; }
+  const id = Date.now().toString();
+  try {
+    await sbInsert('players', { id, name, game: 'padel' });
+    nameEl.value = '';
+    await loadState(); renderAll();
+    toast(t('playerAdded'));
+  } catch(e) { toast('Save failed'); }
+}
+
+async function removePlayer(id) {
+  if(!confirm(t('removeConfirm'))) return;
+  try {
+    await sbDelete('players', `id=eq.${id}`);
+    await loadState(); renderAll(); toast(t('playerRemoved'));
+  } catch(e) { toast('Delete failed'); }
+}
+
+async function logMatch() {
+  const a1 = document.getElementById('teamA1').value;
+  const a2 = document.getElementById('teamA2').value;
+  const b1 = document.getElementById('teamB1').value;
+  const b2 = document.getElementById('teamB2').value;
+  const sa = parseInt(document.getElementById('scoreA').value)||0;
+  const sb = parseInt(document.getElementById('scoreB').value)||0;
+  const date = document.getElementById('matchDate').value || new Date().toISOString().split('T')[0];
+  if(!a1||!a2||!b1||!b2) { toast(t('selectAllPlayers')); return; }
+  if(new Set([a1,a2,b1,b2]).size < 4) { toast(t('playersDifferent')); return; }
+  if(sa===sb) { toast(t('noDraw')); return; }
+  try {
+    await sbInsert('matches', { id: Date.now().toString(), game:'padel', team_a:[a1,a2], team_b:[b1,b2], score_a:sa, score_b:sb, date });
+    clearForm(); await loadState(); renderAll();
+    toast(t('matchSaved'));
+  } catch(e) { toast('Save failed'); }
+}
+
+async function deleteMatch(id) {
+  if(!confirm(t('deleteMatchConfirm'))) return;
+  try {
+    await sbDelete('matches', `id=eq.${id}`);
+    await loadState(); renderAll(); toast(t('matchDeleted'));
+  } catch(e) { toast('Delete failed'); }
+}
+
+// ─── JACKAROO ACTIONS (Supabase) ──────────────────────
+async function addJkPlayer() {
+  const nameEl = document.getElementById('jkNewPlayerName');
+  const name = nameEl.value.trim();
+  if(!name) { toast('Enter a player name'); return; }
+  if(jkState.players.find(p=>p.name.toLowerCase()===name.toLowerCase())) { toast('Player already exists'); return; }
+  try {
+    await sbInsert('players', { id: Date.now().toString(), name, game: 'jackaroo' });
+    nameEl.value = '';
+    await loadState(); renderJkAll();
+    toast('Player added! 🎲');
+  } catch(e) { toast('Save failed'); }
+}
+
+async function removeJkPlayer(id) {
+  if(!confirm('Remove this player? Their round history will remain.')) return;
+  try {
+    await sbDelete('players', `id=eq.${id}`);
+    await loadState(); renderJkAll(); toast('Player removed');
+  } catch(e) { toast('Delete failed'); }
+}
+
+async function logJkRound() {
+  const date = document.getElementById('jkMatchDate').value || new Date().toISOString().split('T')[0];
+  let row = { id: Date.now().toString(), game:'jackaroo', date, format: jkFormat };
+
+  if(jkFormat === '2v2') {
+    const a1=document.getElementById('jk-a1').value, a2=document.getElementById('jk-a2').value;
+    const b1=document.getElementById('jk-b1').value, b2=document.getElementById('jk-b2').value;
+    const sa=parseInt(document.getElementById('jk-score-a').value)||0;
+    const sb=parseInt(document.getElementById('jk-score-b').value)||0;
+    if(!a1||!a2||!b1||!b2) { toast('Select all 4 players'); return; }
+    if(new Set([a1,a2,b1,b2]).size < 4) { toast('All players must be different'); return; }
+    if(sa===sb) { toast('Score cannot be a draw'); return; }
+    row.teams = [{pids:[a1,a2],score:sa},{pids:[b1,b2],score:sb}];
+  } else {
+    if(!jkState.players.length) { toast('Add players first'); return; }
+    const scores = jkState.players.map(p=>({ pid:p.id, score:parseInt(document.getElementById('jk-score-'+p.id)?.value)||0 }));
+    const maxSc = Math.max(...scores.map(s=>s.score));
+    if(scores.filter(s=>s.score===maxSc).length===scores.length) { toast('At least one player must score higher'); return; }
+    row.scores = scores;
+  }
+
+  try {
+    await sbInsert('matches', row);
+    clearJkForm(); await loadState(); renderJkAll();
+    toast('Round saved! 🎲');
+  } catch(e) { toast('Save failed'); }
+}
+
+async function deleteJkRound(id) {
+  if(!confirm('Delete this round?')) return;
+  try {
+    await sbDelete('matches', `id=eq.${id}`);
+    await loadState(); renderJkAll(); toast('Round deleted');
+  } catch(e) { toast('Delete failed'); }
+}
+
+// ─── STATE ───────────────────────────────────────────
+
+// ─── INIT ─────────────────────────────────────────────
+const avatarColors = ['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9'];
+function initials(name) { return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+function avColor(idx) { return avatarColors[idx % avatarColors.length]; }
+function avatarEl(player, size=34) {
+  const i = state.players.findIndex(p=>p.id===player.id);
+  return `<div class="avatar ${avColor(i)}" style="width:${size}px;height:${size}px;font-size:${size<=30?11:13}px;">${initials(player.name)}</div>`;
+}
+function fmtDate(d) {
+  if(!d) return '';
+  const dt = new Date(d);
+  return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+}
+
+// ─── TABS ─────────────────────────────────────────────
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    if(b.textContent.toLowerCase().replace(' ','').includes(tab.replace('-','').toLowerCase()) ||
+       b.getAttribute('onclick').includes(tab)) b.classList.add('active');
+  });
+  renderAll();
+}
+
+// ─── STATS ───────────────────────────────────────────
+function playerStats(pid) {
+  let wins=0, losses=0, totalGF=0, totalGA=0;
+  for(const m of state.matches) {
+    const inA = m.teamA.includes(pid);
+    const inB = m.teamB.includes(pid);
+    if(!inA && !inB) continue;
+    const aWin = parseInt(m.scoreA) > parseInt(m.scoreB);
+    if(inA) { if(aWin) wins++; else losses++; totalGF+=parseInt(m.scoreA); totalGA+=parseInt(m.scoreB); }
+    if(inB) { if(!aWin) wins++; else losses++; totalGF+=parseInt(m.scoreB); totalGA+=parseInt(m.scoreA); }
+  }
+  const total = wins+losses;
+  const wr = total ? (wins/total*100) : 0;
+  const pts = wins*3 - losses;
+  return { wins, losses, total, wr, pts, totalGF, totalGA };
+}
+
+function pairStats(pid1, pid2) {
+  let wins=0, losses=0;
+  for(const m of state.matches) {
+    const inA = m.teamA.includes(pid1) && m.teamA.includes(pid2);
+    const inB = m.teamB.includes(pid1) && m.teamB.includes(pid2);
+    if(!inA && !inB) continue;
+    const aWin = parseInt(m.scoreA) > parseInt(m.scoreB);
+    if(inA) { if(aWin) wins++; else losses++; }
+    if(inB) { if(!aWin) wins++; else losses++; }
+  }
+  return { wins, losses, total: wins+losses, wr: (wins+losses)?wins/(wins+losses)*100:0 };
+}
+
+function getStreak(pid) {
+  const rel = state.matches.filter(m=>m.teamA.includes(pid)||m.teamB.includes(pid))
+    .sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(!rel.length) return {type:null,count:0};
+  let type = null, count = 0;
+  for(const m of rel) {
+    const aWin = parseInt(m.scoreA)>parseInt(m.scoreB);
+    const inA = m.teamA.includes(pid);
+    const won = inA ? aWin : !aWin;
+    if(type===null) { type = won?'W':'L'; count=1; }
+    else if((type==='W')===won) count++;
+    else break;
+  }
+  return {type, count};
+}
+
+function sortedPlayers() {
+  return [...state.players].sort((a,b)=>{
+    const sa = playerStats(a.id), sb = playerStats(b.id);
+    if(sb.pts!==sa.pts) return sb.pts-sa.pts;
+    return sb.wr - sa.wr;
+  });
+}
+
+// ─── RENDER ALL ──────────────────────────────────────
+function renderAll() {
+  renderDashboard();
+  renderPlayerSelects();
+  renderMatchLog();
+  renderPlayersGrid();
+  renderRankings();
+  renderBestPairs();
+  renderRulesTab();
+  renderProfile();
+  renderInfographics();
+}
+
+// ─── DASHBOARD ───────────────────────────────────────
+function renderDashboard() {
+  const totalM = state.matches.length;
+  const totalP = state.players.length;
+  const topP = sortedPlayers()[0];
+  const topStat = topP ? playerStats(topP.id) : null;
+  document.getElementById('dash-stats').innerHTML = `
+    <div class="stat-card"><div class="stat-label">${t('players')}</div><div class="stat-val accent">${totalP}</div><div class="stat-sub">${t('registeredPlayers')}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('logMatch')}</div><div class="stat-val">${totalM}</div><div class="stat-sub">${t('matchesLogged')}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('topPlayers')}</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'–'}</div><div class="stat-sub">${topStat?topStat.pts+' pts':''}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${topStat && topStat.total ? Math.round(topStat.wr)+'%':'–'}</div><div class="stat-sub">${topStat && topStat.total ? topStat.wins+'W / '+topStat.losses+'L':''}</div></div>
+  `;
+
+  // mini leaderboard
+  const top5 = sortedPlayers().slice(0,5);
+  const rankIcons = ['rank-1','rank-2','rank-3','',''];
+  document.getElementById('dash-leaderboard').innerHTML = top5.length ? top5.map((p,i)=>{
+    const s = playerStats(p.id);
+    const idx = state.players.findIndex(pl=>pl.id===p.id);
+    return `<div class="lb-row">
+      <span class="lb-rank ${rankIcons[i]}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</span>
+      ${avatarEl(p,30)}
+      <span class="lb-name">${p.name}</span>
+      <div style="text-align:right;">
+        <div class="lb-points">${s.pts}pts</div>
+        <div class="lb-wr">${s.total?Math.round(s.wr)+'%':t('noMatches')}</div>
+      </div>
+    </div>`;
+  }).join('<hr class="lb-sep">') : `<div class="empty-state">${t('noPlayers')}</div>`;
+
+  // recent matches
+  const recent = [...state.matches].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);
+  document.getElementById('dash-matches').innerHTML = recent.length ? recent.map(m=>{
+    const pA1 = state.players.find(p=>p.id===m.teamA[0]);
+    const pA2 = state.players.find(p=>p.id===m.teamA[1]);
+    const pB1 = state.players.find(p=>p.id===m.teamB[0]);
+    const pB2 = state.players.find(p=>p.id===m.teamB[1]);
+    const an = [pA1,pA2].filter(Boolean).map(p=>p.name).join(' & ');
+    const bn = [pB1,pB2].filter(Boolean).map(p=>p.name).join(' & ');
+    return `<div class="match-mini">
+      <div class="mm-teams">
+        <div style="font-weight:500;">${an}</div>
+        <div style="color:var(--muted); font-size:11px;">${t('vs')} ${bn}</div>
+      </div>
+      <div class="mm-score">${m.scoreA}–${m.scoreB}</div>
+      <div class="mm-date">${fmtDate(m.date)}</div>
+    </div>`;
+  }).join('') : `<div class="empty-state" style="padding:20px 0;"><p>${t('noMatches')}</p></div>`;
+}
+
+// ─── PLAYER SELECTS ──────────────────────────────────
+function renderPlayerSelects() {
+  const selects = ['teamA1','teamA2','teamB1','teamB2'];
+  selects.forEach(id=>{
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = `<option value="">${t('selectPlayer')}</option>` +
+      state.players.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+    if(cur) sel.value = cur;
+  });
+}
+
+// ─── MATCH LOG ───────────────────────────────────────
+function renderMatchLog() {
+  const sorted = [...state.matches].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const el = document.getElementById('match-log-list');
+  if(!sorted.length) { el.innerHTML = `<div class="empty-state"><p>${t('noMatches')}</p></div>`; return; }
+  el.innerHTML = sorted.map(m=>{
+    const pA = m.teamA.map(id=>state.players.find(p=>p.id===id)).filter(Boolean);
+    const pB = m.teamB.map(id=>state.players.find(p=>p.id===id)).filter(Boolean);
+    const aWin = parseInt(m.scoreA)>parseInt(m.scoreB);
+    return `<div class="match-item">
+      <div class="match-header">
+        <span class="match-date">${fmtDate(m.date)}</span>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span class="match-score">${m.scoreA} – ${m.scoreB}</span>
+          <button class="btn-danger" onclick="deleteMatch('${m.id}')">✕</button>
+        </div>
+      </div>
+      <div class="match-teams">
+        <div class="team-tag">${pA.map(p=>p.name).join(' & ')} <span class="${aWin?'win-badge':'lose-badge'}">${aWin?'W':'L'}</span></div>
+        <span class="vs-badge">VS</span>
+        <div class="team-tag">${pB.map(p=>p.name).join(' & ')} <span class="${!aWin?'win-badge':'lose-badge'}">${!aWin?'W':'L'}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── PLAYERS GRID ────────────────────────────────────
+function renderPlayersGrid() {
+  const el = document.getElementById('players-grid');
+  if(!state.players.length) {
+    el.innerHTML = `<div class="empty-state"><p>${t('noPlayers')}</p></div>`;
+    return;
+  }
+  el.innerHTML = state.players.map((p,i)=>{
+    const s = playerStats(p.id);
+    const streak = getStreak(p.id);
+    return `<div class="player-card">
+      <div class="player-card-top">
+        ${avatarEl(p,40)}
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;">${p.name}</div>
+          <div style="font-size:11px;color:var(--muted);">${s.total} ${t('matchHistory').toLowerCase()}</div>
+        </div>
+      </div>
+      <div class="player-stats-grid">
+        <div class="psm"><div class="psm-label">${t('points')}</div><div class="psm-val" style="color:var(--accent);">${s.pts}</div></div>
+        <div class="psm"><div class="psm-label">${t('winRate')}</div><div class="psm-val">${s.total?Math.round(s.wr)+'%':'–'}</div></div>
+        <div class="psm"><div class="psm-label">${t('wins')}</div><div class="psm-val" style="color:var(--win);">${s.wins}</div></div>
+        <div class="psm"><div class="psm-label">${t('losses')}</div><div class="psm-val" style="color:var(--lose);">${s.losses}</div></div>
+      </div>
+      <div class="win-rate-bar">
+        <div class="wr-label"><span>${t('winRate')}</span><span>${s.total?Math.round(s.wr)+'%':'–'}</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(s.wr)}%"></div></div>
+      </div>
+      ${streak.count>=2?`<div class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'🔥':'❄️'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</div>`:''}
+      <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+        <button class="btn-danger" onclick="removePlayer('${p.id}')">${t('remove')}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── RANKINGS ────────────────────────────────────────
+function renderRankings() {
+  const sorted = sortedPlayers();
+  const el = document.getElementById('rankings-list');
+  if(!sorted.length) { el.innerHTML = `<div class="empty-state"><p>${t('noPlayersYet')}</p></div>`; return; }
+  const medals = ['🥇','🥈','🥉'];
+  el.innerHTML = sorted.map((p,i)=>{
+    const s = playerStats(p.id);
+    return `<div class="lb-row">
+      <span class="lb-rank ${i<3?['rank-1','rank-2','rank-3'][i]:''}">${i<3?medals[i]:i+1}</span>
+      ${avatarEl(p,34)}
+      <div style="flex:1;">
+        <div style="font-weight:500;">${p.name}</div>
+        <div style="font-size:11px; color:var(--muted);">${s.wins}W · ${s.losses}L · GF:${s.totalGF} GA:${s.totalGA}</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="lb-points">${s.pts} pts</div>
+        <div class="lb-wr">${s.total?Math.round(s.wr)+'% WR':t('noMatches')}</div>
+      </div>
+    </div><hr class="lb-sep">`;
+  }).join('');
+}
+
+// ─── BEST PAIRS ──────────────────────────────────────
+function renderBestPairs() {
+  const el = document.getElementById('pairs-grid');
+  if(state.players.length < 2) { el.innerHTML = `<div class="empty-state"><p>${t('needTwoPlayers')}</p></div>`; return; }
+  const pairs = [];
+  for(let i=0;i<state.players.length;i++) {
+    for(let j=i+1;j<state.players.length;j++) {
+      const p1=state.players[i], p2=state.players[j];
+      const s = pairStats(p1.id,p2.id);
+      if(s.total < 1) continue;
+      pairs.push({p1,p2,s});
+    }
+  }
+  if(!pairs.length) { el.innerHTML = `<div class="empty-state"><p>${t('needOneMatch')}</p></div>`; return; }
+  pairs.sort((a,b)=>b.s.wr-a.s.wr||(b.s.wins-a.s.wins));
+  el.innerHTML = pairs.map((pair,idx)=>{
+    const qualified = pair.s.total >= 2;
+    const isTop = idx===0 && qualified;
+    return `<div class="pair-card${isTop?' top-pair':''}">
+      ${isTop?`<span class="top-badge">${t('bestPairBadge')}</span>`:''}
+      <div class="pair-players">
+        ${avatarEl(pair.p1,32)}
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;">${pair.p1.name}</div>
+        <span class="pair-vs">&</span>
+        ${avatarEl(pair.p2,32)}
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;">${pair.p2.name}</div>
+      </div>
+      <div class="pair-stats">
+        <div><div class="pair-stat-v" style="color:var(--win);">${pair.s.wins}</div><div class="pair-stat-l">${t('wins')}</div></div>
+        <div><div class="pair-stat-v" style="color:var(--lose);">${pair.s.losses}</div><div class="pair-stat-l">${t('losses')}</div></div>
+        <div><div class="pair-stat-v">${pair.s.total}</div><div class="pair-stat-l">${t('played')}</div></div>
+      </div>
+      <div class="pair-wr" style="color:${pair.s.wr>=50?'var(--accent)':'var(--danger)'};">
+        ${Math.round(pair.s.wr)}% ${t('winRate')}
+      </div>
+      <div class="bar-track" style="margin-top:8px;"><div class="bar-fill" style="width:${Math.round(pair.s.wr)}%"></div></div>
+      ${!qualified?`<div style="font-size:10px;color:var(--muted2);margin-top:6px;">${t('needMoreMatches')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ─── CLEAR FORMS ─────────────────────────────────────
+
+function clearForm() {
+  ['teamA1','teamA2','teamB1','teamB2'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('scoreA').value='0';
+  document.getElementById('scoreB').value='0';
+  document.getElementById('matchDate').value='';
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ─── RULES DATA ──────────────────────────────────────
+const RULES_CATEGORIES = [
+  { id:'court', label:'Court & Setup' },
+  { id:'scoring', label:'Scoring' },
+  { id:'serve', label:'Service' },
+  { id:'play', label:'During Play' },
+  { id:'faults', label:'Faults & Lets' },
+];
+
+const RULES_DATA = {
+  court: [
+    {
+      en: { title:'Court dimensions', body:`The padel court is <span class="highlight">10m wide × 20m long</span>, enclosed by walls and metal mesh fencing. The court is divided in half by a net.<ul><li>Net height: 88cm at the centre, 92cm at the posts</li><li>Service boxes: 6.95m deep from the net, 5m wide</li><li>The back wall must be at least 3m high</li></ul>` },
+      ar: { title:'أبعاد الملعب', body:`ملعب البادل مقاسه <span class="highlight">10م عرضاً × 20م طولاً</span>، محاط بجدران وشبكة معدنية. ينقسم الملعب إلى نصفين بواسطة شبكة.<ul><li>ارتفاع الشبكة: 88 سم في المنتصف، 92 سم عند الأعمدة</li><li>مربعات الإرسال: 6.95م عمقاً، 5م عرضاً</li><li>يجب ألا يقل ارتفاع الجدار الخلفي عن 3م</li></ul>` }
+    },
+    {
+      en: { title:'Court surface', body:`Courts can be artificial grass, concrete, or synthetic surfaces. The official FIP surface is <span class="highlight">artificial grass</span> with sand infill, though concrete is common in many clubs.` },
+      ar: { title:'سطح الملعب', body:`يمكن أن يكون سطح الملعب من العشب الاصطناعي أو الخرسانة أو الأسطح التركيبية. السطح الرسمي للاتحاد الدولي (FIP) هو <span class="highlight">العشب الاصطناعي</span> مع رمل ملء، وإن كانت الخرسانة شائعة في كثير من الأندية.` }
+    },
+    {
+      en: { title:'Ball specifications', body:`A padel ball must:<ul><li>Be <span class="highlight">6.35–6.77cm</span> in diameter</li><li>Weigh <span class="highlight">56–59.4g</span></li><li>Bounce between <span class="highlight">135–145cm</span> when dropped from 2.5m</li><li>Yellow or white in colour</li></ul>Internal pressure may be reduced for high-altitude venues.` },
+      ar: { title:'مواصفات الكرة', body:`يجب أن تستوفي كرة البادل المعايير التالية:<ul><li>قطرها بين <span class="highlight">6.35 و6.77 سم</span></li><li>وزنها بين <span class="highlight">56 و59.4 جرام</span></li><li>ارتداد بين <span class="highlight">135 و145 سم</span> عند إسقاطها من 2.5م</li><li>لونها أصفر أو أبيض</li></ul>يمكن تخفيض الضغط الداخلي في الملاعب المرتفعة.` }
+    },
+    {
+      en: { title:'Racket (pala) specifications', body:`A padel racket must:<ul><li>Not exceed <span class="highlight">45.5cm in length</span> and <span class="highlight">26cm in width</span></li><li>Have a solid perforated face — <span class="warn-tag">strings are NOT allowed</span></li><li>Be attached to the wrist via a safety cord</li></ul>` },
+      ar: { title:'مواصفات المضرب (البالا)', body:`يجب أن يستوفي مضرب البادل:<ul><li>ألا يتجاوز <span class="highlight">45.5 سم طولاً</span> و<span class="highlight">26 سم عرضاً</span></li><li>أن يكون وجهه صلباً مثقوباً — <span class="warn-tag">الأوتار غير مسموح بها</span></li><li>يُربط بالمعصم بحبل أمان</li></ul>` }
+    },
+  ],
+  scoring: [
+    {
+      en: { title:'Game scoring', body:`Padel uses the same point system as tennis:<ul><li>0, 15, 30, 40, Game</li><li>At <span class="highlight">deuce (40-40)</span>, a pair must win two consecutive points (advantage → game)</li></ul>` },
+      ar: { title:'نظام نقاط اللعبة', body:`يستخدم البادل نفس نظام نقاط التنس:<ul><li>0، 15، 30، 40، لعبة</li><li>عند <span class="highlight">التساوي (40-40)</span>، يجب على الزوج الفائز بنقطتين متتاليتين (ميزة ← لعبة)</li></ul>` }
+    },
+    {
+      en: { title:'Set scoring', body:`A set is won by the first pair to reach <span class="highlight">6 games</span>, with a 2-game lead. If the set reaches <span class="highlight">6-6</span>, a tiebreak is played.<ul><li>Tiebreak: first to 7 points with a 2-point lead</li><li>Match format: best of 3 sets (professional: best of 3 or 5)</li></ul>` },
+      ar: { title:'نظام نقاط الشوط', body:`يفوز بالشوط أول زوج يصل إلى <span class="highlight">6 ألعاب</span> بفارق لعبتين. إذا وصل الشوط إلى <span class="highlight">6-6</span> يُلعب تايبريك.<ul><li>التايبريك: أول من يصل إلى 7 نقاط بفارق نقطتين</li><li>صيغة المباراة: أفضل 3 أشواط (محترفون: أفضل 3 أو 5)</li></ul>` }
+    },
+    {
+      en: { title:'Super tiebreak (Match tiebreak)', body:`If the match reaches <span class="highlight">one set all</span> (1-1), many recreational formats use a super tiebreak instead of a full third set:<ul><li>First pair to <span class="highlight">10 points</span>, with a 2-point lead wins</li><li>This is the <span class="warn-tag">most disputed format</span> in casual play — see Disputes tab</li></ul>` },
+      ar: { title:'السوبر تايبريك (تايبريك المباراة)', body:`إذا وصلت المباراة إلى <span class="highlight">شوط لكل فريق</span> (1-1)، تستخدم كثير من الصيغ الترفيهية سوبر تايبريك بدلاً من شوط ثالث كامل:<ul><li>أول زوج يصل إلى <span class="highlight">10 نقاط</span> بفارق نقطتين يفوز</li><li>هذه <span class="warn-tag">أكثر صيغة خلافية</span> في اللعب غير الرسمي — انظر تبويب النزاعات</li></ul>` }
+    },
+    {
+      en: { title:'Changing ends', body:`Players change ends after every odd-numbered game (1st, 3rd, 5th…). During a tiebreak, ends are changed every <span class="highlight">6 points</span>.` },
+      ar: { title:'تبادل الجانبين', body:`يتبادل اللاعبون الجانبين بعد كل لعبة فردية الترتيب (الأولى، الثالثة، الخامسة…). خلال التايبريك يتم التبادل كل <span class="highlight">6 نقاط</span>.` }
+    },
+  ],
+  serve: [
+    {
+      en: { title:'Service position', body:`The server must stand behind the service line, between the centre line and the side wall. The serve must be hit with the ball bouncing first, struck at or below <span class="highlight">waist height</span>.` },
+      ar: { title:'موقع الإرسال', body:`يجب أن يقف المرسل خلف خط الإرسال، بين خط المنتصف والجدار الجانبي. يجب ضرب الإرسال بعد ارتداد الكرة من الأرض، على <span class="highlight">مستوى الخصر أو أقل</span>.` }
+    },
+    {
+      en: { title:'Service sequence', body:`<ul><li>Server bounces the ball and strikes it underarm</li><li>Ball must land in the diagonal service box</li><li>After landing, the ball may hit the side or back wall of the receiver's court</li><li>Two attempts allowed per point (<span class="highlight">first and second serve</span>)</li></ul>` },
+      ar: { title:'تسلسل الإرسال', body:`<ul><li>يرتد المرسل الكرة ثم يضربها من الأسفل</li><li>يجب أن تهبط الكرة في مربع الإرسال القطري المقابل</li><li>بعد الهبوط يمكن للكرة أن تلمس الجدار الجانبي أو الخلفي لملعب المستقبل</li><li>محاولتان مسموح بهما لكل نقطة (<span class="highlight">إرسال أول وثانٍ</span>)</li></ul>` }
+    },
+    {
+      en: { title:'Service faults', body:`A fault occurs when:<ul><li>The ball lands outside the service box</li><li>The ball hits the net and does not cross over</li><li>The server steps over the service line before striking</li><li>The ball is hit above waist height <span class="warn-tag">(foot fault = fault, not let)</span></li></ul>Two consecutive faults = double fault = point lost.` },
+      ar: { title:'أخطاء الإرسال', body:`يُعدّ الإرسال خطأً عندما:<ul><li>تهبط الكرة خارج مربع الإرسال</li><li>تلمس الكرة الشبكة ولا تتجاوزها</li><li>يتجاوز المرسل خط الإرسال قبل الضرب</li><li>تُضرب الكرة فوق مستوى الخصر <span class="warn-tag">(خطأ القدم = خطأ وليس إعادة)</span></li></ul>خطآن متتاليان = خطأ مزدوج = نقطة مفقودة.` }
+    },
+    {
+      en: { title:'Service let', body:`A let is called and the serve is replayed if the ball clips the net but still lands in the correct service box. A let does <span class="warn-tag">not count as a fault</span>.` },
+      ar: { title:'إعادة الإرسال (Let)', body:`تُعلن الإعادة ويُعاد الإرسال إذا لامست الكرة الشبكة وسقطت في مربع الإرسال الصحيح. الإعادة <span class="warn-tag">لا تُحسب خطأً</span>.` }
+    },
+  ],
+  play: [
+    {
+      en: { title:'Balls off the walls', body:`Unlike tennis, players may use the walls strategically. A ball may hit the back or side walls of your <span class="highlight">own court</span> after bouncing off the ground before being returned. The walls are part of the game.` },
+      ar: { title:'الكرات عن الجدران', body:`على خلاف التنس، يمكن للاعبين استخدام الجدران بشكل استراتيجي. يمكن للكرة أن تلمس الجدار الخلفي أو الجانبي <span class="highlight">لملعبك</span> بعد ارتدادها من الأرض قبل الرد. الجدران جزء أساسي من اللعبة.` }
+    },
+    {
+      en: { title:'The "bajada" & "vibora"', body:`<ul><li><strong>Bajada:</strong> Taking the ball out of the air off the back glass — a key defensive move</li><li><strong>Víbora:</strong> A spin serve/shot hit with a sharp lateral movement. Very popular in competitive play.</li></ul>These are legal shots — no specific rule restricts them.` },
+      ar: { title:'"الباخادا" و"الفيبورا"', body:`<ul><li><strong>الباخادا:</strong> أخذ الكرة من الهواء بعد الزجاج الخلفي — حركة دفاعية أساسية</li><li><strong>الفيبورا:</strong> إرسال/ضربة بتدوير مع حركة جانبية حادة. شائعة جداً في اللعب التنافسي.</li></ul>هذه ضربات قانونية — لا تقيدها أي قاعدة بعينها.` }
+    },
+    {
+      en: { title:'Balls passing through the net post gap', body:`If a ball passes through the gap between the net and the post, it is <span class="warn-tag">considered a fault</span> and the point is awarded to the opponents. This is one of the most disputed calls in casual games.` },
+      ar: { title:'الكرة عبر الفجوة بين الشبكة والعمود', body:`إذا مرت الكرة عبر الفجوة بين الشبكة والعمود، تُعتبر <span class="warn-tag">خطأً</span> وتُمنح النقطة للخصوم. هذا من أكثر القرارات الخلافية في المباريات غير الرسمية.` }
+    },
+    {
+      en: { title:'Player entering opponent\'s court', body:`A player may enter the opponent's court to return a ball only if the ball has rolled or bounced back through or under the net. The receiver must have a genuine opportunity to play the ball. This situation is <span class="warn-tag">extremely rare</span> in practice.` },
+      ar: { title:'دخول اللاعب إلى ملعب الخصم', body:`يمكن للاعب دخول ملعب الخصم لإعادة الكرة فقط إذا تدحرجت الكرة أو ارتدت عبر الشبكة أو تحتها. يجب أن تتاح للمستقبل فرصة حقيقية للعب الكرة. هذا الموقف <span class="warn-tag">نادر للغاية</span> في الواقع.` }
+    },
+    {
+      en: { title:'Ball hitting a player', body:`If the ball hits a player or their clothing before bouncing twice, the point is awarded to the opponents — even on a legal shot. The ball must be played with the racket only.` },
+      ar: { title:'الكرة تلمس اللاعب', body:`إذا لمست الكرة لاعباً أو ملابسه قبل ارتدادها مرتين، تُمنح النقطة للخصوم — حتى لو كانت الضربة قانونية. يجب لعب الكرة بالمضرب فقط.` }
+    },
+    {
+      en: { title:'Distraction & hindrance', body:`Players must not distract opponents through noise, gestures, or movement during a point. A hindrance call (let) can be made by either team. Repeated hindrance by the same team results in a <span class="warn-tag">point penalty</span>.` },
+      ar: { title:'التشتيت والإعاقة', body:`يجب على اللاعبين عدم تشتيت الخصوم بالضوضاء أو الإيماءات أو الحركة خلال النقطة. يمكن لأي فريق طلب إعادة بسبب الإعاقة. التكرار من نفس الفريق يؤدي إلى <span class="warn-tag">عقوبة نقطة</span>.` }
+    },
+  ],
+  faults: [
+    {
+      en: { title:'Double bounce', body:`A ball that bounces twice before being returned loses the point. There is <span class="highlight">no exception</span> — including shots that clip the net post area.` },
+      ar: { title:'الارتداد المزدوج', body:`أي كرة ترتد مرتين قبل الرد تُخسر النقطة. <span class="highlight">لا استثناء</span> — بما في ذلك الضربات التي تلمس منطقة عمود الشبكة.` }
+    },
+    {
+      en: { title:'Ball out of court', body:`If the ball exits the court (passes over or through the fencing) <span class="highlight">without bouncing</span> on the ground first, it is out and the point is lost. If the ball bounces on the court first and then exits, play continues — the receiving player may still play it from outside the court.` },
+      ar: { title:'الكرة خارج الملعب', body:`إذا خرجت الكرة من الملعب (فوق السياج أو عبره) <span class="highlight">دون ارتداد</span> من الأرض أولاً، فهي خارجة وتُخسر النقطة. إذا ارتدت الكرة في الملعب أولاً ثم خرجت، تستمر اللعبة — يمكن للمستقبل لعبها من خارج الملعب.` }
+    },
+    {
+      en: { title:'Let (replay) situations', body:`A let is called (and the point replayed from scratch) in these situations:<ul><li>Ball clips the net on serve and lands correctly</li><li>External interference (ball from another court, noise, etc.)</li><li>A player genuinely unsighted or hindered</li></ul>` },
+      ar: { title:'حالات الإعادة (Let)', body:`تُعلن الإعادة (وتُعاد النقطة من البداية) في هذه الحالات:<ul><li>لمس الكرة للشبكة عند الإرسال وسقوطها في المكان الصحيح</li><li>تدخل خارجي (كرة من ملعب مجاور، ضوضاء، إلخ)</li><li>عدم رؤية اللاعب للكرة بشكل حقيقي أو إعاقته</li></ul>` }
+    },
+    {
+      en: { title:'Code violations', body:`In official competition, a player may receive:<ul><li><span class="highlight">Warning</span> — first offence (time violation, bad behaviour)</li><li><span class="warn-tag">Point penalty</span> — second or serious offence</li><li><span class="warn-tag">Game penalty</span> — continued or major infraction</li><li><span class="warn-tag">Default (disqualification)</span> — extreme behaviour</li></ul>` },
+      ar: { title:'مخالفات قانون اللعب', body:`في المنافسات الرسمية، قد يتلقى اللاعب:<ul><li><span class="highlight">تحذير</span> — المخالفة الأولى (تجاوز الوقت، سلوك سيء)</li><li><span class="warn-tag">عقوبة نقطة</span> — المخالفة الثانية أو الجسيمة</li><li><span class="warn-tag">عقوبة لعبة</span> — مخالفة متكررة أو كبيرة</li><li><span class="warn-tag">الإيقاف (الاستبعاد)</span> — سلوك متطرف</li></ul>` }
+    },
+  ],
+};
+
+// keep legacy RULES alias for any stray references
+const RULES = Object.fromEntries(
+  Object.entries(RULES_DATA).map(([cat, arr]) => [cat, arr.map(r => r.en)])
+);
+
+const DEBATE_SYSTEMS = [
+  {
+    id: 'sys1', pill: 'pill-hot', popular: true,
+    en: { title:'Win = +3, Loss = −1', pillLabel:'Most Disputed', formula:'Points = (Wins × 3) − (Losses × 1)', desc:'The system currently used in this app. Rewards winning heavily while penalising losses — incentivises competitive play even when already ahead.', pros:['Strong win incentive','Creates big spread between top & bottom','Penalises losing = takes every game seriously'], cons:['Punishes players who play more games','New players start in deep negative quickly','Activity count inflates losses unfairly'] },
+    ar: { title:'فوز = +3، خسارة = −1', pillLabel:'الأكثر خلافاً', formula:'النقاط = (الانتصارات × 3) − (الخسائر × 1)', desc:'النظام المستخدم حالياً في هذا التطبيق. يكافئ الفوز بقوة مع معاقبة الخسارة — يحفز على اللعب التنافسي حتى عند التفوق.', pros:['حافز قوي للفوز','فارق كبير بين المراتب','معاقبة الخسارة تجعل كل مباراة مهمة'], cons:['يعاقب اللاعبين الأكثر نشاطاً','اللاعبون الجدد يبدأون بنقاط سلبية','عدد المباريات يضخم الخسائر'] }
+  },
+  {
+    id: 'sys2', pill: 'pill-fair', popular: false,
+    en: { title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins ÷ Total Matches × 100', desc:'Pure win percentage — simple and universally understood. Levels the playing field regardless of how many games you\'ve played.', pros:['Activity-neutral','Easy to understand','Standard in most sports'], cons:['Player with 1W/0L = 100% forever','No depth on performance','Doesn\'t reward dominance'] },
+    ar: { title:'نسبة الفوز فقط (%)', pillLabel:'الأكثر عدلاً', formula:'الترتيب = الانتصارات ÷ إجمالي المباريات × 100', desc:'نسبة الفوز الصرفة — بسيطة ومفهومة للجميع. تساوي بين اللاعبين بغض النظر عن عدد المباريات.', pros:['محايدة للنشاط','سهلة الفهم','معيار معتمد في معظم الرياضات'], cons:['اللاعب بـ 1ف/0خ = 100% دائماً','لا عمق في الأداء','لا تكافئ التفوق'] }
+  },
+  {
+    id: 'sys3', pill: 'pill-complex', popular: false,
+    en: { title:'ELO Rating System', pillLabel:'Most Accurate', formula:'ELO = 1500 ± K × (Result − Expected)', desc:'The same system used in chess and FIFA rankings. Beating a stronger opponent earns more points. Losing to a weaker opponent costs more.', pros:['Accounts for opponent strength','Self-corrects over time','Industry-standard for skill rating'], cons:['Complex to explain to casual players','Needs many games to stabilise','Requires K-factor tuning'] },
+    ar: { title:'نظام تصنيف ELO', pillLabel:'الأكثر دقة', formula:'ELO = 1500 ± K × (النتيجة − المتوقع)', desc:'نفس النظام المستخدم في الشطرنج وتصنيفات FIFA. الفوز على خصم أقوى يمنح نقاطاً أكثر. الخسارة أمام خصم أضعف تكلف أكثر.', pros:['يأخذ قوة الخصم بعين الاعتبار','يصحح نفسه مع الوقت','معيار صناعي لتصنيف المهارات'], cons:['معقد للاعبين غير الرسميين','يحتاج مباريات كثيرة للاستقرار','يتطلب ضبط معامل K'] }
+  },
+  {
+    id: 'sys4', pill: 'pill-simple', popular: false,
+    en: { title:'Win = +2, Loss = +1, +1 Bonus', pillLabel:'No Negatives', formula:'Win: +2 pts · Loss: +1 pt · Clean set: +1 bonus', desc:'Everyone earns points for playing — wins give more, but losses still contribute. Optional bonus point for winning a set 6-0 or 6-1.', pros:['Encourages participation','Never goes negative','Rewards sportsmanship'], cons:['Less competitive pressure','Active players accumulate points passively','Top players lose distinction'] },
+    ar: { title:'فوز = +2، خسارة = +1، +1 مكافأة', pillLabel:'بدون سلبيات', formula:'فوز: +2 نقطة · خسارة: +1 نقطة · شوط نظيف: +1 مكافأة', desc:'الجميع يكسب نقاطاً بالمشاركة — الفوز يمنح أكثر، لكن الخسارة لا تزال تسهم. نقطة مكافأة اختيارية للفوز بشوط 6-0 أو 6-1.', pros:['يشجع على المشاركة','لا يصل أبداً للسالب','يكافئ الروح الرياضية'], cons:['ضغط تنافسي أقل','اللاعبون النشطون يجمعون نقاطاً تلقائياً','يفقد كبار اللاعبين تميزهم'] }
+  },
+];
+
+function renderRulesTab() {
+  const votes = JSON.parse(localStorage.getItem('padeltrack_votes') || '{}');
+  document.getElementById('debate-cards').innerHTML = DEBATE_SYSTEMS.map(sys => {
+    const v = votes[sys.id] || {up:0, down:0, voted:null};
+    const d = currentLang === 'ar' ? sys.ar : sys.en;
+    return `<div class="debate-card${sys.popular?' popular':''}">
+      <div class="debate-card-title">${d.title}</div>
+      <span class="debate-pill ${sys.pill}">${d.pillLabel}</span>
+      <div class="debate-formula">${d.formula}</div>
+      <div class="debate-desc">${d.desc}</div>
+      <div class="debate-pros-cons">
+        <div class="pro-con-box">
+          <div class="pc-label pro-label">${t('for')}</div>
+          ${d.pros.map(p=>`<div class="pc-item">${p}</div>`).join('')}
+        </div>
+        <div class="pro-con-box">
+          <div class="pc-label con-label">${t('against')}</div>
+          ${d.cons.map(c=>`<div class="pc-item">${c}</div>`).join('')}
+        </div>
+      </div>
+      <div class="debate-vote-row">
+        <button class="vote-btn${v.voted==='up'?' voted':''}" onclick="castVote('${sys.id}','up')">
+          👍 <span class="vote-count" id="vc-up-${sys.id}">${v.up}</span>
+        </button>
+        <button class="vote-btn${v.voted==='down'?' voted':''}" onclick="castVote('${sys.id}','down')">
+          👎 <span class="vote-count" id="vc-down-${sys.id}">${v.down}</span>
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const rulesCatLabels = {
+    court: t('courtSetup'), scoring: t('scoring'),
+    serve: t('service'), play: t('duringPlay'), faults: t('faultsLets')
+  };
+  const activeRuleCat = window._activeRuleCat || 'court';
+  document.getElementById('rules-nav').innerHTML = RULES_CATEGORIES.map(c =>
+    `<button class="rnav-btn${c.id===activeRuleCat?' active':''}" onclick="showRulesCat('${c.id}')">${rulesCatLabels[c.id]||c.label}</button>`
+  ).join('');
+
+  renderRulesCat(activeRuleCat);
+}
+
+function showRulesCat(id) {
+  window._activeRuleCat = id;
+  document.querySelectorAll('.rnav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderRulesCat(id);
+}
+
+function renderRulesCat(id) {
+  const rules = (RULES_DATA[id] || []).map(r => currentLang === 'ar' ? r.ar : r.en);
+  document.getElementById('rules-content').innerHTML = rules.map((r,i) =>
+    `<div class="rule-card">
+      <div class="rule-header" onclick="toggleRule(this)">
+        <div class="rule-num">${i+1}</div>
+        <div class="rule-title">${r.title}</div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">${r.body}</div>
+    </div>`
+  ).join('');
+}
+
+function toggleRule(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.rule-chevron');
+  body.classList.toggle('open');
+  chevron.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+function castVote(sysId, dir) {
+  const votes = JSON.parse(localStorage.getItem('padeltrack_votes') || '{}');
+  if(!votes[sysId]) votes[sysId] = {up:0, down:0, voted:null};
+  const v = votes[sysId];
+  if(v.voted === dir) {
+    v[dir]--; v.voted = null;
+  } else {
+    if(v.voted) v[v.voted]--;
+    v[dir]++; v.voted = dir;
+  }
+  localStorage.setItem('padeltrack_votes', JSON.stringify(votes));
+  renderRulesTab();
+}
+
+
+function renderProfile() {
+  const user = getCurrentUser();
+  const el = document.getElementById('profile-content');
+  if(!el) return;
+  if(!user) { el.innerHTML = `<div class="empty-state"><p>${t('signIn')}</p></div>`; return; }
+
+  const player = state.players.find(p=>p.email===user.email);
+  const s = player ? playerStats(player.id) : null;
+  const streak = player ? getStreak(player.id) : null;
+  const idx = player ? state.players.findIndex(p=>p.id===player.id) : 0;
+  const rank = player ? sortedPlayers().findIndex(p=>p.id===player.id)+1 : null;
+
+  const myMatches = player ? [...state.matches]
+    .filter(m=>m.teamA.includes(player.id)||m.teamB.includes(player.id))
+    .sort((a,b)=>new Date(b.date)-new Date(a.date)) : [];
+
+  el.innerHTML = `
+    <div class="profile-hero">
+      <div class="profile-avatar-lg ${avColor(idx)}">${initials(user.name)}</div>
+      <div style="flex:1;">
+        <div class="profile-name">${user.name}</div>
+        <div class="profile-email">${user.isGuest ? t('playingAsGuest') : user.email}</div>
+        <div class="profile-joined">${t('memberSince')} ${fmtDate(user.joined)}</div>
+      </div>
+      <div>
+        <button class="btn-outline" onclick="openEditModal()">${t('editProfileBtn')}</button>
+      </div>
+    </div>
+
+    ${s ? `
+    <div class="profile-stats-row">
+      <div class="stat-card"><div class="stat-label">${t('rank')}</div><div class="stat-val accent">#${rank}</div><div class="stat-sub">${t('ofPlayers')} ${state.players.length} ${t('ofPlayersLabel')}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('points')}</div><div class="stat-val">${s.pts}</div><div class="stat-sub">${s.wins}W · ${s.losses}L</div></div>
+      <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${s.total?Math.round(s.wr)+'%':'–'}</div><div class="stat-sub">${s.total} ${t('played')}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('goalDiff')}</div><div class="stat-val" style="color:${s.totalGF-s.totalGA>=0?'var(--accent)':'var(--danger)'};">${s.totalGF-s.totalGA>=0?'+':''}${s.totalGF-s.totalGA}</div><div class="stat-sub">GF:${s.totalGF} GA:${s.totalGA}</div></div>
+    </div>
+    ${streak && streak.count>=2?`<div style="margin-bottom:14px;"><span class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'🔥':'❄️'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</span></div>`:''}
+    ` : ''}
+
+    <div class="profile-history">
+      <div class="ph-title">${t('matchHistoryCount')} ${myMatches.length?'('+myMatches.length+')':''}</div>
+      ${myMatches.length ? myMatches.map(m=>{
+        const aWin = parseInt(m.scoreA)>parseInt(m.scoreB);
+        const inA = m.teamA.includes(player.id);
+        const won = inA ? aWin : !aWin;
+        const pA = m.teamA.map(id=>state.players.find(p=>p.id===id)).filter(Boolean);
+        const pB = m.teamB.map(id=>state.players.find(p=>p.id===id)).filter(Boolean);
+        const partner = inA ? pA.find(p=>p.id!==player.id) : pB.find(p=>p.id!==player.id);
+        const opponents = inA ? pB : pA;
+        return `<div class="profile-match-row">
+          <div class="pmr-result ${won?'pmr-w':'pmr-l'}">${won?'W':'L'}</div>
+          <div class="pmr-info">
+            <div style="font-weight:500;">${t('with')} ${partner?partner.name:'?'} ${t('vs')} ${opponents.map(p=>p.name).join(' & ')}</div>
+            <div class="pmr-date">${fmtDate(m.date)}</div>
+          </div>
+          <div class="pmr-score">${m.scoreA}–${m.scoreB}</div>
+        </div>`;
+      }).join('') : `<div style="color:var(--muted);font-size:13px;padding:12px 0;">${t('noMatchesYet')}</div>`}
+    </div>
+
+    ${user.isGuest ? `<div style="margin-top:16px;" class="card">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${t('signUpPrompt')}</div>
+      <button class="btn" onclick="doLogout()">${t('signUpBtn')}</button>
+    </div>` : ''}
+  `;
+}
+
+// ─── INFOGRAPHICS ─────────────────────────────────────
+let _chartInstances = {};
+
+function destroyCharts() {
+  Object.values(_chartInstances).forEach(c => { try { c.destroy(); } catch(e){} });
+  _chartInstances = {};
+}
+
+function renderInfographics() {
+  const el = document.getElementById('infographics-content');
+  if(!el) return;
+  destroyCharts();
+
+  if(state.matches.length < 1 || state.players.length < 2) {
+    el.innerHTML = `<div class="infographics-empty"><div class="ei-icon">📊</div><p>${t('infographicsEmpty')}</p></div>`;
+    return;
+  }
+
+  const sorted = sortedPlayers();
+  const avColors = ['#00e5a0','#4facfe','#f5c842','#ff5f6d','#a78bfa','#fb923c','#34d399','#ec4899','#38bdf8','#a3e635'];
+
+  // ── AWARDS DATA ──
+  const statsAll = sorted.map(p => ({p, s: playerStats(p.id), streak: getStreak(p.id)}));
+  const mostWinsP = [...statsAll].sort((a,b)=>b.s.wins-a.s.wins)[0];
+  const bestWrP = [...statsAll].filter(x=>x.s.total>=2).sort((a,b)=>b.s.wr-a.s.wr)[0];
+  const mostMatchesP = [...statsAll].sort((a,b)=>b.s.total-a.s.total)[0];
+  const topScorerP = [...statsAll].sort((a,b)=>b.s.totalGF-a.s.totalGF)[0];
+  const bestStreakP = [...statsAll].filter(x=>x.streak.type==='W').sort((a,b)=>b.streak.count-a.streak.count)[0];
+
+  // pair awards
+  const pairs = [];
+  for(let i=0;i<state.players.length;i++) for(let j=i+1;j<state.players.length;j++) {
+    const p1=state.players[i], p2=state.players[j], s=pairStats(p1.id,p2.id);
+    if(s.total>=2) pairs.push({p1,p2,s});
+  }
+  pairs.sort((a,b)=>b.s.wr-a.s.wr);
+  const bestPairP = pairs[0];
+
+  // ── RECENT FORM ──
+  function recentForm(pid, n=5) {
+    return state.matches
+      .filter(m=>m.teamA.includes(pid)||m.teamB.includes(pid))
+      .sort((a,b)=>new Date(b.date)-new Date(a.date))
+      .slice(0,n)
+      .map(m=>{ const aWin=parseInt(m.scoreA)>parseInt(m.scoreB); return m.teamA.includes(pid)?aWin:!aWin; });
+  }
+
+  // ── BUILD HTML ──
+  const topN = sorted.slice(0,6);
+  const isAr = currentLang==='ar';
+
+  el.innerHTML = `
+  <div class="infographics-grid">
+
+    <!-- PODIUM -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('podiumTitle')}</div>
+      <div class="chart-card-sub">${t('podiumSub')}</div>
+      <div class="podium-row" id="podium-render"></div>
+    </div>
+
+    <!-- AWARDS -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('awardsTitle')}</div>
+      <div class="chart-card-sub">${t('awardsSub')}</div>
+      <div class="stat-badge-grid" id="awards-render"></div>
+    </div>
+
+    <!-- WIN RATE BAR CHART -->
+    <div class="chart-card full">
+      <div class="chart-card-title">${t('winRateTitle')}</div>
+      <div class="chart-card-sub">${t('winRateSub')}</div>
+      <div id="winrate-bars"></div>
+    </div>
+
+    <!-- POINTS CHART -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('pointsTitle')}</div>
+      <div class="chart-card-sub">${t('pointsSub')}</div>
+      <div class="chart-wrap" style="height:220px;"><canvas id="chart-points"></canvas></div>
+    </div>
+
+    <!-- GOAL DIFF CHART -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('goalDiffTitle')}</div>
+      <div class="chart-card-sub">${t('goalDiffSub')}</div>
+      <div class="chart-wrap" style="height:220px;"><canvas id="chart-goaldiff"></canvas></div>
+    </div>
+
+    <!-- BEST PAIRS CHART -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('pairChartTitle')}</div>
+      <div class="chart-card-sub">${t('pairChartSub')}</div>
+      <div id="pairs-bars"></div>
+    </div>
+
+    <!-- RECENT FORM -->
+    <div class="chart-card">
+      <div class="chart-card-title">${t('formTitle')}</div>
+      <div class="chart-card-sub">${t('formSub')}</div>
+      <div id="form-grid"></div>
+    </div>
+
+  </div>`;
+
+  // ── PODIUM ──
+  const podiumOrder = sorted.slice(0,3);
+  const podiumDisplay = podiumOrder.length>=2 ? [podiumOrder[1], podiumOrder[0], podiumOrder[2]].filter(Boolean) : podiumOrder;
+  const podiumClasses = podiumOrder.length>=2 ? ['podium-2','podium-1','podium-3'] : ['podium-1'];
+  const podiumEmoji = ['🥈','🥇','🥉'];
+  document.getElementById('podium-render').innerHTML = podiumDisplay.map((p,i)=>{
+    const s = playerStats(p.id);
+    const ci = state.players.findIndex(pl=>pl.id===p.id);
+    const cls = podiumClasses[i];
+    const isFirst = cls==='podium-1';
+    return `<div class="podium-block">
+      <div class="podium-av ${avColor(ci)}" style="width:${isFirst?50:40}px;height:${isFirst?50:40}px;font-size:${isFirst?16:13}px;${isFirst?'border:2px solid var(--gold);':''}">${initials(p.name)}</div>
+      <div class="podium-name">${p.name}</div>
+      <div class="podium-pts">${s.pts}pts</div>
+      <div class="podium-bar ${cls}">${podiumEmoji[i]}</div>
+    </div>`;
+  }).join('');
+
+  // ── AWARDS ──
+  const awards = [
+    { icon:'🏆', val: mostWinsP?.s.wins??'–', name: mostWinsP?.p.name??'–', label: t('mostWins') },
+    { icon:'🎯', val: bestWrP ? Math.round(bestWrP.s.wr)+'%' : '–', name: bestWrP?.p.name??'–', label: t('bestWinRate') },
+    { icon:'⚡', val: mostMatchesP?.s.total??'–', name: mostMatchesP?.p.name??'–', label: t('mostMatches') },
+    { icon:'⚽', val: topScorerP?.s.totalGF??'–', name: topScorerP?.p.name??'–', label: t('topScorer') },
+    { icon:'🤝', val: bestPairP ? Math.round(bestPairP.s.wr)+'%' : '–', name: bestPairP ? bestPairP.p1.name+' & '+bestPairP.p2.name : '–', label: t('bestPartner') },
+    { icon:'🔥', val: bestStreakP ? bestStreakP.streak.count : '–', name: bestStreakP?.p.name??'–', label: t('longestStreak') },
+  ];
+  document.getElementById('awards-render').innerHTML = awards.map(a=>`
+    <div class="stat-badge">
+      <div class="sb-icon">${a.icon}</div>
+      <div class="sb-val">${a.val}</div>
+      <div class="sb-name">${a.name}</div>
+      <div class="sb-label">${a.label}</div>
+    </div>`).join('');
+
+  // ── WIN RATE HORIZONTAL BARS ──
+  const wrData = topN.map((p,i)=>({ name:p.name, val:Math.round(playerStats(p.id).wr), color:avColors[state.players.findIndex(pl=>pl.id===p.id)%avColors.length] }))
+    .sort((a,b)=>b.val-a.val);
+  document.getElementById('winrate-bars').innerHTML = wrData.map(d=>`
+    <div class="hbar-row">
+      <div class="hbar-label">${d.name}</div>
+      <div class="hbar-track">
+        <div class="hbar-fill" style="width:${d.val}%;background:${d.color};">
+          <span class="hbar-val">${d.val}%</span>
+        </div>
+      </div>
+    </div>`).join('');
+
+  // ── POINTS BAR CHART (Chart.js) ──
+  setTimeout(()=>{
+    if(!window.Chart) return;
+    const pLabels = topN.map(p=>p.name);
+    const pVals = topN.map(p=>playerStats(p.id).pts);
+    const pColors = topN.map(p=>avColors[state.players.findIndex(pl=>pl.id===p.id)%avColors.length]);
+    const ctx1 = document.getElementById('chart-points');
+    if(ctx1) _chartInstances.points = new Chart(ctx1, {
+      type:'bar',
+      data:{ labels:pLabels, datasets:[{ data:pVals, backgroundColor:pColors, borderRadius:6, borderSkipped:false }] },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} },
+        scales:{ x:{ ticks:{color:'#8b95b0',font:{size:11}}, grid:{color:'rgba(255,255,255,0.05)'} },
+          y:{ ticks:{color:'#8b95b0',font:{size:11}}, grid:{color:'rgba(255,255,255,0.05)'} } } }
+    });
+
+    // ── GOAL DIFF BAR CHART ──
+    const gdData = topN.map(p=>{ const s=playerStats(p.id); return {name:p.name, val:s.totalGF-s.totalGA, color:avColors[state.players.findIndex(pl=>pl.id===p.id)%avColors.length]}; })
+      .sort((a,b)=>b.val-a.val);
+    const ctx2 = document.getElementById('chart-goaldiff');
+    if(ctx2) _chartInstances.gd = new Chart(ctx2, {
+      type:'bar',
+      data:{ labels:gdData.map(d=>d.name), datasets:[{ data:gdData.map(d=>d.val), backgroundColor:gdData.map(d=>d.val>=0?'rgba(0,229,160,0.75)':'rgba(255,95,109,0.75)'), borderRadius:6, borderSkipped:false }] },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} },
+        scales:{ x:{ ticks:{color:'#8b95b0',font:{size:11}}, grid:{color:'rgba(255,255,255,0.05)'} },
+          y:{ ticks:{color:'#8b95b0',font:{size:11}}, grid:{color:'rgba(255,255,255,0.05)'} } } }
+    });
+  }, 80);
+
+  // ── PAIRS BARS ──
+  const topPairs = pairs.slice(0,5);
+  document.getElementById('pairs-bars').innerHTML = topPairs.length ? topPairs.map((pr,i)=>`
+    <div class="hbar-row">
+      <div class="hbar-label" style="width:100px;font-size:10px;">${pr.p1.name.split(' ')[0]} & ${pr.p2.name.split(' ')[0]}</div>
+      <div class="hbar-track">
+        <div class="hbar-fill" style="width:${Math.round(pr.s.wr)}%;background:${avColors[i%avColors.length]};">
+          <span class="hbar-val">${Math.round(pr.s.wr)}%</span>
+        </div>
+      </div>
+    </div>`).join('') : `<div style="color:var(--muted);font-size:12px;padding:12px 0;">${t('needOneMatch')}</div>`;
+
+  // ── RECENT FORM GRID ──
+  document.getElementById('form-grid').innerHTML = topN.map(p=>{
+    const form = recentForm(p.id, 5);
+    const ci = state.players.findIndex(pl=>pl.id===p.id);
+    const dots = Array(5).fill(null).map((_,i)=>{
+      if(i>=form.length) return `<div style="width:28px;height:28px;border-radius:6px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted2);">–</div>`;
+      const w=form[i];
+      return `<div style="width:28px;height:28px;border-radius:6px;background:${w?'rgba(0,229,160,0.18)':'rgba(255,95,109,0.18)'};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${w?'var(--accent)':'var(--danger);'};">${w?(isAr?'ف':'W'):(isAr?'خ':'L')}</div>`;
+    }).join('');
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div class="avatar ${avColor(ci)}" style="width:28px;height:28px;font-size:10px;flex-shrink:0;">${initials(p.name)}</div>
+      <div style="font-size:12px;font-weight:500;width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.name}</div>
+      <div style="display:flex;gap:4px;">${dots}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── GAME SELECTION ──────────────────────────────────
+let currentGame = sessionStorage.getItem('allin_game') || null;
+
+async function selectGame(game) {
+  currentGame = game;
+  sessionStorage.setItem('allin_game', game);
+  document.getElementById('game-picker').style.display = 'none';
+  renderGameBadge();
+  if(game === 'padel') {
+    document.getElementById('padel-nav').style.display = 'flex';
+    document.getElementById('jackaroo-nav').style.display = 'none';
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-dashboard').classList.add('active');
+    document.querySelectorAll('.jk-section').forEach(s => s.classList.remove('active'));
+    applyLang(); renderAll();
+  } else {
+    document.getElementById('padel-nav').style.display = 'none';
+    document.getElementById('jackaroo-nav').style.display = 'flex';
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.jk-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('jk-dashboard').classList.add('active');
+    renderJkAll();
+  }
+}
+
+function renderGameBadge() {
+  const el = document.getElementById('game-badge-header');
+  if(!currentGame || !el) return;
+  const isPadel = currentGame === 'padel';
+  el.innerHTML = `<div class="game-badge ${currentGame}" onclick="switchGame()" title="Switch game">
+    ${isPadel ? '🎾 Padel' : '🎲 Jackaroo'}
+    <span style="font-size:9px;opacity:0.7;margin-left:3px;">⇄</span>
+  </div>`;
+}
+
+function switchGame() {
+  sessionStorage.removeItem('allin_game');
+  currentGame = null;
+  document.getElementById('game-picker').style.cssText = 'display:flex;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;z-index:998;padding:20px;';
+  const user = getCurrentUser();
+  if(user) {
+    document.getElementById('picker-greeting').textContent = currentLang==='ar'
+      ? `مرحباً ${user.name} 👋` : `Welcome back, ${user.name} 👋`;
+    document.getElementById('picker-sub').textContent = currentLang==='ar'
+      ? 'ماذا نلعب الليلة؟' : "What are we playing tonight?";
+  }
+}
+
+// ─── JACKAROO STATE ──────────────────────────────────
+// state lives in the Supabase layer above — jkState is declared there
+let jkFormat = '1v1';
+
+// ─── JACKAROO STATS ──────────────────────────────────
+// Points: 2v2 Win = +3, 1v1 Win = +1, Any Loss = −1
+function jkPlayerStats(pid) {
+  let totalPts = 0, wins = 0, losses = 0, played = 0;
+  let wins2v2 = 0, wins1v1 = 0;
+  for(const r of jkState.rounds) {
+    if(r.format === '2v2') {
+      const myTeam = r.teams?.find(tm => tm.pids.includes(pid));
+      if(!myTeam) continue;
+      played++;
+      const maxScore = Math.max(...r.teams.map(tm=>tm.score));
+      if(myTeam.score === maxScore) { wins++; wins2v2++; totalPts += 3; }
+      else { losses++; totalPts -= 1; }
+    } else {
+      const entry = r.scores?.find(s => s.pid === pid);
+      if(!entry) continue;
+      played++;
+      const maxScore = Math.max(...r.scores.map(s=>s.score));
+      if(entry.score === maxScore) { wins++; wins1v1++; totalPts += 1; }
+      else { losses++; totalPts -= 1; }
+    }
+  }
+  return { totalPts, wins, losses, played, wins2v2, wins1v1 };
+}
+
+function jkPairStats(pid1, pid2) {
+  let wins = 0, losses = 0;
+  for(const r of jkState.rounds) {
+    if(r.format !== '2v2') continue;
+    const myTeam = r.teams?.find(tm => tm.pids.includes(pid1) && tm.pids.includes(pid2));
+    if(!myTeam) continue;
+    const maxScore = Math.max(...r.teams.map(tm=>tm.score));
+    if(myTeam.score === maxScore) wins++; else losses++;
+  }
+  return { wins, losses, total: wins+losses, wr: (wins+losses) ? wins/(wins+losses)*100 : 0 };
+}
+
+function jkSortedPlayers() {
+  return [...jkState.players].sort((a,b) => {
+    const sa = jkPlayerStats(a.id), sb = jkPlayerStats(b.id);
+    if(sb.totalPts !== sa.totalPts) return sb.totalPts - sa.totalPts;
+    return sb.wins - sa.wins;
+  });
+}
+
+// ─── JACKAROO NAV ────────────────────────────────────
+function showJkTab(id) {
+  document.querySelectorAll('.jk-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('#jackaroo-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderJkAll();
+}
+
+function renderJkAll() {
+  renderJkDashboard();
+  renderJk1v1Inputs();
+  renderJk2v2Selects();
+  renderJkPlayersGrid();
+  renderJkRankings();
+  renderJkHistory();
+  renderJkRulesTab();
+}
+
+// ─── FORMAT TOGGLE ────────────────────────────────────
+function setJkFormat(fmt) {
+  jkFormat = fmt;
+  document.getElementById('fmt-1v1').className = fmt==='1v1' ? 'btn' : 'btn-outline';
+  document.getElementById('fmt-1v1').style.cssText = fmt==='1v1' ? 'background:var(--gold);color:#0a0f1e;flex:1;' : 'flex:1;';
+  document.getElementById('fmt-2v2').className = fmt==='2v2' ? 'btn' : 'btn-outline';
+  document.getElementById('fmt-2v2').style.cssText = fmt==='2v2' ? 'background:var(--gold);color:#0a0f1e;flex:1;' : 'flex:1;';
+  document.getElementById('jk-form-1v1').style.display = fmt==='1v1' ? 'block' : 'none';
+  document.getElementById('jk-form-2v2').style.display = fmt==='2v2' ? 'block' : 'none';
+}
+
+// ─── JACKAROO DASHBOARD ──────────────────────────────
+function renderJkDashboard() {
+  const totalR = jkState.rounds.length;
+  const totalP = jkState.players.length;
+  const v2 = jkState.rounds.filter(r=>r.format==='2v2').length;
+  const v1 = totalR - v2;
+  const sorted = jkSortedPlayers();
+  const topP = sorted[0];
+  const topS = topP ? jkPlayerStats(topP.id) : null;
+
+  document.getElementById('jk-dash-stats').innerHTML = `
+    <div class="jk-stat-card"><div class="stat-label">Players</div><div class="stat-val" style="color:var(--gold);">${totalP}</div><div class="stat-sub">registered</div></div>
+    <div class="jk-stat-card"><div class="stat-label">Rounds</div><div class="stat-val">${totalR}</div><div class="stat-sub">${v1} solo · ${v2} team</div></div>
+    <div class="jk-stat-card"><div class="stat-label">Top Player</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'–'}</div><div class="stat-sub">${topS?topS.totalPts+' pts':''}</div></div>
+    <div class="jk-stat-card"><div class="stat-label">Most Wins</div><div class="stat-val" style="color:var(--gold);">${topS?topS.wins:'–'}</div><div class="stat-sub">${topS&&topS.played?topS.wins2v2+'× 2v2 · '+topS.wins1v1+'× 1v1':''}</div></div>`;
+
+  const medals = ['🥇','🥈','🥉'];
+  document.getElementById('jk-dash-leaderboard').innerHTML = sorted.length ? sorted.slice(0,5).map((p,i) => {
+    const s = jkPlayerStats(p.id);
+    const ci = jkState.players.findIndex(pl=>pl.id===p.id);
+    return `<div class="jk-lb-row">
+      <span class="lb-rank">${i<3?medals[i]:i+1}</span>
+      <div class="avatar ${avColor(ci)}" style="width:30px;height:30px;font-size:11px;">${initials(p.name)}</div>
+      <span class="lb-name">${p.name}</span>
+      <div style="text-align:right;">
+        <div class="jk-pts">${s.totalPts}pts</div>
+        <div class="lb-wr">${s.wins}W (${s.wins2v2}×2v2 · ${s.wins1v1}×1v1)</div>
+      </div>
+    </div>`;
+  }).join('<hr class="jk-sep">') : `<div class="jk-empty">Add players and log rounds to see rankings</div>`;
+
+  const recent = [...jkState.rounds].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,4);
+  document.getElementById('jk-dash-recent').innerHTML = recent.length ? recent.map(r => {
+    let winnerName = '–', winnerScore = 0;
+    if(r.format === '2v2') {
+      const winTeam = r.teams?.reduce((a,b)=>a.score>b.score?a:b, r.teams[0]);
+      if(winTeam) {
+        winnerName = winTeam.pids.map(id=>jkState.players.find(p=>p.id===id)?.name||'?').join(' & ');
+        winnerScore = winTeam.score;
+      }
+    } else {
+      const winner = r.scores?.reduce((a,b)=>a.score>b.score?a:b, r.scores[0]);
+      winnerName = jkState.players.find(p=>p.id===winner?.pid)?.name || '–';
+      winnerScore = winner?.score || 0;
+    }
+    return `<div class="match-mini">
+      <div class="mm-teams">
+        <div style="font-weight:500;font-size:12px;">${r.format==='2v2'?'2v2 Team':'1v1 Solo'}</div>
+        <div style="font-size:11px;color:var(--muted);">🏆 ${winnerName} (${winnerScore}pts)</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted2);">${fmtDate(r.date)}</div>
+    </div>`;
+  }).join('') : `<div class="jk-empty">No rounds yet</div>`;
+}
+
+// ─── 1V1 INPUTS ──────────────────────────────────────
+function renderJk1v1Inputs() {
+  const el = document.getElementById('jk-1v1-inputs');
+  if(!el) return;
+  if(!jkState.players.length) {
+    el.innerHTML = `<div class="jk-empty">Add players first in the Players tab</div>`;
+    return;
+  }
+  el.innerHTML = jkState.players.map((p,i) =>
+    `<div class="jk-player-score-row">
+      <div class="avatar ${avColor(i)}" style="width:32px;height:32px;font-size:11px;flex-shrink:0;">${initials(p.name)}</div>
+      <span style="flex:1;font-weight:500;">${p.name}</span>
+      <input type="number" class="jk-score-input" id="jk-score-${p.id}" min="0" value="0">
+    </div>`
+  ).join('');
+}
+
+// ─── 2V2 SELECTS ─────────────────────────────────────
+function renderJk2v2Selects() {
+  const selIds = ['jk-a1','jk-a2','jk-b1','jk-b2'];
+  selIds.forEach(id => {
+    const sel = document.getElementById(id);
+    if(!sel) return;
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">Select</option>' +
+      jkState.players.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+    if(cur) sel.value = cur;
+  });
+}
+
+// ─── LOG ROUND ───────────────────────────────────────
+function clearJkForm() {
+  jkState.players.forEach(p => { const el = document.getElementById('jk-score-'+p.id); if(el) el.value='0'; });
+  ['jk-a1','jk-a2','jk-b1','jk-b2'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  ['jk-score-a','jk-score-b'].forEach(id => { const el=document.getElementById(id); if(el) el.value='0'; });
+  document.getElementById('jkMatchDate').value = '';
+}
+
+function logJkRound() {
+  const date = document.getElementById('jkMatchDate').value || new Date().toISOString().split('T')[0];
+
+  if(jkFormat === '2v2') {
+    const a1 = document.getElementById('jk-a1').value;
+    const a2 = document.getElementById('jk-a2').value;
+    const b1 = document.getElementById('jk-b1').value;
+    const b2 = document.getElementById('jk-b2').value;
+    const sa = parseInt(document.getElementById('jk-score-a').value)||0;
+    const sb = parseInt(document.getElementById('jk-score-b').value)||0;
+    if(!a1||!a2||!b1||!b2) { toast('Select all 4 players'); return; }
+    const all = [a1,a2,b1,b2];
+    if(new Set(all).size < 4) { toast('All players must be different'); return; }
+    if(sa === sb) { toast('Score cannot be a draw'); return; }
+    jkState.rounds.push({ id:Date.now().toString(), format:'2v2', date,
+      teams:[{pids:[a1,a2],score:sa},{pids:[b1,b2],score:sb}] });
+  } else {
+    if(!jkState.players.length) { toast('Add players first'); return; }
+    const scores = jkState.players.map(p=>({ pid:p.id, score:parseInt(document.getElementById('jk-score-'+p.id)?.value)||0 }));
+    const maxSc = Math.max(...scores.map(s=>s.score));
+    const winners = scores.filter(s=>s.score===maxSc);
+    if(winners.length === scores.length) { toast('At least one player must score higher'); return; }
+    jkState.rounds.push({ id:Date.now().toString(), format:'1v1', date, scores });
+  }
+
+  saveJk();
+  clearJkForm();
+  renderJkAll();
+  toast('Round saved! 🎲');
+}
+
+// ─── JACKAROO PLAYERS GRID ───────────────────────────
+function renderJkPlayersGrid() {
+  const el = document.getElementById('jk-players-grid');
+  if(!el) return;
+  if(!jkState.players.length) {
+    el.innerHTML = `<div class="empty-state"><p>No players yet — add some above!</p></div>`; return;
+  }
+  el.innerHTML = jkState.players.map((p,i) => {
+    const s = jkPlayerStats(p.id);
+    const wr = s.played ? Math.round(s.wins/s.played*100) : 0;
+    return `<div class="jk-player-card">
+      <div class="player-card-top">
+        <div class="avatar ${avColor(i)}" style="width:38px;height:38px;font-size:13px;">${initials(p.name)}</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;">${p.name}</div>
+          <div style="font-size:11px;color:var(--muted);">${s.played} rounds</div>
+        </div>
+      </div>
+      <div class="player-stats-grid">
+        <div class="psm"><div class="psm-label">Total Pts</div><div class="psm-val" style="color:var(--gold);">${s.totalPts}</div></div>
+        <div class="psm"><div class="psm-label">Win Rate</div><div class="psm-val">${s.played?wr+'%':'–'}</div></div>
+        <div class="psm"><div class="psm-label">2v2 Wins</div><div class="psm-val" style="color:var(--win);">${s.wins2v2}</div></div>
+        <div class="psm"><div class="psm-label">1v1 Wins</div><div class="psm-val" style="color:var(--info);">${s.wins1v1}</div></div>
+      </div>
+      <div class="win-rate-bar" style="margin-top:10px;">
+        <div class="wr-label"><span>Win rate</span><span>${s.played?wr+'%':'–'}</span></div>
+        <div class="bar-track"><div class="jk-bar-fill" style="width:${wr}%"></div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--muted2);">
+        2v2: +3pts win · 1v1: +1pt win · any loss: −1pt
+      </div>
+      <div style="margin-top:10px;display:flex;justify-content:flex-end;">
+        <button class="btn-danger" onclick="removeJkPlayer('${p.id}')">Remove</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── JACKAROO RANKINGS ────────────────────────────────
+function renderJkRankings() {
+  const el = document.getElementById('jk-rankings-list');
+  if(!el) return;
+  const sorted = jkSortedPlayers();
+  if(!sorted.length) { el.innerHTML = `<div class="jk-empty">No players yet</div>`; return; }
+  const medals = ['🥇','🥈','🥉'];
+  // Best pair
+  let bestPair = null, bestPairWr = -1;
+  for(let i=0;i<jkState.players.length;i++) for(let j=i+1;j<jkState.players.length;j++) {
+    const ps = jkPairStats(jkState.players[i].id, jkState.players[j].id);
+    if(ps.total >= 2 && ps.wr > bestPairWr) { bestPairWr = ps.wr; bestPair = {p1:jkState.players[i],p2:jkState.players[j],ps}; }
+  }
+  const pairHtml = bestPair ? `<div class="card" style="margin-top:16px;border-color:rgba(245,200,66,0.3);">
+    <div class="card-title" style="color:var(--gold);">🤝 Best Team Pair</div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="avatar ${avColor(jkState.players.findIndex(p=>p.id===bestPair.p1.id))}" style="width:32px;height:32px;font-size:11px;">${initials(bestPair.p1.name)}</div>
+      <span style="font-weight:700;">${bestPair.p1.name}</span>
+      <span style="color:var(--muted2);">&amp;</span>
+      <div class="avatar ${avColor(jkState.players.findIndex(p=>p.id===bestPair.p2.id))}" style="width:32px;height:32px;font-size:11px;">${initials(bestPair.p2.name)}</div>
+      <span style="font-weight:700;">${bestPair.p2.name}</span>
+      <span style="margin-left:auto;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--gold);">${Math.round(bestPair.ps.wr)}% WR</span>
+    </div>
+  </div>` : '';
+
+  document.getElementById('jk-rankings-list').innerHTML = `
+    <div class="card" style="margin-bottom:0;">
+      ${sorted.map((p,i) => {
+        const s = jkPlayerStats(p.id);
+        const wr = s.played ? Math.round(s.wins/s.played*100) : 0;
+        return `<div class="jk-lb-row">
+          <span class="lb-rank ${i<3?['rank-1','rank-2','rank-3'][i]:''}">${i<3?medals[i]:i+1}</span>
+          <div class="avatar ${avColor(i)}" style="width:34px;height:34px;font-size:12px;">${initials(p.name)}</div>
+          <div style="flex:1;">
+            <div style="font-weight:500;">${p.name}</div>
+            <div style="font-size:11px;color:var(--muted);">${s.wins2v2}× 2v2 win · ${s.wins1v1}× 1v1 win · ${s.losses}L · ${s.played} rounds</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="jk-pts">${s.totalPts}pts</div>
+            <div class="lb-wr">${s.played?wr+'% WR':'no rounds'}</div>
+          </div>
+        </div><hr class="jk-sep">`;
+      }).join('')}
+    </div>
+    ${pairHtml}`;
+}
+
+// ─── JACKAROO HISTORY ─────────────────────────────────
+function renderJkHistory() {
+  const el = document.getElementById('jk-history-list');
+  if(!el) return;
+  const sorted = [...jkState.rounds].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(!sorted.length) { el.innerHTML = `<div class="jk-empty">No rounds logged yet</div>`; return; }
+  el.innerHTML = sorted.map(r => {
+    let winnerLabel = '–';
+    let scoreHtml = '';
+
+    if(r.format === '2v2') {
+      const teams = r.teams || [];
+      const sortedTeams = [...teams].sort((a,b)=>b.score-a.score);
+      const winTeam = sortedTeams[0];
+      winnerLabel = winTeam.pids.map(id=>jkState.players.find(p=>p.id===id)?.name||'?').join(' & ');
+      scoreHtml = `<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-top:6px;">
+        ${sortedTeams.map((tm,idx) => {
+          const names = tm.pids.map(id=>jkState.players.find(p=>p.id===id)?.name||'?').join(' & ');
+          return `<div style="background:var(--surface3);border-radius:8px;padding:8px 10px;${idx===0?'border:1px solid rgba(245,200,66,.3);':''}">
+            <div style="font-size:11px;color:var(--muted);margin-bottom:3px;">Team ${idx===0?'A':'B'}</div>
+            <div style="font-weight:600;font-size:12px;">${names}</div>
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:${idx===0?'var(--gold)':'var(--muted)'};">${tm.score}</div>
+          </div>`;
+        }).join('<div style="text-align:center;font-size:16px;color:var(--muted2);">–</div>')}
+      </div>`;
+    } else {
+      const scores = [...(r.scores||[])].sort((a,b)=>b.score-a.score);
+      const maxSc = scores[0]?.score || 0;
+      winnerLabel = jkState.players.find(p=>p.id===scores[0]?.pid)?.name || '–';
+      scoreHtml = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-top:8px;">
+        ${scores.map((s,idx) => {
+          const p = jkState.players.find(pl=>pl.id===s.pid);
+          const pi = jkState.players.findIndex(pl=>pl.id===s.pid);
+          return `<div style="display:flex;align-items:center;gap:7px;background:var(--surface3);border-radius:7px;padding:6px 9px;${s.score===maxSc?'border:1px solid rgba(245,200,66,.3);':''}">
+            <div class="avatar ${avColor(pi)}" style="width:24px;height:24px;font-size:9px;">${initials(p?.name||'?')}</div>
+            <span style="font-size:12px;font-weight:500;flex:1;">${p?.name||'?'}</span>
+            <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:${s.score===maxSc?'var(--gold)':'var(--muted)'};">${s.score}</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }
+
+    return `<div class="jk-round-card">
+      <div class="jk-round-header">
+        <div>
+          <span class="jk-round-num">${r.format==='2v2'?'2v2 Team':'1v1 Solo'} · ${fmtDate(r.date)}</span>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span class="jk-winner-badge">🏆 ${winnerLabel}</span>
+          <button class="btn-danger" onclick="deleteJkRound('${r.id}')">✕</button>
+        </div>
+      </div>
+      ${scoreHtml}
+    </div>`;
+  }).join('');
+}
+
+// ─── JACKAROO RULES DATA ─────────────────────────────
+const JK_RULES_CATEGORIES = [
+  { id:'basics',   en:'The Basics',      ar:'الأساسيات' },
+  { id:'movement', en:'Movement & Cards', ar:'الحركة والأوراق' },
+  { id:'special',  en:'Special Cards',   ar:'الأوراق الخاصة' },
+  { id:'teams',    en:'Teams & Winning', ar:'الفرق والفوز' },
+  { id:'disputes', en:'House Rules',     ar:'قواعد المنزل' },
+];
+
+const JK_RULES_DATA = {
+  basics: [
+    {
+      en:{ title:'What is Jackaroo?', body:`Jackaroo (also spelled Jackaroo or Jocaro) is a Middle Eastern strategy board game for <span class="highlight">2–4 players or 2 teams of 2</span>. It is played on a cross-shaped board similar to Ludo, using a standard deck of playing cards instead of dice.<ul><li>Each player controls <span class="highlight">4 marbles</span></li><li>Goal: get all 4 of your marbles safely to your home base before the opponents</li><li>Cards dictate all movement — no dice involved</li></ul>` },
+      ar:{ title:'ما هو الجاكارو؟', body:`الجاكارو لعبة استراتيجية شرق أوسطية لـ <span class="highlight">2-4 لاعبين أو فريقين من لاعبَين</span>. تُلعب على لوحة على شكل صليب مشابهة للبلدو، باستخدام ورق اللعب العادي بدلاً من النرد.<ul><li>كل لاعب يتحكم بـ <span class="highlight">4 كرات</span></li><li>الهدف: إيصال كل كراتك الأربع إلى قاعدتك قبل الخصم</li><li>الأوراق تحدد كل الحركات — لا نرد في اللعبة</li></ul>` }
+    },
+    {
+      en:{ title:'Setup', body:`<ul><li>Each player places their <span class="highlight">4 marbles in their starting yard</span></li><li>Shuffle and deal <span class="highlight">4 cards</span> to each player at the start</li><li>After each turn, one card is played and a new card is drawn from the deck</li><li>When the deck runs out, reshuffle the discard pile</li></ul>Players sit across from their teammate in 2v2 format.` },
+      ar:{ title:'الإعداد', body:`<ul><li>يضع كل لاعب <span class="highlight">كراته الأربع في ساحته البدائية</span></li><li>اخلط ووزع <span class="highlight">4 أوراق</span> لكل لاعب في البداية</li><li>بعد كل دور، تُلعب ورقة وتُسحب ورقة جديدة من الحزمة</li><li>عند نفاد الحزمة، اخلط أوراق المهملات من جديد</li></ul>في صيغة 2v2، يجلس الزميل مقابل شريكه.` }
+    },
+    {
+      en:{ title:'Turn order', body:`Players take turns in <span class="highlight">clockwise order</span>. On your turn you must play exactly one card from your hand and move a marble accordingly. If you cannot play any card legally, you <span class="warn-tag">burn one card</span> face-up and your turn ends.` },
+      ar:{ title:'ترتيب الأدوار', body:`يتناوب اللاعبون بالترتيب <span class="highlight">في اتجاه عقارب الساعة</span>. في دورك يجب أن تلعب ورقة واحدة بالضبط وتحرك كرة وفقاً لها. إذا لم تستطع لعب أي ورقة بشكل قانوني، <span class="warn-tag">تحرق ورقة واحدة</span> وجهاً للأعلى وينتهي دورك.` }
+    },
+  ],
+  movement: [
+    {
+      en:{ title:'Entering the board (Ace / Jack)', body:`A marble can only leave its starting yard and enter the main track by playing an <span class="highlight">Ace (A)</span> or a <span class="highlight">Jack (J)</span>. The marble is placed on that player's entry square. You cannot move a marble that is still in the yard with any other card.` },
+      ar:{ title:'دخول اللوحة (آس / جاك)', body:`يمكن للكرة مغادرة ساحتها البدائية والدخول للمسار الرئيسي فقط بلعب <span class="highlight">آس (A)</span> أو <span class="highlight">جاك (J)</span>. تُوضع الكرة على مربع دخول اللاعب. لا يمكن تحريك كرة لا تزال في الساحة بأي ورقة أخرى.` }
+    },
+    {
+      en:{ title:'Number cards', body:`Number cards move a marble forward by that number of spaces:<ul><li><span class="highlight">2–9</span>: move forward the exact number of spaces</li><li><span class="highlight">10</span>: move forward 10 spaces</li><li><span class="highlight">Queen (Q)</span>: move forward 12 spaces</li><li><span class="highlight">King (K)</span>: move forward 13 spaces</li></ul>You can split a <span class="highlight">7</span> between two of your own marbles (e.g. 3 + 4, 5 + 2).` },
+      ar:{ title:'الأوراق الرقمية', body:`الأوراق الرقمية تحرك الكرة للأمام بعدد المربعات المقابل:<ul><li><span class="highlight">2–9</span>: تحرك للأمام بالعدد المحدد</li><li><span class="highlight">10</span>: تحرك 10 مربعات للأمام</li><li><span class="highlight">كويني (Q)</span>: تحرك 12 مربعاً</li><li><span class="highlight">كينج (K)</span>: تحرك 13 مربعاً</li></ul>يمكن تقسيم <span class="highlight">الـ 7</span> بين اثنتين من كراتك (مثل 3+4 أو 5+2).` }
+    },
+    {
+      en:{ title:'Hitting opponents', body:`If your marble lands on a square <span class="highlight">occupied by an opponent's marble</span>, their marble is sent back to their starting yard. However, you <span class="warn-tag">cannot hit your own teammate's marbles</span> in 2v2.<br><br>A marble sitting on its own <span class="highlight">entry square acts as a blocker</span> — no marble (including yours) can pass over or land on it.` },
+      ar:{ title:'ضرب الخصوم', body:`إذا وقعت كرتك على مربع <span class="highlight">تشغله كرة خصم</span>، ترسل كرته إلى ساحته البدائية. لكن <span class="warn-tag">لا يمكنك ضرب كرات شريكك</span> في صيغة 2v2.<br><br>كرة تجلس على <span class="highlight">مربع دخولها الخاص تعمل كحاجز</span> — لا يمكن لأي كرة (حتى كرتك) المرور فوقها أو النزول عليها.` }
+    },
+  ],
+  special: [
+    {
+      en:{ title:'Ace (A) — enter or move 1', body:`The Ace has two uses:<ul><li><span class="highlight">Enter the board</span>: bring a marble from your yard onto your entry square</li><li><span class="highlight">Move 1 space</span>: move any marble already on the board forward 1</li></ul>If your entry square is occupied by your own marble, you can still use the Ace to move 1 space with another marble.` },
+      ar:{ title:'الآس (A) — دخول أو تحرك 1', body:`للآس استخدامان:<ul><li><span class="highlight">الدخول للوحة</span>: أخرج كرة من ساحتك إلى مربع دخولك</li><li><span class="highlight">التحرك مربعاً واحداً</span>: حرك أي كرة على اللوحة للأمام مربعاً واحداً</li></ul>إذا كان مربع دخولك مشغولاً بكرتك، يمكنك استخدام الآس لتحريك كرة أخرى مربعاً.` }
+    },
+    {
+      en:{ title:'Jack (J) — enter or swap', body:`The Jack also has two uses:<ul><li><span class="highlight">Enter the board</span>: same as the Ace</li><li><span class="highlight">Swap</span>: swap any one of your marbles on the board with any one of an opponent's marbles on the board</li></ul>The swap <span class="warn-tag">cannot be used</span> on marbles that are in the home stretch (final path to base) or on entry squares acting as blockers.` },
+      ar:{ title:'الجاك (J) — دخول أو تبادل', body:`للجاك أيضاً استخدامان:<ul><li><span class="highlight">الدخول للوحة</span>: مثل الآس</li><li><span class="highlight">التبادل</span>: بادل أي كرة من كراتك على اللوحة مع أي كرة للخصم على اللوحة</li></ul><span class="warn-tag">لا يُستخدم التبادل</span> على الكرات في المسار الأخير (الطريق الأخير للقاعدة) أو على مربعات الدخول التي تعمل كحواجز.` }
+    },
+    {
+      en:{ title:'4 — move backwards', body:`The <span class="highlight">4 card</span> is the only card that moves a marble <span class="highlight">backwards 4 spaces</span>. This can be used strategically to dodge a blocker or reach your home path when you've overshot.` },
+      ar:{ title:'الـ 4 — تحرك للخلف', body:`ورقة <span class="highlight">الـ 4</span> هي الورقة الوحيدة التي تحرك كرة <span class="highlight">للخلف 4 مربعات</span>. يمكن استخدامها بذكاء لتجنب حاجز أو الوصول لمسار قاعدتك إذا تجاوزته.` }
+    },
+    {
+      en:{ title:'7 — split move', body:`The <span class="highlight">7 card</span> can be split between any two of your marbles (or your teammate's in 2v2). The split must add up to exactly 7. Common splits: 1+6, 2+5, 3+4. You cannot use both halves on the same marble.` },
+      ar:{ title:'الـ 7 — حركة مقسّمة', body:`يمكن تقسيم ورقة <span class="highlight">الـ 7</span> بين أي اثنتين من كراتك (أو كرات شريكك في 2v2). يجب أن يكون مجموع التقسيم 7 بالضبط. أشيع التقسيمات: 1+6، 2+5، 3+4. لا يمكن استخدام الجزأين على نفس الكرة.` }
+    },
+  ],
+  teams: [
+    {
+      en:{ title:'2v2 team rules', body:`In 2v2, teammates sit <span class="highlight">opposite each other</span>. Key team rules:<ul><li>You can use your cards to move <span class="highlight">your teammate's marbles</span></li><li>You <span class="warn-tag">cannot hit</span> your teammate's marbles with your own</li><li>A team wins when <span class="highlight">both players</span> have all 4 marbles in home base</li><li>If your marbles are all home, you play only for your partner</li></ul>` },
+      ar:{ title:'قواعد 2v2', body:`في 2v2، يجلس الشركاء <span class="highlight">مقابل بعضهم</span>. قواعد الفريق الأساسية:<ul><li>يمكنك استخدام أوراقك لتحريك <span class="highlight">كرات شريكك</span></li><li><span class="warn-tag">لا يمكنك ضرب</span> كرات شريكك بكراتك</li><li>يفوز الفريق عندما يُدخل <span class="highlight">كلا اللاعبَين</span> كراتهم الأربع للقاعدة</li><li>إذا أدخلت كل كراتك، تلعب لصالح شريكك فقط</li></ul>` }
+    },
+    {
+      en:{ title:'1v1 rules', body:`In 1v1, each player controls all <span class="highlight">4 marbles</span> solo. Rules are the same as team play except:<ul><li>No ally — you play entirely for yourself</li><li>First player to get all 4 marbles to their home base <span class="highlight">wins the round</span></li><li>No marble-sharing with a partner</li></ul>` },
+      ar:{ title:'قواعد 1v1', body:`في 1v1، يتحكم كل لاعب بجميع <span class="highlight">الكرات الأربع</span> بمفرده. القواعد مشابهة للعب الجماعي إلا أن:<ul><li>لا حليف — تلعب لنفسك بالكامل</li><li>أول من يُدخل كراته الأربع لقاعدته <span class="highlight">يفوز بالجولة</span></li><li>لا مشاركة للكرات مع شريك</li></ul>` }
+    },
+    {
+      en:{ title:'Winning & scoring (All In system)', body:`The All In app uses this points system:<ul><li><span class="highlight">2v2 win: +3 points</span> per player on winning team</li><li><span class="highlight">1v1 win: +1 point</span></li><li><span class="warn-tag">Any loss: −1 point</span></li></ul>2v2 wins are worth more because team coordination is harder. Over time, players who dominate 2v2 will climb the ranking faster.` },
+      ar:{ title:'الفوز والنقاط (نظام All In)', body:`يستخدم تطبيق All In هذا النظام:<ul><li><span class="highlight">فوز 2v2: +3 نقاط</span> لكل لاعب في الفريق الفائز</li><li><span class="highlight">فوز 1v1: +1 نقطة</span></li><li><span class="warn-tag">أي خسارة: −1 نقطة</span></li></ul>فوز 2v2 يساوي أكثر لأن التنسيق مع الشريك أصعب. مع الوقت، من يتفوق في 2v2 سيتصدر الترتيب بشكل أسرع.` }
+    },
+  ],
+  disputes: [
+    {
+      en:{ title:'Can you enter on a blocked entry square?', body:`<span class="warn-tag">Most disputed rule.</span> Some houses say if your own marble is sitting on your entry square (acting as a blocker), you <strong>cannot</strong> use an Ace/Jack to bring another marble out. Others allow it. <br><br>Recommended house rule: <span class="highlight">you cannot enter while your entry is blocked</span> — it forces strategic decisions about when to advance your blocker.` },
+      ar:{ title:'هل يمكن الدخول إذا كان مربع الدخول مسدوداً؟', body:`<span class="warn-tag">القاعدة الأكثر خلافاً.</span> بعض البيوت تقول إذا كانت كرتك على مربع دخولك (كحاجز)، <strong>لا يمكنك</strong> استخدام آس/جاك لإخراج كرة أخرى. والبعض يسمح بذلك.<br><br>القاعدة المنزلية المقترحة: <span class="highlight">لا يمكن الدخول والمربع مسدود</span> — يجبرك على اتخاذ قرارات استراتيجية بشأن متى تتقدم بالحاجز.` }
+    },
+    {
+      en:{ title:'Can you use the Jack swap on a blocker?', body:`Another classic argument. A marble sitting on an entry square acting as a blocker — can the opponent Jack-swap it away? <br><br>Standard rule: <span class="warn-tag">No</span> — blockers on entry squares are immune to swaps. This is the rule most competitive groups follow.` },
+      ar:{ title:'هل يمكن استخدام الجاك على حاجز؟', body:`جدال كلاسيكي آخر. كرة تجلس على مربع دخول كحاجز — هل يمكن للخصم مبادلتها بالجاك؟<br><br>القاعدة المعيارية: <span class="warn-tag">لا</span> — الحواجز على مربعات الدخول محمية من التبادل. هذه هي القاعدة التي تتبعها معظم المجموعات التنافسية.` }
+    },
+    {
+      en:{ title:'7-split: can you use it to enter the board?', body:`Can half of a 7 be used to bring a marble out of the yard (acting like an Ace)? <br><br>Standard rule: <span class="warn-tag">No</span> — the 7-split can only move marbles already on the board. Only Aces and Jacks can bring marbles out of the yard.` },
+      ar:{ title:'تقسيم الـ 7: هل يمكن استخدامه للدخول؟', body:`هل يمكن استخدام نصف الـ 7 لإخراج كرة من الساحة (كالآس)؟<br><br>القاعدة المعيارية: <span class="warn-tag">لا</span> — تقسيم الـ 7 يُستخدم فقط لتحريك كرات على اللوحة بالفعل. فقط الآس والجاك يخرجان الكرات من الساحة.` }
+    },
+    {
+      en:{ title:'Must you play a card if all moves are harmful?', body:`If every card in your hand would hurt your own team, must you still play? <br><br>Standard rule: <span class="highlight">Yes</span> — you must play a card every turn. If no card can legally move any marble, burn one card and pass. This is why hand management is critical.` },
+      ar:{ title:'هل يجب اللعب إذا كانت كل الحركات ضارة؟', body:`إذا كانت كل ورقة في يدك ستضر بفريقك، هل يجب عليك اللعب؟<br><br>القاعدة المعيارية: <span class="highlight">نعم</span> — يجب لعب ورقة في كل دور. إذا لم تستطع تحريك أي كرة بشكل قانوني، أحرق ورقة واحدة ومرر. لهذا تُعدّ إدارة الأوراق أمراً حاسماً.` }
+    },
+  ],
+};
+
+const JK_DISPUTE_SYSTEMS = [
+  {
+    id:'jd1', pill:'pill-hot', popular:true,
+    en:{ title:'2v2 +3 / 1v1 +1 / Loss −1', pillLabel:'Current System', formula:'2v2 Win: +3 · 1v1 Win: +1 · Loss: −1', desc:'Used in the All In app. 2v2 wins worth more — rewards team coordination. Losses hurt both formats equally.', pros:['Rewards harder team play','Creates real separation in rankings','Consistent loss penalty'], cons:['1v1 feels less meaningful','Active 1v1 players accumulate losses faster','2v2 partners can unfairly drag each other down'] },
+    ar:{ title:'2v2: +3 / 1v1: +1 / خسارة −1', pillLabel:'النظام الحالي', formula:'فوز 2v2: +3 · فوز 1v1: +1 · خسارة: −1', desc:'المستخدم في تطبيق All In. فوز 2v2 أكثر قيمة — يكافئ التنسيق الجماعي. الخسارة تؤثر بشكل متساوٍ.', pros:['يكافئ اللعب الجماعي الأصعب','يخلق فوارق حقيقية في الترتيب','عقوبة خسارة ثابتة'], cons:['1v1 يبدو أقل أهمية','لاعبو 1v1 النشطون يراكمون الخسائر أسرع','الشريك الضعيف قد يضر ترتيبك'] }
+  },
+  {
+    id:'jd2', pill:'pill-fair', popular:false,
+    en:{ title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins ÷ Total Rounds × 100', desc:'Pure win percentage — ignores format and volume. Fairest for players who mix 1v1 and 2v2 frequently.', pros:['Format-neutral','No negative scores','Easy to explain'], cons:['1 win = 100% forever','Rewards low activity','No distinction between formats'] },
+    ar:{ title:'نسبة الفوز فقط (%)', pillLabel:'الأكثر عدلاً', formula:'الترتيب = الانتصارات ÷ إجمالي الجولات × 100', desc:'نسبة الفوز الصرفة — تتجاهل الصيغة والحجم. الأعدل للاعبين الذين يخلطون بين 1v1 و2v2.', pros:['محايدة للصيغة','لا نقاط سلبية','سهلة الشرح'], cons:['1 فوز = 100% للأبد','تكافئ قلة النشاط','لا تمييز بين الصيغتين'] }
+  },
+  {
+    id:'jd3', pill:'pill-complex', popular:false,
+    en:{ title:'Equal points: Win +2 / Loss −1', pillLabel:'No Format Bias', formula:'Any Win: +2 · Any Loss: −1', desc:'Same reward regardless of 1v1 or 2v2. Simpler to track and removes the debate about which format is harder.', pros:['No format discrimination','Simple to remember','Balanced activity incentive'], cons:['Doesn\'t reflect 2v2 difficulty','Less incentive to play team games','Flatter ranking over time'] },
+    ar:{ title:'نقاط متساوية: فوز +2 / خسارة −1', pillLabel:'بلا تحيّز للصيغة', formula:'أي فوز: +2 · أي خسارة: −1', desc:'نفس المكافأة بغض النظر عن 1v1 أو 2v2. أبسط للتتبع ويزيل الجدال حول أي الصيغتين أصعب.', pros:['لا تمييز بين الصيغتين','سهلة التذكر','حافز نشاط متوازن'], cons:['لا تعكس صعوبة 2v2','حافز أقل للعب الجماعي','ترتيب أكثر تسطحاً مع الوقت'] }
+  },
+];
+
+let _activeJkRuleCat = 'basics';
+
+function renderJkRulesTab() {
+  const el = document.getElementById('jk-debate-cards');
+  if(!el) return;
+  const isAr = currentLang === 'ar';
+
+  // update static text
+  const dtEl = document.getElementById('jk-disputes-title');
+  const ddEl = document.getElementById('jk-disputes-desc');
+  const rhEl = document.getElementById('jk-rules-heading');
+  const rdEl = document.getElementById('jk-rules-desc');
+  if(dtEl) dtEl.textContent = isAr ? 'نزاعات نظام النقاط' : 'Points System Disputes';
+  if(ddEl) ddEl.textContent = isAr ? 'أكثر المواضيع جدلاً في مجموعة الجاكارو — النقاط والصيغ والقواعد المنزلية.' : 'The most argued topics in your Jackaroo group — scoring, formats, and house rules.';
+  if(rhEl) rhEl.textContent = isAr ? 'القواعد الرسمية وطريقة اللعب' : 'Official Rules & How to Play';
+  if(rdEl) rdEl.textContent = isAr ? 'قواعد لعبة الجاكارو — اللعبة الكلاسيكية المفضلة في الشرق الأوسط' : 'Jackaroo board game rules — the classic Middle Eastern favourite';
+
+  // dispute cards
+  const votes = JSON.parse(localStorage.getItem('allin_jk_votes') || '{}');
+  el.innerHTML = JK_DISPUTE_SYSTEMS.map(sys => {
+    const v = votes[sys.id] || {up:0, down:0, voted:null};
+    const d = isAr ? sys.ar : sys.en;
+    return `<div class="debate-card${sys.popular?' popular':''}">
+      <div class="debate-card-title">${d.title}</div>
+      <span class="debate-pill ${sys.pill}">${d.pillLabel}</span>
+      <div class="debate-formula">${d.formula}</div>
+      <div class="debate-desc">${d.desc}</div>
+      <div class="debate-pros-cons">
+        <div class="pro-con-box"><div class="pc-label pro-label">${t('for')}</div>${d.pros.map(p=>`<div class="pc-item">${p}</div>`).join('')}</div>
+        <div class="pro-con-box"><div class="pc-label con-label">${t('against')}</div>${d.cons.map(c=>`<div class="pc-item">${c}</div>`).join('')}</div>
+      </div>
+      <div class="debate-vote-row">
+        <button class="vote-btn${v.voted==='up'?' voted':''}" onclick="castJkVote('${sys.id}','up')">👍 <span class="vote-count">${v.up}</span></button>
+        <button class="vote-btn${v.voted==='down'?' voted':''}" onclick="castJkVote('${sys.id}','down')">👎 <span class="vote-count">${v.down}</span></button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // rules category nav
+  const navEl = document.getElementById('jk-rules-nav');
+  if(navEl) navEl.innerHTML = JK_RULES_CATEGORIES.map(c =>
+    `<button class="rnav-btn${c.id===_activeJkRuleCat?' active':''}" onclick="showJkRulesCat('${c.id}')">${isAr?c.ar:c.en}</button>`
+  ).join('');
+
+  renderJkRulesCat(_activeJkRuleCat);
+}
+
+function showJkRulesCat(id) {
+  _activeJkRuleCat = id;
+  document.querySelectorAll('#jk-rules-nav .rnav-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderJkRulesCat(id);
+}
+
+function renderJkRulesCat(id) {
+  const rules = (JK_RULES_DATA[id]||[]).map(r=>currentLang==='ar'?r.ar:r.en);
+  const el = document.getElementById('jk-rules-content');
+  if(!el) return;
+  el.innerHTML = rules.map((r,i)=>`
+    <div class="rule-card">
+      <div class="rule-header" onclick="toggleRule(this)">
+        <div class="rule-num">${i+1}</div>
+        <div class="rule-title">${r.title}</div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">${r.body}</div>
+    </div>`).join('');
+}
+
+function castJkVote(sysId, dir) {
+  const votes = JSON.parse(localStorage.getItem('allin_jk_votes') || '{}');
+  if(!votes[sysId]) votes[sysId] = {up:0, down:0, voted:null};
+  const v = votes[sysId];
+  if(v.voted===dir) { v[dir]--; v.voted=null; }
+  else { if(v.voted) v[v.voted]--; v[dir]++; v.voted=dir; }
+  localStorage.setItem('allin_jk_votes', JSON.stringify(votes));
+  renderJkRulesTab();
+}
+document.getElementById('newPlayerName').addEventListener('keydown',e=>{if(e.key==='Enter')addPlayer();});
+document.getElementById('jkNewPlayerName').addEventListener('keydown',e=>{if(e.key==='Enter')addJkPlayer();});
+document.getElementById('si-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doSignIn();});
+document.getElementById('reg-pass2').addEventListener('keydown',e=>{if(e.key==='Enter')doRegister();});
+
+// ─── SET DEFAULT DATE ─────────────────────────────────
+document.getElementById('matchDate').value = new Date().toISOString().split('T')[0];
+document.getElementById('jkMatchDate').value = new Date().toISOString().split('T')[0];
+
+// ─── BOOTSTRAP ───────────────────────────────────────
+(function() {
+  applyLang();
+  const user = getCurrentUser();
+  if(user) { bootApp(); }
+})();
+</script>
+</body>
+</html>
