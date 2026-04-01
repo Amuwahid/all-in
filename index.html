@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" dir="ltr"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All In</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=DM+Sans:wght@300;400;500&amp;family=Cairo:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
@@ -693,7 +691,28 @@
   .jk-bar-fill { height: 100%; border-radius: 4px; background: var(--gold); }
 
 </style>
-</head>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+        50% {
+          box-shadow: 
+            inset 0 0 15px rgba(217, 119, 87, 0.7),
+            inset 0 0 25px rgba(217, 119, 87, 0.5),
+            inset 0 0 35px rgba(217, 119, 87, 0.2);
+        }
+        100% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+      }
+    </style></head>
 <body>
 <!-- LOGIN SCREEN -->
 <div id="login-screen">
@@ -737,7 +756,7 @@
     <div class="modal-title" data-i18n="editProfile">Edit Profile</div>
     <div class="login-form">
       <div class="login-field"><label data-i18n="displayName">Display Name</label><input type="text" id="ep-name" maxlength="20"></div>
-      <div class="login-field"><label data-i18n="newPassword">New Password <span style="color:var(--muted2);font-size:10px;" data-i18n="leaveBlank">(leave blank to keep current)</span></label><input type="password" id="ep-pass" placeholder="New password"></div>
+      <div class="login-field"><label data-i18n="newPassword">New Password</label><input type="password" id="ep-pass" placeholder="New password"></div>
       <div class="login-field"><label data-i18n="confirmNewPassword">Confirm New Password</label><input type="password" id="ep-pass2" placeholder="Repeat new password"></div>
       <div class="login-error" id="ep-error"></div>
     </div>
@@ -792,7 +811,7 @@
       <button class="nav-btn" onclick="showTab('players')" data-i18n="players">Players</button>
       <button class="nav-btn" onclick="showTab('rankings')" data-i18n="rankings">Rankings</button>
       <button class="nav-btn" onclick="showTab('best-pairs')" data-i18n="bestPairs">Best Pairs</button>
-      <button class="nav-btn" onclick="showTab('rules')" data-i18n="rulesDisputes">Rules & Disputes</button>
+      <button class="nav-btn" onclick="showTab('rules')" data-i18n="rulesDisputes">Rules &amp; Disputes</button>
       <button class="nav-btn" id="nav-profile" onclick="showTab('profile')" data-i18n="myProfile">My Profile</button>
       <button class="nav-btn" onclick="showTab('infographics')" data-i18n="infographics">Infographics</button>
     </nav>
@@ -802,7 +821,7 @@
       <button class="nav-btn" onclick="showJkTab('jk-players')">Players</button>
       <button class="nav-btn" onclick="showJkTab('jk-rankings')">Rankings</button>
       <button class="nav-btn" onclick="showJkTab('jk-history')">History</button>
-      <button class="nav-btn" onclick="showJkTab('jk-rules')">Rules & Disputes</button>
+      <button class="nav-btn" onclick="showJkTab('jk-rules')">Rules &amp; Disputes</button>
     </nav>
   </div>
 
@@ -826,7 +845,7 @@
     <!-- LOG MATCH -->
     <div id="tab-log-match" class="tab">
       <div class="card" style="max-width:600px;">
-        <div class="card-title" data-i18n="logMatch">Log a Match</div>
+        <div class="card-title" data-i18n="logMatch">Log Match</div>
         <div class="form-section">
           <div class="form-section-title" data-i18n="teamA">Team A</div>
           <div class="form-grid">
@@ -860,11 +879,11 @@
             <span class="score-sep">–</span>
             <input type="number" class="score-input" id="scoreB" min="0" max="99" value="0">
           </div>
-          <div style="text-align:center; margin-top:6px; font-size:12px; color:var(--muted);" data-i18n="teamAvsB">Team A &nbsp;–&nbsp; Team B</div>
+          <div style="text-align:center; margin-top:6px; font-size:12px; color:var(--muted);" data-i18n="teamAvsB">Team A – Team B</div>
         </div>
         <div class="form-section">
           <div class="form-group">
-            <label data-i18n="date">Date</label>
+            <label data-i18n="date">date</label>
             <input type="date" id="matchDate">
           </div>
         </div>
@@ -919,8 +938,8 @@
       </div>
       <div class="debate-grid" id="debate-cards"></div>
       <div style="margin:28px 0 12px;">
-        <div class="section-heading" data-i18n="officialRules">Official Rules & Regulations</div>
-        <div style="color:var(--muted);font-size:13px;margin-top:4px;" data-i18n="officialRulesDesc">Based on the World Padel Tour & International Padel Federation (FIP) official rulebook</div>
+        <div class="section-heading" data-i18n="officialRules">Official Rules &amp; Regulations</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;" data-i18n="officialRulesDesc">Based on the World Padel Tour &amp; International Padel Federation (FIP) official rulebook</div>
       </div>
       <div class="rules-nav" id="rules-nav"></div>
       <div id="rules-content"></div>
@@ -967,7 +986,7 @@
         <!-- 1v1 inputs -->
         <div id="jk-form-1v1">
           <div class="form-section">
-            <div class="form-section-title">Players & Points</div>
+            <div class="form-section-title">Players &amp; Points</div>
             <div id="jk-1v1-inputs"></div>
           </div>
         </div>
@@ -1062,7 +1081,7 @@
       </div>
       <div class="debate-grid" id="jk-debate-cards"></div>
       <div style="margin:28px 0 12px;">
-        <div class="section-heading" id="jk-rules-heading">Official Rules & How to Play</div>
+        <div class="section-heading" id="jk-rules-heading">Official Rules &amp; How to Play</div>
         <div style="color:var(--muted);font-size:13px;margin-top:4px;" id="jk-rules-desc">Jackaroo board game rules — the classic Middle Eastern favourite</div>
       </div>
       <div class="rules-nav" id="jk-rules-nav"></div>
@@ -2923,5 +2942,6 @@ document.getElementById('jkMatchDate').value = new Date().toISOString().split('T
   if(user) { bootApp(); }
 })();
 </script>
-</body>
-</html>
+
+
+<div id="claude-agent-glow-border" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646; opacity: 0; transition: opacity 0.3s ease-in-out; animation: 2s ease-in-out 0s infinite normal none running claude-pulse; box-shadow: rgba(217, 119, 87, 0.5) 0px 0px 10px inset, rgba(217, 119, 87, 0.3) 0px 0px 20px inset, rgba(217, 119, 87, 0.1) 0px 0px 30px inset;"></div></body></html>
