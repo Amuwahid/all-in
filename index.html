@@ -38,7 +38,7 @@
   }
   h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 
-  /* ── LOGIN SCREEN ── */
+  /* ââ LOGIN SCREEN ââ */
   #login-screen {
     position: fixed; inset: 0; background: var(--bg);
     display: flex; align-items: center; justify-content: center;
@@ -83,7 +83,7 @@
   .login-divider span { font-size:11px; color:var(--muted2); }
   .login-divider::before, .login-divider::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  /* ── HEADER USER PILL ── */
+  /* ââ HEADER USER PILL ââ */
   .user-pill {
     display:flex; align-items:center; gap:8px;
     background:var(--surface2); border:1px solid var(--border);
@@ -94,7 +94,7 @@
   .user-pill-name { font-size:13px; font-weight:500; }
   .user-pill-logout { font-size:11px; color:var(--muted2); margin-left:4px; }
 
-  /* ── PROFILE TAB ── */
+  /* ââ PROFILE TAB ââ */
   .profile-hero {
     background: var(--surface); border:1px solid var(--border);
     border-radius:16px; padding:28px 24px; margin-bottom:16px;
@@ -125,7 +125,7 @@
   .pmr-score { font-family:'Syne',sans-serif; font-weight:700; font-size:13px; }
   .pmr-date { font-size:11px; color:var(--muted2); }
 
-  /* ── RTL / ARABIC ── */
+  /* ââ RTL / ARABIC ââ */
   [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
   [dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4 { font-family: 'Cairo', sans-serif; }
   [dir="rtl"] .nav-btn { font-family: 'Cairo', sans-serif; }
@@ -441,7 +441,7 @@
     .header { padding: 14px 16px 0; }
   }
 
-  /* ── RULES & DISPUTES ── */
+  /* ââ RULES & DISPUTES ââ */
   .debate-banner {
     display: flex; align-items: flex-start; gap: 16px;
     background: linear-gradient(135deg, rgba(0,229,160,0.08) 0%, rgba(79,172,254,0.06) 100%);
@@ -480,7 +480,7 @@
   .pro-label { color:var(--accent); }
   .con-label { color:var(--danger); }
   .pc-item { font-size:12px; color:var(--muted); line-height:1.5; padding-left:10px; position:relative; }
-  .pc-item::before { content:'•'; position:absolute; left:0; }
+  .pc-item::before { content:'â¢'; position:absolute; left:0; }
 
   .section-heading {
     font-family:'Syne',sans-serif; font-size:18px; font-weight:800;
@@ -542,7 +542,7 @@
   .vote-btn.voted { background:var(--accent-dim); border-color:rgba(0,229,160,0.3); color:var(--accent); }
   .vote-count { font-family:'Syne',sans-serif; font-weight:700; }
 
-  /* ── INFOGRAPHICS ── */
+  /* ââ INFOGRAPHICS ââ */
   .infographics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .infographics-grid .chart-card.full { grid-column: 1 / -1; }
   .chart-card {
@@ -604,7 +604,7 @@
     .infographics-grid .chart-card.full { grid-column: 1; }
   }
 
-  /* ── GAME PICKER ── */
+  /* ââ GAME PICKER ââ */
   #game-picker.show { display: flex; }
   .picker-box {
     width: 100%; max-width: 520px; animation: fadeUp 0.4s ease;
@@ -643,7 +643,7 @@
   }
   .picker-logout:hover { color: var(--text); }
 
-  /* ── GAME INDICATOR IN HEADER ── */
+  /* ââ GAME INDICATOR IN HEADER ââ */
   .game-badge {
     display: flex; align-items: center; gap: 6px;
     font-size: 11px; font-weight: 700; padding: 4px 10px;
@@ -652,7 +652,7 @@
   .game-badge.padel { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(0,229,160,0.2); }
   .game-badge.jackaroo { background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.2); }
 
-  /* ── JACKAROO ── */
+  /* ââ JACKAROO ââ */
   .jk-section { display: none; }
   .jk-section.active { display: block; }
   .jk-rounds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -719,12 +719,12 @@
   <div class="login-box">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
       <div class="login-logo" style="margin-bottom:0;">
-        <div class="login-logo-icon">🎾</div>
+        <div class="login-logo-icon">ð¾</div>
         <h2>All <span>In</span></h2>
       </div>
       <div class="lang-toggle" onclick="toggleLang()" style="margin-bottom:0;">
         <span class="lang-opt active" id="login-lang-en">EN</span>
-        <span class="lang-opt" id="login-lang-ar">عر</span>
+        <span class="lang-opt" id="login-lang-ar">Ø¹Ø±</span>
       </div>
     </div>
     <div class="login-tabs">
@@ -733,7 +733,7 @@
     </div>
     <div class="login-form" id="login-form-signin">
       <div class="login-field"><label data-i18n="email">Email</label><input type="email" id="si-email" placeholder="you@example.com" autocomplete="email"></div>
-      <div class="login-field"><label data-i18n="password">Password</label><input type="password" id="si-pass" placeholder="••••••••" autocomplete="current-password"></div>
+      <div class="login-field"><label data-i18n="password">Password</label><input type="password" id="si-pass" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="current-password"></div>
       <div class="login-error" id="si-error"></div>
       <button class="login-btn" onclick="doSignIn()" data-i18n="signIn">Sign In</button>
       <div class="login-divider"><span data-i18n="or">or</span></div>
@@ -771,18 +771,18 @@
   <!-- GAME PICKER -->
   <div id="game-picker" style="display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;z-index:998;padding:20px;">
     <div class="picker-box">
-      <div class="picker-greeting" id="picker-greeting">Welcome back 👋</div>
+      <div class="picker-greeting" id="picker-greeting">Welcome back ð</div>
       <div class="picker-sub" id="picker-sub">What are we playing tonight?</div>
       <div class="picker-games">
         <div class="game-card" onclick="selectGame('padel')">
           <span class="game-card-badge badge-padel">ACTIVE</span>
-          <span class="game-card-icon">🎾</span>
+          <span class="game-card-icon">ð¾</span>
           <div class="game-card-name padel">Padel</div>
           <div class="game-card-desc">Track matches, rankings, best pairs and stats for your padel games</div>
         </div>
         <div class="game-card jackaroo-card" onclick="selectGame('jackaroo')">
           <span class="game-card-badge badge-jackaroo">ACTIVE</span>
-          <span class="game-card-icon">🎲</span>
+          <span class="game-card-icon">ð²</span>
           <div class="game-card-name jackaroo">Jackaroo</div>
           <div class="game-card-desc">Log rounds, track points per player and see who rules the board</div>
         </div>
@@ -793,14 +793,14 @@
   <div class="header">
     <div class="header-top">
       <div class="logo">
-        <div class="logo-icon">🎾</div>
+        <div class="logo-icon">ð¾</div>
         <h1>All <span>In</span></h1>
       </div>
       <div class="header-right">
         <div id="game-badge-header"></div>
         <div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">
           <span class="lang-opt active" id="lang-en">EN</span>
-          <span class="lang-opt" id="lang-ar">عر</span>
+          <span class="lang-opt" id="lang-ar">Ø¹Ø±</span>
         </div>
         <div id="header-user"></div>
       </div>
@@ -876,10 +876,10 @@
           <div class="form-section-title" data-i18n="score">Score</div>
           <div class="score-row">
             <input type="number" class="score-input" id="scoreA" min="0" max="99" value="0">
-            <span class="score-sep">–</span>
+            <span class="score-sep">â</span>
             <input type="number" class="score-input" id="scoreB" min="0" max="99" value="0">
           </div>
-          <div style="text-align:center; margin-top:6px; font-size:12px; color:var(--muted);" data-i18n="teamAvsB">Team A – Team B</div>
+          <div style="text-align:center; margin-top:6px; font-size:12px; color:var(--muted);" data-i18n="teamAvsB">Team A â Team B</div>
         </div>
         <div class="form-section">
           <div class="form-group">
@@ -930,10 +930,10 @@
     <!-- RULES & DISPUTES -->
     <div id="tab-rules" class="tab">
       <div class="debate-banner">
-        <div class="debate-icon">⚡</div>
+        <div class="debate-icon">â¡</div>
         <div>
           <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;" data-i18n="pointsDisputes">Points System Disputes</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.5;" data-i18n="pointsDisputesDesc">The most disputed topic in casual padel groups — how should we award points? Here are the most popular systems and the arguments for each.</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;" data-i18n="pointsDisputesDesc">The most disputed topic in casual padel groups â how should we award points? Here are the most popular systems and the arguments for each.</div>
         </div>
       </div>
       <div class="debate-grid" id="debate-cards"></div>
@@ -955,12 +955,12 @@
       <div id="infographics-content"></div>
     </div>
 
-    <!-- ── JACKAROO TABS ── -->
+    <!-- ââ JACKAROO TABS ââ -->
     <div id="jk-dashboard" class="jk-section active">
       <div class="stats-grid" id="jk-dash-stats"></div>
       <div class="dashboard-grid">
         <div class="card">
-          <div class="card-title" style="color:var(--gold);">🎲 Top Players</div>
+          <div class="card-title" style="color:var(--gold);">ð² Top Players</div>
           <div id="jk-dash-leaderboard"></div>
         </div>
         <div class="card">
@@ -1073,16 +1073,16 @@
     <!-- JACKAROO RULES & DISPUTES -->
     <div id="jk-rules" class="jk-section">
       <div class="debate-banner" style="background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(245,200,66,0.03));border-color:rgba(245,200,66,0.25);">
-        <div class="debate-icon">⚡</div>
+        <div class="debate-icon">â¡</div>
         <div>
           <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;" id="jk-disputes-title">Points System Disputes</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.5;" id="jk-disputes-desc">The most argued topics in your Jackaroo group — scoring, formats, and house rules.</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;" id="jk-disputes-desc">The most argued topics in your Jackaroo group â scoring, formats, and house rules.</div>
         </div>
       </div>
       <div class="debate-grid" id="jk-debate-cards"></div>
       <div style="margin:28px 0 12px;">
         <div class="section-heading" id="jk-rules-heading">Official Rules &amp; How to Play</div>
-        <div style="color:var(--muted);font-size:13px;margin-top:4px;" id="jk-rules-desc">Jackaroo board game rules — the classic Middle Eastern favourite</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;" id="jk-rules-desc">Jackaroo board game rules â the classic Middle Eastern favourite</div>
       </div>
       <div class="rules-nav" id="jk-rules-nav"></div>
       <div id="jk-rules-content"></div>
@@ -1093,7 +1093,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── I18N ─────────────────────────────────────────────
+// âââ I18N âââââââââââââââââââââââââââââââââââââââââââââ
 const TRANSLATIONS = {
   en: {
     dashboard:'Dashboard', logMatch:'Log Match', players:'Players',
@@ -1106,17 +1106,17 @@ const TRANSLATIONS = {
     confirmNewPassword:'Confirm New Password', cancel:'Cancel', save:'Save',
     topPlayers:'Top Players', recentMatches:'Recent Matches',
     teamA:'Team A', teamB:'Team B', player1:'Player 1', player2:'Player 2',
-    selectPlayer:'Select player', score:'Score', teamAvsB:'Team A – Team B',
+    selectPlayer:'Select player', score:'Score', teamAvsB:'Team A â Team B',
     saveMatch:'Save Match', clear:'Clear', matchHistory:'Match History',
     addPlayer:'Add Player', name:'Name', add:'Add',
     playerRankings:'Player Rankings',
     pairsSubtitle:'Team combinations ranked by win rate (min. 2 matches together)',
     pointsDisputes:'Points System Disputes',
-    pointsDisputesDesc:'The most disputed topic in casual padel groups — how should we award points? Here are the most popular systems and the arguments for each.',
+    pointsDisputesDesc:'The most disputed topic in casual padel groups â how should we award points? Here are the most popular systems and the arguments for each.',
     officialRules:'Official Rules & Regulations',
     officialRulesDesc:'Based on the World Padel Tour & International Padel Federation (FIP) official rulebook',
     registeredPlayers:'registered', matchesLogged:'logged',
-    noMatches:'No matches logged yet', noPlayers:'No players yet — add some above!',
+    noMatches:'No matches logged yet', noPlayers:'No players yet â add some above!',
     noPlayersYet:'No players yet', needTwoPlayers:'Add at least 2 players to see pair stats',
     needOneMatch:'Log at least one match to see pair performance',
     winRate:'Win rate', wins:'Wins', losses:'Losses', points:'Points',
@@ -1129,7 +1129,7 @@ const TRANSLATIONS = {
     signUpPrompt:'Create an account to save your profile and stats permanently.',
     signUpBtn:'Sign Up / Sign In', editProfileBtn:'Edit Profile',
     playerAdded:'Player added!', playerRemoved:'Player removed',
-    matchSaved:'Match saved! ✓', matchDeleted:'Match deleted',
+    matchSaved:'Match saved! â', matchDeleted:'Match deleted',
     profileUpdated:'Profile updated!', selectAllPlayers:'Select all 4 players',
     playersDifferent:'All players must be different', noDraw:'Score cannot be a draw',
     fillAllFields:'Please fill in all fields', validEmail:'Enter a valid email address',
@@ -1144,9 +1144,9 @@ const TRANSLATIONS = {
     ofPlayers:'of', ofPlayersLabel:'players',
     infographics:'Infographics',
     infographicsEmpty:'Log some matches to see infographics',
-    podiumTitle:'🏆 Champion Podium', podiumSub:'Top 3 players by points',
+    podiumTitle:'ð Champion Podium', podiumSub:'Top 3 players by points',
     winRateTitle:'Win Rate by Player', winRateSub:'% of matches won per player',
-    pointsTitle:'Points Leaderboard', pointsSub:'Total points scored (Win ×3 − Loss)',
+    pointsTitle:'Points Leaderboard', pointsSub:'Total points scored (Win Ã3 â Loss)',
     formTitle:'Recent Form', formSub:'Last 5 matches per player  W = win  L = loss',
     awardsTitle:'Player Awards', awardsSub:'Standout performers',
     mostWins:'Most Wins', bestWinRate:'Best Win Rate', mostMatches:'Most Active',
@@ -1155,63 +1155,63 @@ const TRANSLATIONS = {
     goalDiffTitle:'Goal Difference', goalDiffSub:'Goals scored minus goals conceded',
   },
   ar: {
-    dashboard:'لوحة التحكم', logMatch:'تسجيل مباراة', players:'اللاعبون',
-    rankings:'الترتيب', bestPairs:'أفضل الأزواج', rulesDisputes:'القواعد والنزاعات',
-    myProfile:'ملفي الشخصي', signIn:'تسجيل الدخول', register:'إنشاء حساب',
-    email:'البريد الإلكتروني', password:'كلمة المرور', or:'أو', continueGuest:'المتابعة كضيف',
-    displayName:'الاسم المعروض', confirmPassword:'تأكيد كلمة المرور',
-    createAccount:'إنشاء حساب', editProfile:'تعديل الملف الشخصي',
-    newPassword:'كلمة مرور جديدة', leaveBlank:'(اتركه فارغاً للإبقاء على الحالية)',
-    confirmNewPassword:'تأكيد كلمة المرور الجديدة', cancel:'إلغاء', save:'حفظ',
-    topPlayers:'أفضل اللاعبين', recentMatches:'المباريات الأخيرة',
-    teamA:'الفريق أ', teamB:'الفريق ب', player1:'اللاعب 1', player2:'اللاعب 2',
-    selectPlayer:'اختر لاعباً', score:'النتيجة', teamAvsB:'الفريق أ – الفريق ب',
-    saveMatch:'حفظ المباراة', clear:'مسح', matchHistory:'سجل المباريات',
-    addPlayer:'إضافة لاعب', name:'الاسم', add:'إضافة',
-    playerRankings:'ترتيب اللاعبين',
-    pairsSubtitle:'تصنيف الأزواج حسب نسبة الفوز (الحد الأدنى مباراتان معاً)',
-    pointsDisputes:'نزاعات نظام النقاط',
-    pointsDisputesDesc:'الموضوع الأكثر جدلاً في مجموعات البادل — كيف نحسب النقاط؟ إليك أشهر الأنظمة والحجج لكل منها.',
-    officialRules:'القواعد واللوائح الرسمية',
-    officialRulesDesc:'استناداً إلى الدليل الرسمي لـ World Padel Tour والاتحاد الدولي للبادل (FIP)',
-    registeredPlayers:'مسجل', matchesLogged:'مسجلة',
-    noMatches:'لا توجد مباريات مسجلة بعد', noPlayers:'لا يوجد لاعبون — أضفهم أعلاه!',
-    noPlayersYet:'لا يوجد لاعبون بعد', needTwoPlayers:'أضف لاعبين على الأقل لرؤية إحصائيات الأزواج',
-    needOneMatch:'سجل مباراة واحدة على الأقل لرؤية أداء الأزواج',
-    winRate:'نسبة الفوز', wins:'انتصارات', losses:'خسائر', points:'نقاط',
-    played:'المباريات', bestPairBadge:'أفضل زوج',
-    winStreak:'سلسلة انتصارات', loseStreak:'سلسلة خسائر',
-    remove:'حذف', needMoreMatches:'يلزم مباراتان على الأقل للترتيب',
-    with:'مع', vs:'ضد', memberSince:'عضو منذ',
-    playingAsGuest:'اللعب كضيف', rank:'الترتيب', goalDiff:'فارق الأهداف',
-    matchHistoryCount:'سجل المباريات', noMatchesYet:'لا توجد مباريات مسجلة بعد',
-    signUpPrompt:'أنشئ حساباً لحفظ ملفك الشخصي وإحصائياتك بشكل دائم.',
-    signUpBtn:'إنشاء حساب / تسجيل الدخول', editProfileBtn:'تعديل الملف',
-    playerAdded:'تمت إضافة اللاعب!', playerRemoved:'تم حذف اللاعب',
-    matchSaved:'تم حفظ المباراة! ✓', matchDeleted:'تم حذف المباراة',
-    profileUpdated:'تم تحديث الملف الشخصي!', selectAllPlayers:'اختر جميع اللاعبين الأربعة',
-    playersDifferent:'يجب أن يكون جميع اللاعبين مختلفين', noDraw:'لا يمكن أن تكون النتيجة تعادلاً',
-    fillAllFields:'يرجى ملء جميع الحقول', validEmail:'أدخل بريداً إلكترونياً صحيحاً',
-    minPassword:'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل', passwordsMatch:'كلمات المرور غير متطابقة',
-    accountExists:'يوجد حساب بهذا البريد الإلكتروني مسبقاً',
-    noAccount:'لا يوجد حساب بهذا البريد الإلكتروني', wrongPassword:'كلمة المرور غير صحيحة',
-    enterName:'أدخل اسم اللاعب', playerExists:'اللاعب موجود مسبقاً',
-    nameCannotBeEmpty:'لا يمكن أن يكون الاسم فارغاً', removeConfirm:'حذف هذا اللاعب؟ سيبقى سجل مبارياته.',
-    deleteMatchConfirm:'هل تريد حذف هذه المباراة؟',
-    for:'له', against:'عليه', courtSetup:'الملعب والإعداد', scoring:'التسجيل',
-    service:'الإرسال', duringPlay:'أثناء اللعب', faultsLets:'الأخطاء والإعادات',
-    ofPlayers:'من', ofPlayersLabel:'لاعبين',
-    infographics:'الرسوم البيانية',
-    infographicsEmpty:'سجّل بعض المباريات لرؤية الرسوم البيانية',
-    podiumTitle:'🏆 منصة التتويج', podiumSub:'أفضل 3 لاعبين بالنقاط',
-    winRateTitle:'نسبة الفوز لكل لاعب', winRateSub:'نسبة المباريات المكسوبة',
-    pointsTitle:'قائمة النقاط', pointsSub:'النقاط الكلية (فوز ×3 − خسارة)',
-    formTitle:'الشكل الأخير', formSub:'آخر 5 مباريات لكل لاعب  F = فوز  X = خسارة',
-    awardsTitle:'جوائز اللاعبين', awardsSub:'أبرز اللاعبين',
-    mostWins:'الأكثر انتصاراً', bestWinRate:'أفضل نسبة فوز', mostMatches:'الأكثر نشاطاً',
-    topScorer:'أكثر تسجيلاً', bestPartner:'أفضل زوج', longestStreak:'أطول سلسلة',
-    pairChartTitle:'نسبة فوز أفضل الأزواج', pairChartSub:'أفضل الأزواج (الحد الأدنى مباراتان)',
-    goalDiffTitle:'فارق الأهداف', goalDiffSub:'الأهداف المسجلة ناقص المستقبلة',
+    dashboard:'ÙÙØ­Ø© Ø§ÙØªØ­ÙÙ', logMatch:'ØªØ³Ø¬ÙÙ ÙØ¨Ø§Ø±Ø§Ø©', players:'Ø§ÙÙØ§Ø¹Ø¨ÙÙ',
+    rankings:'Ø§ÙØªØ±ØªÙØ¨', bestPairs:'Ø£ÙØ¶Ù Ø§ÙØ£Ø²ÙØ§Ø¬', rulesDisputes:'Ø§ÙÙÙØ§Ø¹Ø¯ ÙØ§ÙÙØ²Ø§Ø¹Ø§Øª',
+    myProfile:'ÙÙÙÙ Ø§ÙØ´Ø®ØµÙ', signIn:'ØªØ³Ø¬ÙÙ Ø§ÙØ¯Ø®ÙÙ', register:'Ø¥ÙØ´Ø§Ø¡ Ø­Ø³Ø§Ø¨',
+    email:'Ø§ÙØ¨Ø±ÙØ¯ Ø§ÙØ¥ÙÙØªØ±ÙÙÙ', password:'ÙÙÙØ© Ø§ÙÙØ±ÙØ±', or:'Ø£Ù', continueGuest:'Ø§ÙÙØªØ§Ø¨Ø¹Ø© ÙØ¶ÙÙ',
+    displayName:'Ø§ÙØ§Ø³Ù Ø§ÙÙØ¹Ø±ÙØ¶', confirmPassword:'ØªØ£ÙÙØ¯ ÙÙÙØ© Ø§ÙÙØ±ÙØ±',
+    createAccount:'Ø¥ÙØ´Ø§Ø¡ Ø­Ø³Ø§Ø¨', editProfile:'ØªØ¹Ø¯ÙÙ Ø§ÙÙÙÙ Ø§ÙØ´Ø®ØµÙ',
+    newPassword:'ÙÙÙØ© ÙØ±ÙØ± Ø¬Ø¯ÙØ¯Ø©', leaveBlank:'(Ø§ØªØ±ÙÙ ÙØ§Ø±ØºØ§Ù ÙÙØ¥Ø¨ÙØ§Ø¡ Ø¹ÙÙ Ø§ÙØ­Ø§ÙÙØ©)',
+    confirmNewPassword:'ØªØ£ÙÙØ¯ ÙÙÙØ© Ø§ÙÙØ±ÙØ± Ø§ÙØ¬Ø¯ÙØ¯Ø©', cancel:'Ø¥ÙØºØ§Ø¡', save:'Ø­ÙØ¸',
+    topPlayers:'Ø£ÙØ¶Ù Ø§ÙÙØ§Ø¹Ø¨ÙÙ', recentMatches:'Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª Ø§ÙØ£Ø®ÙØ±Ø©',
+    teamA:'Ø§ÙÙØ±ÙÙ Ø£', teamB:'Ø§ÙÙØ±ÙÙ Ø¨', player1:'Ø§ÙÙØ§Ø¹Ø¨ 1', player2:'Ø§ÙÙØ§Ø¹Ø¨ 2',
+    selectPlayer:'Ø§Ø®ØªØ± ÙØ§Ø¹Ø¨Ø§Ù', score:'Ø§ÙÙØªÙØ¬Ø©', teamAvsB:'Ø§ÙÙØ±ÙÙ Ø£ â Ø§ÙÙØ±ÙÙ Ø¨',
+    saveMatch:'Ø­ÙØ¸ Ø§ÙÙØ¨Ø§Ø±Ø§Ø©', clear:'ÙØ³Ø­', matchHistory:'Ø³Ø¬Ù Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª',
+    addPlayer:'Ø¥Ø¶Ø§ÙØ© ÙØ§Ø¹Ø¨', name:'Ø§ÙØ§Ø³Ù', add:'Ø¥Ø¶Ø§ÙØ©',
+    playerRankings:'ØªØ±ØªÙØ¨ Ø§ÙÙØ§Ø¹Ø¨ÙÙ',
+    pairsSubtitle:'ØªØµÙÙÙ Ø§ÙØ£Ø²ÙØ§Ø¬ Ø­Ø³Ø¨ ÙØ³Ø¨Ø© Ø§ÙÙÙØ² (Ø§ÙØ­Ø¯ Ø§ÙØ£Ø¯ÙÙ ÙØ¨Ø§Ø±Ø§ØªØ§Ù ÙØ¹Ø§Ù)',
+    pointsDisputes:'ÙØ²Ø§Ø¹Ø§Øª ÙØ¸Ø§Ù Ø§ÙÙÙØ§Ø·',
+    pointsDisputesDesc:'Ø§ÙÙÙØ¶ÙØ¹ Ø§ÙØ£ÙØ«Ø± Ø¬Ø¯ÙØ§Ù ÙÙ ÙØ¬ÙÙØ¹Ø§Øª Ø§ÙØ¨Ø§Ø¯Ù â ÙÙÙ ÙØ­Ø³Ø¨ Ø§ÙÙÙØ§Ø·Ø Ø¥ÙÙÙ Ø£Ø´ÙØ± Ø§ÙØ£ÙØ¸ÙØ© ÙØ§ÙØ­Ø¬Ø¬ ÙÙÙ ÙÙÙØ§.',
+    officialRules:'Ø§ÙÙÙØ§Ø¹Ø¯ ÙØ§ÙÙÙØ§Ø¦Ø­ Ø§ÙØ±Ø³ÙÙØ©',
+    officialRulesDesc:'Ø§Ø³ØªÙØ§Ø¯Ø§Ù Ø¥ÙÙ Ø§ÙØ¯ÙÙÙ Ø§ÙØ±Ø³ÙÙ ÙÙ World Padel Tour ÙØ§ÙØ§ØªØ­Ø§Ø¯ Ø§ÙØ¯ÙÙÙ ÙÙØ¨Ø§Ø¯Ù (FIP)',
+    registeredPlayers:'ÙØ³Ø¬Ù', matchesLogged:'ÙØ³Ø¬ÙØ©',
+    noMatches:'ÙØ§ ØªÙØ¬Ø¯ ÙØ¨Ø§Ø±ÙØ§Øª ÙØ³Ø¬ÙØ© Ø¨Ø¹Ø¯', noPlayers:'ÙØ§ ÙÙØ¬Ø¯ ÙØ§Ø¹Ø¨ÙÙ â Ø£Ø¶ÙÙÙ Ø£Ø¹ÙØ§Ù!',
+    noPlayersYet:'ÙØ§ ÙÙØ¬Ø¯ ÙØ§Ø¹Ø¨ÙÙ Ø¨Ø¹Ø¯', needTwoPlayers:'Ø£Ø¶Ù ÙØ§Ø¹Ø¨ÙÙ Ø¹ÙÙ Ø§ÙØ£ÙÙ ÙØ±Ø¤ÙØ© Ø¥Ø­ØµØ§Ø¦ÙØ§Øª Ø§ÙØ£Ø²ÙØ§Ø¬',
+    needOneMatch:'Ø³Ø¬Ù ÙØ¨Ø§Ø±Ø§Ø© ÙØ§Ø­Ø¯Ø© Ø¹ÙÙ Ø§ÙØ£ÙÙ ÙØ±Ø¤ÙØ© Ø£Ø¯Ø§Ø¡ Ø§ÙØ£Ø²ÙØ§Ø¬',
+    winRate:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ²', wins:'Ø§ÙØªØµØ§Ø±Ø§Øª', losses:'Ø®Ø³Ø§Ø¦Ø±', points:'ÙÙØ§Ø·',
+    played:'Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª', bestPairBadge:'Ø£ÙØ¶Ù Ø²ÙØ¬',
+    winStreak:'Ø³ÙØ³ÙØ© Ø§ÙØªØµØ§Ø±Ø§Øª', loseStreak:'Ø³ÙØ³ÙØ© Ø®Ø³Ø§Ø¦Ø±',
+    remove:'Ø­Ø°Ù', needMoreMatches:'ÙÙØ²Ù ÙØ¨Ø§Ø±Ø§ØªØ§Ù Ø¹ÙÙ Ø§ÙØ£ÙÙ ÙÙØªØ±ØªÙØ¨',
+    with:'ÙØ¹', vs:'Ø¶Ø¯', memberSince:'Ø¹Ø¶Ù ÙÙØ°',
+    playingAsGuest:'Ø§ÙÙØ¹Ø¨ ÙØ¶ÙÙ', rank:'Ø§ÙØªØ±ØªÙØ¨', goalDiff:'ÙØ§Ø±Ù Ø§ÙØ£ÙØ¯Ø§Ù',
+    matchHistoryCount:'Ø³Ø¬Ù Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª', noMatchesYet:'ÙØ§ ØªÙØ¬Ø¯ ÙØ¨Ø§Ø±ÙØ§Øª ÙØ³Ø¬ÙØ© Ø¨Ø¹Ø¯',
+    signUpPrompt:'Ø£ÙØ´Ø¦ Ø­Ø³Ø§Ø¨Ø§Ù ÙØ­ÙØ¸ ÙÙÙÙ Ø§ÙØ´Ø®ØµÙ ÙØ¥Ø­ØµØ§Ø¦ÙØ§ØªÙ Ø¨Ø´ÙÙ Ø¯Ø§Ø¦Ù.',
+    signUpBtn:'Ø¥ÙØ´Ø§Ø¡ Ø­Ø³Ø§Ø¨ / ØªØ³Ø¬ÙÙ Ø§ÙØ¯Ø®ÙÙ', editProfileBtn:'ØªØ¹Ø¯ÙÙ Ø§ÙÙÙÙ',
+    playerAdded:'ØªÙØª Ø¥Ø¶Ø§ÙØ© Ø§ÙÙØ§Ø¹Ø¨!', playerRemoved:'ØªÙ Ø­Ø°Ù Ø§ÙÙØ§Ø¹Ø¨',
+    matchSaved:'ØªÙ Ø­ÙØ¸ Ø§ÙÙØ¨Ø§Ø±Ø§Ø©! â', matchDeleted:'ØªÙ Ø­Ø°Ù Ø§ÙÙØ¨Ø§Ø±Ø§Ø©',
+    profileUpdated:'ØªÙ ØªØ­Ø¯ÙØ« Ø§ÙÙÙÙ Ø§ÙØ´Ø®ØµÙ!', selectAllPlayers:'Ø§Ø®ØªØ± Ø¬ÙÙØ¹ Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙØ£Ø±Ø¨Ø¹Ø©',
+    playersDifferent:'ÙØ¬Ø¨ Ø£Ù ÙÙÙÙ Ø¬ÙÙØ¹ Ø§ÙÙØ§Ø¹Ø¨ÙÙ ÙØ®ØªÙÙÙÙ', noDraw:'ÙØ§ ÙÙÙÙ Ø£Ù ØªÙÙÙ Ø§ÙÙØªÙØ¬Ø© ØªØ¹Ø§Ø¯ÙØ§Ù',
+    fillAllFields:'ÙØ±Ø¬Ù ÙÙØ¡ Ø¬ÙÙØ¹ Ø§ÙØ­ÙÙÙ', validEmail:'Ø£Ø¯Ø®Ù Ø¨Ø±ÙØ¯Ø§Ù Ø¥ÙÙØªØ±ÙÙÙØ§Ù ØµØ­ÙØ­Ø§Ù',
+    minPassword:'ÙØ¬Ø¨ Ø£Ù ØªØªÙÙÙ ÙÙÙØ© Ø§ÙÙØ±ÙØ± ÙÙ 6 Ø£Ø­Ø±Ù Ø¹ÙÙ Ø§ÙØ£ÙÙ', passwordsMatch:'ÙÙÙØ§Øª Ø§ÙÙØ±ÙØ± ØºÙØ± ÙØªØ·Ø§Ø¨ÙØ©',
+    accountExists:'ÙÙØ¬Ø¯ Ø­Ø³Ø§Ø¨ Ø¨ÙØ°Ø§ Ø§ÙØ¨Ø±ÙØ¯ Ø§ÙØ¥ÙÙØªØ±ÙÙÙ ÙØ³Ø¨ÙØ§Ù',
+    noAccount:'ÙØ§ ÙÙØ¬Ø¯ Ø­Ø³Ø§Ø¨ Ø¨ÙØ°Ø§ Ø§ÙØ¨Ø±ÙØ¯ Ø§ÙØ¥ÙÙØªØ±ÙÙÙ', wrongPassword:'ÙÙÙØ© Ø§ÙÙØ±ÙØ± ØºÙØ± ØµØ­ÙØ­Ø©',
+    enterName:'Ø£Ø¯Ø®Ù Ø§Ø³Ù Ø§ÙÙØ§Ø¹Ø¨', playerExists:'Ø§ÙÙØ§Ø¹Ø¨ ÙÙØ¬ÙØ¯ ÙØ³Ø¨ÙØ§Ù',
+    nameCannotBeEmpty:'ÙØ§ ÙÙÙÙ Ø£Ù ÙÙÙÙ Ø§ÙØ§Ø³Ù ÙØ§Ø±ØºØ§Ù', removeConfirm:'Ø­Ø°Ù ÙØ°Ø§ Ø§ÙÙØ§Ø¹Ø¨Ø Ø³ÙØ¨ÙÙ Ø³Ø¬Ù ÙØ¨Ø§Ø±ÙØ§ØªÙ.',
+    deleteMatchConfirm:'ÙÙ ØªØ±ÙØ¯ Ø­Ø°Ù ÙØ°Ù Ø§ÙÙØ¨Ø§Ø±Ø§Ø©Ø',
+    for:'ÙÙ', against:'Ø¹ÙÙÙ', courtSetup:'Ø§ÙÙÙØ¹Ø¨ ÙØ§ÙØ¥Ø¹Ø¯Ø§Ø¯', scoring:'Ø§ÙØªØ³Ø¬ÙÙ',
+    service:'Ø§ÙØ¥Ø±Ø³Ø§Ù', duringPlay:'Ø£Ø«ÙØ§Ø¡ Ø§ÙÙØ¹Ø¨', faultsLets:'Ø§ÙØ£Ø®Ø·Ø§Ø¡ ÙØ§ÙØ¥Ø¹Ø§Ø¯Ø§Øª',
+    ofPlayers:'ÙÙ', ofPlayersLabel:'ÙØ§Ø¹Ø¨ÙÙ',
+    infographics:'Ø§ÙØ±Ø³ÙÙ Ø§ÙØ¨ÙØ§ÙÙØ©',
+    infographicsEmpty:'Ø³Ø¬ÙÙ Ø¨Ø¹Ø¶ Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª ÙØ±Ø¤ÙØ© Ø§ÙØ±Ø³ÙÙ Ø§ÙØ¨ÙØ§ÙÙØ©',
+    podiumTitle:'ð ÙÙØµØ© Ø§ÙØªØªÙÙØ¬', podiumSub:'Ø£ÙØ¶Ù 3 ÙØ§Ø¹Ø¨ÙÙ Ø¨Ø§ÙÙÙØ§Ø·',
+    winRateTitle:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ² ÙÙÙ ÙØ§Ø¹Ø¨', winRateSub:'ÙØ³Ø¨Ø© Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª Ø§ÙÙÙØ³ÙØ¨Ø©',
+    pointsTitle:'ÙØ§Ø¦ÙØ© Ø§ÙÙÙØ§Ø·', pointsSub:'Ø§ÙÙÙØ§Ø· Ø§ÙÙÙÙØ© (ÙÙØ² Ã3 â Ø®Ø³Ø§Ø±Ø©)',
+    formTitle:'Ø§ÙØ´ÙÙ Ø§ÙØ£Ø®ÙØ±', formSub:'Ø¢Ø®Ø± 5 ÙØ¨Ø§Ø±ÙØ§Øª ÙÙÙ ÙØ§Ø¹Ø¨  F = ÙÙØ²  X = Ø®Ø³Ø§Ø±Ø©',
+    awardsTitle:'Ø¬ÙØ§Ø¦Ø² Ø§ÙÙØ§Ø¹Ø¨ÙÙ', awardsSub:'Ø£Ø¨Ø±Ø² Ø§ÙÙØ§Ø¹Ø¨ÙÙ',
+    mostWins:'Ø§ÙØ£ÙØ«Ø± Ø§ÙØªØµØ§Ø±Ø§Ù', bestWinRate:'Ø£ÙØ¶Ù ÙØ³Ø¨Ø© ÙÙØ²', mostMatches:'Ø§ÙØ£ÙØ«Ø± ÙØ´Ø§Ø·Ø§Ù',
+    topScorer:'Ø£ÙØ«Ø± ØªØ³Ø¬ÙÙØ§Ù', bestPartner:'Ø£ÙØ¶Ù Ø²ÙØ¬', longestStreak:'Ø£Ø·ÙÙ Ø³ÙØ³ÙØ©',
+    pairChartTitle:'ÙØ³Ø¨Ø© ÙÙØ² Ø£ÙØ¶Ù Ø§ÙØ£Ø²ÙØ§Ø¬', pairChartSub:'Ø£ÙØ¶Ù Ø§ÙØ£Ø²ÙØ§Ø¬ (Ø§ÙØ­Ø¯ Ø§ÙØ£Ø¯ÙÙ ÙØ¨Ø§Ø±Ø§ØªØ§Ù)',
+    goalDiffTitle:'ÙØ§Ø±Ù Ø§ÙØ£ÙØ¯Ø§Ù', goalDiffSub:'Ø§ÙØ£ÙØ¯Ø§Ù Ø§ÙÙØ³Ø¬ÙØ© ÙØ§ÙØµ Ø§ÙÙØ³ØªÙØ¨ÙØ©',
   }
 };
 
@@ -1239,14 +1239,14 @@ function applyLang() {
   document.title = 'All In';
   // Update placeholder texts
   const placeholders = {
-    'si-email': isAr ? 'بريدك@مثال.com' : 'you@example.com',
-    'reg-email': isAr ? 'بريدك@مثال.com' : 'you@example.com',
-    'reg-name': isAr ? 'مثل: أحمد' : 'e.g. Ahmad',
-    'reg-pass': isAr ? 'الحد الأدنى 6 أحرف' : 'Min. 6 characters',
-    'reg-pass2': isAr ? 'كرر كلمة المرور' : 'Repeat password',
-    'ep-pass': isAr ? 'كلمة مرور جديدة' : 'New password',
-    'ep-pass2': isAr ? 'كرر كلمة المرور' : 'Repeat new password',
-    'newPlayerName': isAr ? 'مثل: أحمد' : 'e.g. Ahmed',
+    'si-email': isAr ? 'Ø¨Ø±ÙØ¯Ù@ÙØ«Ø§Ù.com' : 'you@example.com',
+    'reg-email': isAr ? 'Ø¨Ø±ÙØ¯Ù@ÙØ«Ø§Ù.com' : 'you@example.com',
+    'reg-name': isAr ? 'ÙØ«Ù: Ø£Ø­ÙØ¯' : 'e.g. Ahmad',
+    'reg-pass': isAr ? 'Ø§ÙØ­Ø¯ Ø§ÙØ£Ø¯ÙÙ 6 Ø£Ø­Ø±Ù' : 'Min. 6 characters',
+    'reg-pass2': isAr ? 'ÙØ±Ø± ÙÙÙØ© Ø§ÙÙØ±ÙØ±' : 'Repeat password',
+    'ep-pass': isAr ? 'ÙÙÙØ© ÙØ±ÙØ± Ø¬Ø¯ÙØ¯Ø©' : 'New password',
+    'ep-pass2': isAr ? 'ÙØ±Ø± ÙÙÙØ© Ø§ÙÙØ±ÙØ±' : 'Repeat new password',
+    'newPlayerName': isAr ? 'ÙØ«Ù: Ø£Ø­ÙØ¯' : 'e.g. Ahmed',
   };
   Object.entries(placeholders).forEach(([id, ph]) => {
     const el = document.getElementById(id);
@@ -1267,7 +1267,7 @@ function toggleLang() {
   applyLang();
 }
 
-// ─── AUTH ─────────────────────────────────────────────
+// âââ AUTH âââââââââââââââââââââââââââââââââââââââââââââ
 function hashPass(str) {
   let h = 0;
   for(let i=0;i<str.length;i++) h = (Math.imul(31,h)+str.charCodeAt(i))|0;
@@ -1292,15 +1292,14 @@ function doLogout() {
   location.reload();
 }
 
-// ─── SUPABASE ─────────────────────────────────────────
+// âââ SUPABASE âââââââââââââââââââââââââââââââââââââââââ
 const SUPA_URL = 'https://dnypzxxodaaplyoeahna.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueXB6eHhvZGFhcGx5b2VhaG5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTU2MDgsImV4cCI6MjA5MDU5MTYwOH0.WqDkhV5hIEpnTS1IPQ3bDvDQ4SqCiXs3AUhmTADRgfQ';
 
 const SB_HEADERS = {
   'Content-Type': 'application/json',
   'apikey': SUPA_KEY,
-  'Authorization': `Bearer ${SUPA_KEY}`,
-  'Prefer': 'return=representation'
+  'Authorization': `Bearer ${SUPA_KEY}`
 };
 
 async function sbGet(table, filter='') {
@@ -1332,7 +1331,7 @@ async function sbUpdate(table, filter, data) {
   return res.json();
 }
 
-// ─── AUTH (Supabase-backed) ───────────────────────────
+// âââ AUTH (Supabase-backed) âââââââââââââââââââââââââââ
 function getCurrentUser() { return JSON.parse(sessionStorage.getItem('pt_user') || 'null'); }
 function setCurrentUser(u) { sessionStorage.setItem('pt_user', JSON.stringify(u)); }
 
@@ -1410,7 +1409,7 @@ async function saveProfile() {
   } catch(e) { errEl.textContent='Save failed. Try again.'; }
 }
 
-// ─── STATE (Supabase-backed) ──────────────────────────
+// âââ STATE (Supabase-backed) ââââââââââââââââââââââââââ
 let state = { players: [], matches: [] };
 let jkState = { players: [], rounds: [] };
 
@@ -1434,13 +1433,13 @@ async function loadState() {
       teams: r.teams || null,
       scores: r.scores || null
     }));
-  } catch(e) { console.error('loadState error', e); toast('Sync error — check connection'); }
+  } catch(e) { console.error('loadState error', e); toast('Sync error â check connection'); }
 }
 
-function save() {} // no-op — writes go directly to Supabase
+function save() {} // no-op â writes go directly to Supabase
 function saveJk() {} // no-op
 
-// ─── PADEL ACTIONS (Supabase) ─────────────────────────
+// âââ PADEL ACTIONS (Supabase) âââââââââââââââââââââââââ
 async function addPlayer() {
   const nameEl = document.getElementById('newPlayerName');
   const name = nameEl.value.trim();
@@ -1489,7 +1488,7 @@ async function deleteMatch(id) {
   } catch(e) { toast('Delete failed'); }
 }
 
-// ─── JACKAROO ACTIONS (Supabase) ──────────────────────
+// âââ JACKAROO ACTIONS (Supabase) ââââââââââââââââââââââ
 async function addJkPlayer() {
   const nameEl = document.getElementById('jkNewPlayerName');
   const name = nameEl.value.trim();
@@ -1499,7 +1498,7 @@ async function addJkPlayer() {
     await sbInsert('players', { id: Date.now().toString(), name, game: 'jackaroo' });
     nameEl.value = '';
     await loadState(); renderJkAll();
-    toast('Player added! 🎲');
+    toast('Player added! ð²');
   } catch(e) { toast('Save failed'); }
 }
 
@@ -1535,7 +1534,7 @@ async function logJkRound() {
   try {
     await sbInsert('matches', row);
     clearJkForm(); await loadState(); renderJkAll();
-    toast('Round saved! 🎲');
+    toast('Round saved! ð²');
   } catch(e) { toast('Save failed'); }
 }
 
@@ -1547,9 +1546,9 @@ async function deleteJkRound(id) {
   } catch(e) { toast('Delete failed'); }
 }
 
-// ─── STATE ───────────────────────────────────────────
+// âââ STATE âââââââââââââââââââââââââââââââââââââââââââ
 
-// ─── INIT ─────────────────────────────────────────────
+// âââ INIT âââââââââââââââââââââââââââââââââââââââââââââ
 const avatarColors = ['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9'];
 function initials(name) { return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
 function avColor(idx) { return avatarColors[idx % avatarColors.length]; }
@@ -1563,7 +1562,7 @@ function fmtDate(d) {
   return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
 }
 
-// ─── TABS ─────────────────────────────────────────────
+// âââ TABS âââââââââââââââââââââââââââââââââââââââââââââ
 function showTab(tab) {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -1575,7 +1574,7 @@ function showTab(tab) {
   renderAll();
 }
 
-// ─── STATS ───────────────────────────────────────────
+// âââ STATS âââââââââââââââââââââââââââââââââââââââââââ
 function playerStats(pid) {
   let wins=0, losses=0, totalGF=0, totalGA=0;
   for(const m of state.matches) {
@@ -1629,7 +1628,7 @@ function sortedPlayers() {
   });
 }
 
-// ─── RENDER ALL ──────────────────────────────────────
+// âââ RENDER ALL ââââââââââââââââââââââââââââââââââââââ
 function renderAll() {
   renderDashboard();
   renderPlayerSelects();
@@ -1642,7 +1641,7 @@ function renderAll() {
   renderInfographics();
 }
 
-// ─── DASHBOARD ───────────────────────────────────────
+// âââ DASHBOARD âââââââââââââââââââââââââââââââââââââââ
 function renderDashboard() {
   const totalM = state.matches.length;
   const totalP = state.players.length;
@@ -1651,8 +1650,8 @@ function renderDashboard() {
   document.getElementById('dash-stats').innerHTML = `
     <div class="stat-card"><div class="stat-label">${t('players')}</div><div class="stat-val accent">${totalP}</div><div class="stat-sub">${t('registeredPlayers')}</div></div>
     <div class="stat-card"><div class="stat-label">${t('logMatch')}</div><div class="stat-val">${totalM}</div><div class="stat-sub">${t('matchesLogged')}</div></div>
-    <div class="stat-card"><div class="stat-label">${t('topPlayers')}</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'–'}</div><div class="stat-sub">${topStat?topStat.pts+' pts':''}</div></div>
-    <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${topStat && topStat.total ? Math.round(topStat.wr)+'%':'–'}</div><div class="stat-sub">${topStat && topStat.total ? topStat.wins+'W / '+topStat.losses+'L':''}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('topPlayers')}</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'â'}</div><div class="stat-sub">${topStat?topStat.pts+' pts':''}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${topStat && topStat.total ? Math.round(topStat.wr)+'%':'â'}</div><div class="stat-sub">${topStat && topStat.total ? topStat.wins+'W / '+topStat.losses+'L':''}</div></div>
   `;
 
   // mini leaderboard
@@ -1662,7 +1661,7 @@ function renderDashboard() {
     const s = playerStats(p.id);
     const idx = state.players.findIndex(pl=>pl.id===p.id);
     return `<div class="lb-row">
-      <span class="lb-rank ${rankIcons[i]}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</span>
+      <span class="lb-rank ${rankIcons[i]}">${i===0?'ð¥':i===1?'ð¥':i===2?'ð¥':i+1}</span>
       ${avatarEl(p,30)}
       <span class="lb-name">${p.name}</span>
       <div style="text-align:right;">
@@ -1686,13 +1685,13 @@ function renderDashboard() {
         <div style="font-weight:500;">${an}</div>
         <div style="color:var(--muted); font-size:11px;">${t('vs')} ${bn}</div>
       </div>
-      <div class="mm-score">${m.scoreA}–${m.scoreB}</div>
+      <div class="mm-score">${m.scoreA}â${m.scoreB}</div>
       <div class="mm-date">${fmtDate(m.date)}</div>
     </div>`;
   }).join('') : `<div class="empty-state" style="padding:20px 0;"><p>${t('noMatches')}</p></div>`;
 }
 
-// ─── PLAYER SELECTS ──────────────────────────────────
+// âââ PLAYER SELECTS ââââââââââââââââââââââââââââââââââ
 function renderPlayerSelects() {
   const selects = ['teamA1','teamA2','teamB1','teamB2'];
   selects.forEach(id=>{
@@ -1704,7 +1703,7 @@ function renderPlayerSelects() {
   });
 }
 
-// ─── MATCH LOG ───────────────────────────────────────
+// âââ MATCH LOG âââââââââââââââââââââââââââââââââââââââ
 function renderMatchLog() {
   const sorted = [...state.matches].sort((a,b)=>new Date(b.date)-new Date(a.date));
   const el = document.getElementById('match-log-list');
@@ -1717,8 +1716,8 @@ function renderMatchLog() {
       <div class="match-header">
         <span class="match-date">${fmtDate(m.date)}</span>
         <div style="display:flex;gap:6px;align-items:center;">
-          <span class="match-score">${m.scoreA} – ${m.scoreB}</span>
-          <button class="btn-danger" onclick="deleteMatch('${m.id}')">✕</button>
+          <span class="match-score">${m.scoreA} â ${m.scoreB}</span>
+          <button class="btn-danger" onclick="deleteMatch('${m.id}')">â</button>
         </div>
       </div>
       <div class="match-teams">
@@ -1730,7 +1729,7 @@ function renderMatchLog() {
   }).join('');
 }
 
-// ─── PLAYERS GRID ────────────────────────────────────
+// âââ PLAYERS GRID ââââââââââââââââââââââââââââââââââââ
 function renderPlayersGrid() {
   const el = document.getElementById('players-grid');
   if(!state.players.length) {
@@ -1750,15 +1749,15 @@ function renderPlayersGrid() {
       </div>
       <div class="player-stats-grid">
         <div class="psm"><div class="psm-label">${t('points')}</div><div class="psm-val" style="color:var(--accent);">${s.pts}</div></div>
-        <div class="psm"><div class="psm-label">${t('winRate')}</div><div class="psm-val">${s.total?Math.round(s.wr)+'%':'–'}</div></div>
+        <div class="psm"><div class="psm-label">${t('winRate')}</div><div class="psm-val">${s.total?Math.round(s.wr)+'%':'â'}</div></div>
         <div class="psm"><div class="psm-label">${t('wins')}</div><div class="psm-val" style="color:var(--win);">${s.wins}</div></div>
         <div class="psm"><div class="psm-label">${t('losses')}</div><div class="psm-val" style="color:var(--lose);">${s.losses}</div></div>
       </div>
       <div class="win-rate-bar">
-        <div class="wr-label"><span>${t('winRate')}</span><span>${s.total?Math.round(s.wr)+'%':'–'}</span></div>
+        <div class="wr-label"><span>${t('winRate')}</span><span>${s.total?Math.round(s.wr)+'%':'â'}</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:${Math.round(s.wr)}%"></div></div>
       </div>
-      ${streak.count>=2?`<div class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'🔥':'❄️'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</div>`:''}
+      ${streak.count>=2?`<div class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'ð¥':'âï¸'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</div>`:''}
       <div style="margin-top:10px; display:flex; justify-content:flex-end;">
         <button class="btn-danger" onclick="removePlayer('${p.id}')">${t('remove')}</button>
       </div>
@@ -1766,12 +1765,12 @@ function renderPlayersGrid() {
   }).join('');
 }
 
-// ─── RANKINGS ────────────────────────────────────────
+// âââ RANKINGS ââââââââââââââââââââââââââââââââââââââââ
 function renderRankings() {
   const sorted = sortedPlayers();
   const el = document.getElementById('rankings-list');
   if(!sorted.length) { el.innerHTML = `<div class="empty-state"><p>${t('noPlayersYet')}</p></div>`; return; }
-  const medals = ['🥇','🥈','🥉'];
+  const medals = ['ð¥','ð¥','ð¥'];
   el.innerHTML = sorted.map((p,i)=>{
     const s = playerStats(p.id);
     return `<div class="lb-row">
@@ -1779,7 +1778,7 @@ function renderRankings() {
       ${avatarEl(p,34)}
       <div style="flex:1;">
         <div style="font-weight:500;">${p.name}</div>
-        <div style="font-size:11px; color:var(--muted);">${s.wins}W · ${s.losses}L · GF:${s.totalGF} GA:${s.totalGA}</div>
+        <div style="font-size:11px; color:var(--muted);">${s.wins}W Â· ${s.losses}L Â· GF:${s.totalGF} GA:${s.totalGA}</div>
       </div>
       <div style="text-align:right;">
         <div class="lb-points">${s.pts} pts</div>
@@ -1789,7 +1788,7 @@ function renderRankings() {
   }).join('');
 }
 
-// ─── BEST PAIRS ──────────────────────────────────────
+// âââ BEST PAIRS ââââââââââââââââââââââââââââââââââââââ
 function renderBestPairs() {
   const el = document.getElementById('pairs-grid');
   if(state.players.length < 2) { el.innerHTML = `<div class="empty-state"><p>${t('needTwoPlayers')}</p></div>`; return; }
@@ -1830,7 +1829,7 @@ function renderBestPairs() {
   }).join('');
 }
 
-// ─── CLEAR FORMS ─────────────────────────────────────
+// âââ CLEAR FORMS âââââââââââââââââââââââââââââââââââââ
 
 function clearForm() {
   ['teamA1','teamA2','teamB1','teamB2'].forEach(id=>document.getElementById(id).value='');
@@ -1846,7 +1845,7 @@ function toast(msg) {
   setTimeout(()=>t.classList.remove('show'), 2500);
 }
 
-// ─── RULES DATA ──────────────────────────────────────
+// âââ RULES DATA ââââââââââââââââââââââââââââââââââââââ
 const RULES_CATEGORIES = [
   { id:'court', label:'Court & Setup' },
   { id:'scoring', label:'Scoring' },
@@ -1858,100 +1857,100 @@ const RULES_CATEGORIES = [
 const RULES_DATA = {
   court: [
     {
-      en: { title:'Court dimensions', body:`The padel court is <span class="highlight">10m wide × 20m long</span>, enclosed by walls and metal mesh fencing. The court is divided in half by a net.<ul><li>Net height: 88cm at the centre, 92cm at the posts</li><li>Service boxes: 6.95m deep from the net, 5m wide</li><li>The back wall must be at least 3m high</li></ul>` },
-      ar: { title:'أبعاد الملعب', body:`ملعب البادل مقاسه <span class="highlight">10م عرضاً × 20م طولاً</span>، محاط بجدران وشبكة معدنية. ينقسم الملعب إلى نصفين بواسطة شبكة.<ul><li>ارتفاع الشبكة: 88 سم في المنتصف، 92 سم عند الأعمدة</li><li>مربعات الإرسال: 6.95م عمقاً، 5م عرضاً</li><li>يجب ألا يقل ارتفاع الجدار الخلفي عن 3م</li></ul>` }
+      en: { title:'Court dimensions', body:`The padel court is <span class="highlight">10m wide Ã 20m long</span>, enclosed by walls and metal mesh fencing. The court is divided in half by a net.<ul><li>Net height: 88cm at the centre, 92cm at the posts</li><li>Service boxes: 6.95m deep from the net, 5m wide</li><li>The back wall must be at least 3m high</li></ul>` },
+      ar: { title:'Ø£Ø¨Ø¹Ø§Ø¯ Ø§ÙÙÙØ¹Ø¨', body:`ÙÙØ¹Ø¨ Ø§ÙØ¨Ø§Ø¯Ù ÙÙØ§Ø³Ù <span class="highlight">10Ù Ø¹Ø±Ø¶Ø§Ù Ã 20Ù Ø·ÙÙØ§Ù</span>Ø ÙØ­Ø§Ø· Ø¨Ø¬Ø¯Ø±Ø§Ù ÙØ´Ø¨ÙØ© ÙØ¹Ø¯ÙÙØ©. ÙÙÙØ³Ù Ø§ÙÙÙØ¹Ø¨ Ø¥ÙÙ ÙØµÙÙÙ Ø¨ÙØ§Ø³Ø·Ø© Ø´Ø¨ÙØ©.<ul><li>Ø§Ø±ØªÙØ§Ø¹ Ø§ÙØ´Ø¨ÙØ©: 88 Ø³Ù ÙÙ Ø§ÙÙÙØªØµÙØ 92 Ø³Ù Ø¹ÙØ¯ Ø§ÙØ£Ø¹ÙØ¯Ø©</li><li>ÙØ±Ø¨Ø¹Ø§Øª Ø§ÙØ¥Ø±Ø³Ø§Ù: 6.95Ù Ø¹ÙÙØ§ÙØ 5Ù Ø¹Ø±Ø¶Ø§Ù</li><li>ÙØ¬Ø¨ Ø£ÙØ§ ÙÙÙ Ø§Ø±ØªÙØ§Ø¹ Ø§ÙØ¬Ø¯Ø§Ø± Ø§ÙØ®ÙÙÙ Ø¹Ù 3Ù</li></ul>` }
     },
     {
       en: { title:'Court surface', body:`Courts can be artificial grass, concrete, or synthetic surfaces. The official FIP surface is <span class="highlight">artificial grass</span> with sand infill, though concrete is common in many clubs.` },
-      ar: { title:'سطح الملعب', body:`يمكن أن يكون سطح الملعب من العشب الاصطناعي أو الخرسانة أو الأسطح التركيبية. السطح الرسمي للاتحاد الدولي (FIP) هو <span class="highlight">العشب الاصطناعي</span> مع رمل ملء، وإن كانت الخرسانة شائعة في كثير من الأندية.` }
+      ar: { title:'Ø³Ø·Ø­ Ø§ÙÙÙØ¹Ø¨', body:`ÙÙÙÙ Ø£Ù ÙÙÙÙ Ø³Ø·Ø­ Ø§ÙÙÙØ¹Ø¨ ÙÙ Ø§ÙØ¹Ø´Ø¨ Ø§ÙØ§ØµØ·ÙØ§Ø¹Ù Ø£Ù Ø§ÙØ®Ø±Ø³Ø§ÙØ© Ø£Ù Ø§ÙØ£Ø³Ø·Ø­ Ø§ÙØªØ±ÙÙØ¨ÙØ©. Ø§ÙØ³Ø·Ø­ Ø§ÙØ±Ø³ÙÙ ÙÙØ§ØªØ­Ø§Ø¯ Ø§ÙØ¯ÙÙÙ (FIP) ÙÙ <span class="highlight">Ø§ÙØ¹Ø´Ø¨ Ø§ÙØ§ØµØ·ÙØ§Ø¹Ù</span> ÙØ¹ Ø±ÙÙ ÙÙØ¡Ø ÙØ¥Ù ÙØ§ÙØª Ø§ÙØ®Ø±Ø³Ø§ÙØ© Ø´Ø§Ø¦Ø¹Ø© ÙÙ ÙØ«ÙØ± ÙÙ Ø§ÙØ£ÙØ¯ÙØ©.` }
     },
     {
-      en: { title:'Ball specifications', body:`A padel ball must:<ul><li>Be <span class="highlight">6.35–6.77cm</span> in diameter</li><li>Weigh <span class="highlight">56–59.4g</span></li><li>Bounce between <span class="highlight">135–145cm</span> when dropped from 2.5m</li><li>Yellow or white in colour</li></ul>Internal pressure may be reduced for high-altitude venues.` },
-      ar: { title:'مواصفات الكرة', body:`يجب أن تستوفي كرة البادل المعايير التالية:<ul><li>قطرها بين <span class="highlight">6.35 و6.77 سم</span></li><li>وزنها بين <span class="highlight">56 و59.4 جرام</span></li><li>ارتداد بين <span class="highlight">135 و145 سم</span> عند إسقاطها من 2.5م</li><li>لونها أصفر أو أبيض</li></ul>يمكن تخفيض الضغط الداخلي في الملاعب المرتفعة.` }
+      en: { title:'Ball specifications', body:`A padel ball must:<ul><li>Be <span class="highlight">6.35â6.77cm</span> in diameter</li><li>Weigh <span class="highlight">56â59.4g</span></li><li>Bounce between <span class="highlight">135â145cm</span> when dropped from 2.5m</li><li>Yellow or white in colour</li></ul>Internal pressure may be reduced for high-altitude venues.` },
+      ar: { title:'ÙÙØ§ØµÙØ§Øª Ø§ÙÙØ±Ø©', body:`ÙØ¬Ø¨ Ø£Ù ØªØ³ØªÙÙÙ ÙØ±Ø© Ø§ÙØ¨Ø§Ø¯Ù Ø§ÙÙØ¹Ø§ÙÙØ± Ø§ÙØªØ§ÙÙØ©:<ul><li>ÙØ·Ø±ÙØ§ Ø¨ÙÙ <span class="highlight">6.35 Ù6.77 Ø³Ù</span></li><li>ÙØ²ÙÙØ§ Ø¨ÙÙ <span class="highlight">56 Ù59.4 Ø¬Ø±Ø§Ù</span></li><li>Ø§Ø±ØªØ¯Ø§Ø¯ Ø¨ÙÙ <span class="highlight">135 Ù145 Ø³Ù</span> Ø¹ÙØ¯ Ø¥Ø³ÙØ§Ø·ÙØ§ ÙÙ 2.5Ù</li><li>ÙÙÙÙØ§ Ø£ØµÙØ± Ø£Ù Ø£Ø¨ÙØ¶</li></ul>ÙÙÙÙ ØªØ®ÙÙØ¶ Ø§ÙØ¶ØºØ· Ø§ÙØ¯Ø§Ø®ÙÙ ÙÙ Ø§ÙÙÙØ§Ø¹Ø¨ Ø§ÙÙØ±ØªÙØ¹Ø©.` }
     },
     {
-      en: { title:'Racket (pala) specifications', body:`A padel racket must:<ul><li>Not exceed <span class="highlight">45.5cm in length</span> and <span class="highlight">26cm in width</span></li><li>Have a solid perforated face — <span class="warn-tag">strings are NOT allowed</span></li><li>Be attached to the wrist via a safety cord</li></ul>` },
-      ar: { title:'مواصفات المضرب (البالا)', body:`يجب أن يستوفي مضرب البادل:<ul><li>ألا يتجاوز <span class="highlight">45.5 سم طولاً</span> و<span class="highlight">26 سم عرضاً</span></li><li>أن يكون وجهه صلباً مثقوباً — <span class="warn-tag">الأوتار غير مسموح بها</span></li><li>يُربط بالمعصم بحبل أمان</li></ul>` }
+      en: { title:'Racket (pala) specifications', body:`A padel racket must:<ul><li>Not exceed <span class="highlight">45.5cm in length</span> and <span class="highlight">26cm in width</span></li><li>Have a solid perforated face â <span class="warn-tag">strings are NOT allowed</span></li><li>Be attached to the wrist via a safety cord</li></ul>` },
+      ar: { title:'ÙÙØ§ØµÙØ§Øª Ø§ÙÙØ¶Ø±Ø¨ (Ø§ÙØ¨Ø§ÙØ§)', body:`ÙØ¬Ø¨ Ø£Ù ÙØ³ØªÙÙÙ ÙØ¶Ø±Ø¨ Ø§ÙØ¨Ø§Ø¯Ù:<ul><li>Ø£ÙØ§ ÙØªØ¬Ø§ÙØ² <span class="highlight">45.5 Ø³Ù Ø·ÙÙØ§Ù</span> Ù<span class="highlight">26 Ø³Ù Ø¹Ø±Ø¶Ø§Ù</span></li><li>Ø£Ù ÙÙÙÙ ÙØ¬ÙÙ ØµÙØ¨Ø§Ù ÙØ«ÙÙØ¨Ø§Ù â <span class="warn-tag">Ø§ÙØ£ÙØªØ§Ø± ØºÙØ± ÙØ³ÙÙØ­ Ø¨ÙØ§</span></li><li>ÙÙØ±Ø¨Ø· Ø¨Ø§ÙÙØ¹ØµÙ Ø¨Ø­Ø¨Ù Ø£ÙØ§Ù</li></ul>` }
     },
   ],
   scoring: [
     {
-      en: { title:'Game scoring', body:`Padel uses the same point system as tennis:<ul><li>0, 15, 30, 40, Game</li><li>At <span class="highlight">deuce (40-40)</span>, a pair must win two consecutive points (advantage → game)</li></ul>` },
-      ar: { title:'نظام نقاط اللعبة', body:`يستخدم البادل نفس نظام نقاط التنس:<ul><li>0، 15، 30، 40، لعبة</li><li>عند <span class="highlight">التساوي (40-40)</span>، يجب على الزوج الفائز بنقطتين متتاليتين (ميزة ← لعبة)</li></ul>` }
+      en: { title:'Game scoring', body:`Padel uses the same point system as tennis:<ul><li>0, 15, 30, 40, Game</li><li>At <span class="highlight">deuce (40-40)</span>, a pair must win two consecutive points (advantage â game)</li></ul>` },
+      ar: { title:'ÙØ¸Ø§Ù ÙÙØ§Ø· Ø§ÙÙØ¹Ø¨Ø©', body:`ÙØ³ØªØ®Ø¯Ù Ø§ÙØ¨Ø§Ø¯Ù ÙÙØ³ ÙØ¸Ø§Ù ÙÙØ§Ø· Ø§ÙØªÙØ³:<ul><li>0Ø 15Ø 30Ø 40Ø ÙØ¹Ø¨Ø©</li><li>Ø¹ÙØ¯ <span class="highlight">Ø§ÙØªØ³Ø§ÙÙ (40-40)</span>Ø ÙØ¬Ø¨ Ø¹ÙÙ Ø§ÙØ²ÙØ¬ Ø§ÙÙØ§Ø¦Ø² Ø¨ÙÙØ·ØªÙÙ ÙØªØªØ§ÙÙØªÙÙ (ÙÙØ²Ø© â ÙØ¹Ø¨Ø©)</li></ul>` }
     },
     {
       en: { title:'Set scoring', body:`A set is won by the first pair to reach <span class="highlight">6 games</span>, with a 2-game lead. If the set reaches <span class="highlight">6-6</span>, a tiebreak is played.<ul><li>Tiebreak: first to 7 points with a 2-point lead</li><li>Match format: best of 3 sets (professional: best of 3 or 5)</li></ul>` },
-      ar: { title:'نظام نقاط الشوط', body:`يفوز بالشوط أول زوج يصل إلى <span class="highlight">6 ألعاب</span> بفارق لعبتين. إذا وصل الشوط إلى <span class="highlight">6-6</span> يُلعب تايبريك.<ul><li>التايبريك: أول من يصل إلى 7 نقاط بفارق نقطتين</li><li>صيغة المباراة: أفضل 3 أشواط (محترفون: أفضل 3 أو 5)</li></ul>` }
+      ar: { title:'ÙØ¸Ø§Ù ÙÙØ§Ø· Ø§ÙØ´ÙØ·', body:`ÙÙÙØ² Ø¨Ø§ÙØ´ÙØ· Ø£ÙÙ Ø²ÙØ¬ ÙØµÙ Ø¥ÙÙ <span class="highlight">6 Ø£ÙØ¹Ø§Ø¨</span> Ø¨ÙØ§Ø±Ù ÙØ¹Ø¨ØªÙÙ. Ø¥Ø°Ø§ ÙØµÙ Ø§ÙØ´ÙØ· Ø¥ÙÙ <span class="highlight">6-6</span> ÙÙÙØ¹Ø¨ ØªØ§ÙØ¨Ø±ÙÙ.<ul><li>Ø§ÙØªØ§ÙØ¨Ø±ÙÙ: Ø£ÙÙ ÙÙ ÙØµÙ Ø¥ÙÙ 7 ÙÙØ§Ø· Ø¨ÙØ§Ø±Ù ÙÙØ·ØªÙÙ</li><li>ØµÙØºØ© Ø§ÙÙØ¨Ø§Ø±Ø§Ø©: Ø£ÙØ¶Ù 3 Ø£Ø´ÙØ§Ø· (ÙØ­ØªØ±ÙÙÙ: Ø£ÙØ¶Ù 3 Ø£Ù 5)</li></ul>` }
     },
     {
-      en: { title:'Super tiebreak (Match tiebreak)', body:`If the match reaches <span class="highlight">one set all</span> (1-1), many recreational formats use a super tiebreak instead of a full third set:<ul><li>First pair to <span class="highlight">10 points</span>, with a 2-point lead wins</li><li>This is the <span class="warn-tag">most disputed format</span> in casual play — see Disputes tab</li></ul>` },
-      ar: { title:'السوبر تايبريك (تايبريك المباراة)', body:`إذا وصلت المباراة إلى <span class="highlight">شوط لكل فريق</span> (1-1)، تستخدم كثير من الصيغ الترفيهية سوبر تايبريك بدلاً من شوط ثالث كامل:<ul><li>أول زوج يصل إلى <span class="highlight">10 نقاط</span> بفارق نقطتين يفوز</li><li>هذه <span class="warn-tag">أكثر صيغة خلافية</span> في اللعب غير الرسمي — انظر تبويب النزاعات</li></ul>` }
+      en: { title:'Super tiebreak (Match tiebreak)', body:`If the match reaches <span class="highlight">one set all</span> (1-1), many recreational formats use a super tiebreak instead of a full third set:<ul><li>First pair to <span class="highlight">10 points</span>, with a 2-point lead wins</li><li>This is the <span class="warn-tag">most disputed format</span> in casual play â see Disputes tab</li></ul>` },
+      ar: { title:'Ø§ÙØ³ÙØ¨Ø± ØªØ§ÙØ¨Ø±ÙÙ (ØªØ§ÙØ¨Ø±ÙÙ Ø§ÙÙØ¨Ø§Ø±Ø§Ø©)', body:`Ø¥Ø°Ø§ ÙØµÙØª Ø§ÙÙØ¨Ø§Ø±Ø§Ø© Ø¥ÙÙ <span class="highlight">Ø´ÙØ· ÙÙÙ ÙØ±ÙÙ</span> (1-1)Ø ØªØ³ØªØ®Ø¯Ù ÙØ«ÙØ± ÙÙ Ø§ÙØµÙØº Ø§ÙØªØ±ÙÙÙÙØ© Ø³ÙØ¨Ø± ØªØ§ÙØ¨Ø±ÙÙ Ø¨Ø¯ÙØ§Ù ÙÙ Ø´ÙØ· Ø«Ø§ÙØ« ÙØ§ÙÙ:<ul><li>Ø£ÙÙ Ø²ÙØ¬ ÙØµÙ Ø¥ÙÙ <span class="highlight">10 ÙÙØ§Ø·</span> Ø¨ÙØ§Ø±Ù ÙÙØ·ØªÙÙ ÙÙÙØ²</li><li>ÙØ°Ù <span class="warn-tag">Ø£ÙØ«Ø± ØµÙØºØ© Ø®ÙØ§ÙÙØ©</span> ÙÙ Ø§ÙÙØ¹Ø¨ ØºÙØ± Ø§ÙØ±Ø³ÙÙ â Ø§ÙØ¸Ø± ØªØ¨ÙÙØ¨ Ø§ÙÙØ²Ø§Ø¹Ø§Øª</li></ul>` }
     },
     {
-      en: { title:'Changing ends', body:`Players change ends after every odd-numbered game (1st, 3rd, 5th…). During a tiebreak, ends are changed every <span class="highlight">6 points</span>.` },
-      ar: { title:'تبادل الجانبين', body:`يتبادل اللاعبون الجانبين بعد كل لعبة فردية الترتيب (الأولى، الثالثة، الخامسة…). خلال التايبريك يتم التبادل كل <span class="highlight">6 نقاط</span>.` }
+      en: { title:'Changing ends', body:`Players change ends after every odd-numbered game (1st, 3rd, 5thâ¦). During a tiebreak, ends are changed every <span class="highlight">6 points</span>.` },
+      ar: { title:'ØªØ¨Ø§Ø¯Ù Ø§ÙØ¬Ø§ÙØ¨ÙÙ', body:`ÙØªØ¨Ø§Ø¯Ù Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙØ¬Ø§ÙØ¨ÙÙ Ø¨Ø¹Ø¯ ÙÙ ÙØ¹Ø¨Ø© ÙØ±Ø¯ÙØ© Ø§ÙØªØ±ØªÙØ¨ (Ø§ÙØ£ÙÙÙØ Ø§ÙØ«Ø§ÙØ«Ø©Ø Ø§ÙØ®Ø§ÙØ³Ø©â¦). Ø®ÙØ§Ù Ø§ÙØªØ§ÙØ¨Ø±ÙÙ ÙØªÙ Ø§ÙØªØ¨Ø§Ø¯Ù ÙÙ <span class="highlight">6 ÙÙØ§Ø·</span>.` }
     },
   ],
   serve: [
     {
       en: { title:'Service position', body:`The server must stand behind the service line, between the centre line and the side wall. The serve must be hit with the ball bouncing first, struck at or below <span class="highlight">waist height</span>.` },
-      ar: { title:'موقع الإرسال', body:`يجب أن يقف المرسل خلف خط الإرسال، بين خط المنتصف والجدار الجانبي. يجب ضرب الإرسال بعد ارتداد الكرة من الأرض، على <span class="highlight">مستوى الخصر أو أقل</span>.` }
+      ar: { title:'ÙÙÙØ¹ Ø§ÙØ¥Ø±Ø³Ø§Ù', body:`ÙØ¬Ø¨ Ø£Ù ÙÙÙ Ø§ÙÙØ±Ø³Ù Ø®ÙÙ Ø®Ø· Ø§ÙØ¥Ø±Ø³Ø§ÙØ Ø¨ÙÙ Ø®Ø· Ø§ÙÙÙØªØµÙ ÙØ§ÙØ¬Ø¯Ø§Ø± Ø§ÙØ¬Ø§ÙØ¨Ù. ÙØ¬Ø¨ Ø¶Ø±Ø¨ Ø§ÙØ¥Ø±Ø³Ø§Ù Ø¨Ø¹Ø¯ Ø§Ø±ØªØ¯Ø§Ø¯ Ø§ÙÙØ±Ø© ÙÙ Ø§ÙØ£Ø±Ø¶Ø Ø¹ÙÙ <span class="highlight">ÙØ³ØªÙÙ Ø§ÙØ®ØµØ± Ø£Ù Ø£ÙÙ</span>.` }
     },
     {
       en: { title:'Service sequence', body:`<ul><li>Server bounces the ball and strikes it underarm</li><li>Ball must land in the diagonal service box</li><li>After landing, the ball may hit the side or back wall of the receiver's court</li><li>Two attempts allowed per point (<span class="highlight">first and second serve</span>)</li></ul>` },
-      ar: { title:'تسلسل الإرسال', body:`<ul><li>يرتد المرسل الكرة ثم يضربها من الأسفل</li><li>يجب أن تهبط الكرة في مربع الإرسال القطري المقابل</li><li>بعد الهبوط يمكن للكرة أن تلمس الجدار الجانبي أو الخلفي لملعب المستقبل</li><li>محاولتان مسموح بهما لكل نقطة (<span class="highlight">إرسال أول وثانٍ</span>)</li></ul>` }
+      ar: { title:'ØªØ³ÙØ³Ù Ø§ÙØ¥Ø±Ø³Ø§Ù', body:`<ul><li>ÙØ±ØªØ¯ Ø§ÙÙØ±Ø³Ù Ø§ÙÙØ±Ø© Ø«Ù ÙØ¶Ø±Ø¨ÙØ§ ÙÙ Ø§ÙØ£Ø³ÙÙ</li><li>ÙØ¬Ø¨ Ø£Ù ØªÙØ¨Ø· Ø§ÙÙØ±Ø© ÙÙ ÙØ±Ø¨Ø¹ Ø§ÙØ¥Ø±Ø³Ø§Ù Ø§ÙÙØ·Ø±Ù Ø§ÙÙÙØ§Ø¨Ù</li><li>Ø¨Ø¹Ø¯ Ø§ÙÙØ¨ÙØ· ÙÙÙÙ ÙÙÙØ±Ø© Ø£Ù ØªÙÙØ³ Ø§ÙØ¬Ø¯Ø§Ø± Ø§ÙØ¬Ø§ÙØ¨Ù Ø£Ù Ø§ÙØ®ÙÙÙ ÙÙÙØ¹Ø¨ Ø§ÙÙØ³ØªÙØ¨Ù</li><li>ÙØ­Ø§ÙÙØªØ§Ù ÙØ³ÙÙØ­ Ø¨ÙÙØ§ ÙÙÙ ÙÙØ·Ø© (<span class="highlight">Ø¥Ø±Ø³Ø§Ù Ø£ÙÙ ÙØ«Ø§ÙÙ</span>)</li></ul>` }
     },
     {
       en: { title:'Service faults', body:`A fault occurs when:<ul><li>The ball lands outside the service box</li><li>The ball hits the net and does not cross over</li><li>The server steps over the service line before striking</li><li>The ball is hit above waist height <span class="warn-tag">(foot fault = fault, not let)</span></li></ul>Two consecutive faults = double fault = point lost.` },
-      ar: { title:'أخطاء الإرسال', body:`يُعدّ الإرسال خطأً عندما:<ul><li>تهبط الكرة خارج مربع الإرسال</li><li>تلمس الكرة الشبكة ولا تتجاوزها</li><li>يتجاوز المرسل خط الإرسال قبل الضرب</li><li>تُضرب الكرة فوق مستوى الخصر <span class="warn-tag">(خطأ القدم = خطأ وليس إعادة)</span></li></ul>خطآن متتاليان = خطأ مزدوج = نقطة مفقودة.` }
+      ar: { title:'Ø£Ø®Ø·Ø§Ø¡ Ø§ÙØ¥Ø±Ø³Ø§Ù', body:`ÙÙØ¹Ø¯Ù Ø§ÙØ¥Ø±Ø³Ø§Ù Ø®Ø·Ø£Ù Ø¹ÙØ¯ÙØ§:<ul><li>ØªÙØ¨Ø· Ø§ÙÙØ±Ø© Ø®Ø§Ø±Ø¬ ÙØ±Ø¨Ø¹ Ø§ÙØ¥Ø±Ø³Ø§Ù</li><li>ØªÙÙØ³ Ø§ÙÙØ±Ø© Ø§ÙØ´Ø¨ÙØ© ÙÙØ§ ØªØªØ¬Ø§ÙØ²ÙØ§</li><li>ÙØªØ¬Ø§ÙØ² Ø§ÙÙØ±Ø³Ù Ø®Ø· Ø§ÙØ¥Ø±Ø³Ø§Ù ÙØ¨Ù Ø§ÙØ¶Ø±Ø¨</li><li>ØªÙØ¶Ø±Ø¨ Ø§ÙÙØ±Ø© ÙÙÙ ÙØ³ØªÙÙ Ø§ÙØ®ØµØ± <span class="warn-tag">(Ø®Ø·Ø£ Ø§ÙÙØ¯Ù = Ø®Ø·Ø£ ÙÙÙØ³ Ø¥Ø¹Ø§Ø¯Ø©)</span></li></ul>Ø®Ø·Ø¢Ù ÙØªØªØ§ÙÙØ§Ù = Ø®Ø·Ø£ ÙØ²Ø¯ÙØ¬ = ÙÙØ·Ø© ÙÙÙÙØ¯Ø©.` }
     },
     {
       en: { title:'Service let', body:`A let is called and the serve is replayed if the ball clips the net but still lands in the correct service box. A let does <span class="warn-tag">not count as a fault</span>.` },
-      ar: { title:'إعادة الإرسال (Let)', body:`تُعلن الإعادة ويُعاد الإرسال إذا لامست الكرة الشبكة وسقطت في مربع الإرسال الصحيح. الإعادة <span class="warn-tag">لا تُحسب خطأً</span>.` }
+      ar: { title:'Ø¥Ø¹Ø§Ø¯Ø© Ø§ÙØ¥Ø±Ø³Ø§Ù (Let)', body:`ØªÙØ¹ÙÙ Ø§ÙØ¥Ø¹Ø§Ø¯Ø© ÙÙÙØ¹Ø§Ø¯ Ø§ÙØ¥Ø±Ø³Ø§Ù Ø¥Ø°Ø§ ÙØ§ÙØ³Øª Ø§ÙÙØ±Ø© Ø§ÙØ´Ø¨ÙØ© ÙØ³ÙØ·Øª ÙÙ ÙØ±Ø¨Ø¹ Ø§ÙØ¥Ø±Ø³Ø§Ù Ø§ÙØµØ­ÙØ­. Ø§ÙØ¥Ø¹Ø§Ø¯Ø© <span class="warn-tag">ÙØ§ ØªÙØ­Ø³Ø¨ Ø®Ø·Ø£Ù</span>.` }
     },
   ],
   play: [
     {
       en: { title:'Balls off the walls', body:`Unlike tennis, players may use the walls strategically. A ball may hit the back or side walls of your <span class="highlight">own court</span> after bouncing off the ground before being returned. The walls are part of the game.` },
-      ar: { title:'الكرات عن الجدران', body:`على خلاف التنس، يمكن للاعبين استخدام الجدران بشكل استراتيجي. يمكن للكرة أن تلمس الجدار الخلفي أو الجانبي <span class="highlight">لملعبك</span> بعد ارتدادها من الأرض قبل الرد. الجدران جزء أساسي من اللعبة.` }
+      ar: { title:'Ø§ÙÙØ±Ø§Øª Ø¹Ù Ø§ÙØ¬Ø¯Ø±Ø§Ù', body:`Ø¹ÙÙ Ø®ÙØ§Ù Ø§ÙØªÙØ³Ø ÙÙÙÙ ÙÙØ§Ø¹Ø¨ÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù Ø§ÙØ¬Ø¯Ø±Ø§Ù Ø¨Ø´ÙÙ Ø§Ø³ØªØ±Ø§ØªÙØ¬Ù. ÙÙÙÙ ÙÙÙØ±Ø© Ø£Ù ØªÙÙØ³ Ø§ÙØ¬Ø¯Ø§Ø± Ø§ÙØ®ÙÙÙ Ø£Ù Ø§ÙØ¬Ø§ÙØ¨Ù <span class="highlight">ÙÙÙØ¹Ø¨Ù</span> Ø¨Ø¹Ø¯ Ø§Ø±ØªØ¯Ø§Ø¯ÙØ§ ÙÙ Ø§ÙØ£Ø±Ø¶ ÙØ¨Ù Ø§ÙØ±Ø¯. Ø§ÙØ¬Ø¯Ø±Ø§Ù Ø¬Ø²Ø¡ Ø£Ø³Ø§Ø³Ù ÙÙ Ø§ÙÙØ¹Ø¨Ø©.` }
     },
     {
-      en: { title:'The "bajada" & "vibora"', body:`<ul><li><strong>Bajada:</strong> Taking the ball out of the air off the back glass — a key defensive move</li><li><strong>Víbora:</strong> A spin serve/shot hit with a sharp lateral movement. Very popular in competitive play.</li></ul>These are legal shots — no specific rule restricts them.` },
-      ar: { title:'"الباخادا" و"الفيبورا"', body:`<ul><li><strong>الباخادا:</strong> أخذ الكرة من الهواء بعد الزجاج الخلفي — حركة دفاعية أساسية</li><li><strong>الفيبورا:</strong> إرسال/ضربة بتدوير مع حركة جانبية حادة. شائعة جداً في اللعب التنافسي.</li></ul>هذه ضربات قانونية — لا تقيدها أي قاعدة بعينها.` }
+      en: { title:'The "bajada" & "vibora"', body:`<ul><li><strong>Bajada:</strong> Taking the ball out of the air off the back glass â a key defensive move</li><li><strong>VÃ­bora:</strong> A spin serve/shot hit with a sharp lateral movement. Very popular in competitive play.</li></ul>These are legal shots â no specific rule restricts them.` },
+      ar: { title:'"Ø§ÙØ¨Ø§Ø®Ø§Ø¯Ø§" Ù"Ø§ÙÙÙØ¨ÙØ±Ø§"', body:`<ul><li><strong>Ø§ÙØ¨Ø§Ø®Ø§Ø¯Ø§:</strong> Ø£Ø®Ø° Ø§ÙÙØ±Ø© ÙÙ Ø§ÙÙÙØ§Ø¡ Ø¨Ø¹Ø¯ Ø§ÙØ²Ø¬Ø§Ø¬ Ø§ÙØ®ÙÙÙ â Ø­Ø±ÙØ© Ø¯ÙØ§Ø¹ÙØ© Ø£Ø³Ø§Ø³ÙØ©</li><li><strong>Ø§ÙÙÙØ¨ÙØ±Ø§:</strong> Ø¥Ø±Ø³Ø§Ù/Ø¶Ø±Ø¨Ø© Ø¨ØªØ¯ÙÙØ± ÙØ¹ Ø­Ø±ÙØ© Ø¬Ø§ÙØ¨ÙØ© Ø­Ø§Ø¯Ø©. Ø´Ø§Ø¦Ø¹Ø© Ø¬Ø¯Ø§Ù ÙÙ Ø§ÙÙØ¹Ø¨ Ø§ÙØªÙØ§ÙØ³Ù.</li></ul>ÙØ°Ù Ø¶Ø±Ø¨Ø§Øª ÙØ§ÙÙÙÙØ© â ÙØ§ ØªÙÙØ¯ÙØ§ Ø£Ù ÙØ§Ø¹Ø¯Ø© Ø¨Ø¹ÙÙÙØ§.` }
     },
     {
       en: { title:'Balls passing through the net post gap', body:`If a ball passes through the gap between the net and the post, it is <span class="warn-tag">considered a fault</span> and the point is awarded to the opponents. This is one of the most disputed calls in casual games.` },
-      ar: { title:'الكرة عبر الفجوة بين الشبكة والعمود', body:`إذا مرت الكرة عبر الفجوة بين الشبكة والعمود، تُعتبر <span class="warn-tag">خطأً</span> وتُمنح النقطة للخصوم. هذا من أكثر القرارات الخلافية في المباريات غير الرسمية.` }
+      ar: { title:'Ø§ÙÙØ±Ø© Ø¹Ø¨Ø± Ø§ÙÙØ¬ÙØ© Ø¨ÙÙ Ø§ÙØ´Ø¨ÙØ© ÙØ§ÙØ¹ÙÙØ¯', body:`Ø¥Ø°Ø§ ÙØ±Øª Ø§ÙÙØ±Ø© Ø¹Ø¨Ø± Ø§ÙÙØ¬ÙØ© Ø¨ÙÙ Ø§ÙØ´Ø¨ÙØ© ÙØ§ÙØ¹ÙÙØ¯Ø ØªÙØ¹ØªØ¨Ø± <span class="warn-tag">Ø®Ø·Ø£Ù</span> ÙØªÙÙÙØ­ Ø§ÙÙÙØ·Ø© ÙÙØ®ØµÙÙ. ÙØ°Ø§ ÙÙ Ø£ÙØ«Ø± Ø§ÙÙØ±Ø§Ø±Ø§Øª Ø§ÙØ®ÙØ§ÙÙØ© ÙÙ Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª ØºÙØ± Ø§ÙØ±Ø³ÙÙØ©.` }
     },
     {
       en: { title:'Player entering opponent\'s court', body:`A player may enter the opponent's court to return a ball only if the ball has rolled or bounced back through or under the net. The receiver must have a genuine opportunity to play the ball. This situation is <span class="warn-tag">extremely rare</span> in practice.` },
-      ar: { title:'دخول اللاعب إلى ملعب الخصم', body:`يمكن للاعب دخول ملعب الخصم لإعادة الكرة فقط إذا تدحرجت الكرة أو ارتدت عبر الشبكة أو تحتها. يجب أن تتاح للمستقبل فرصة حقيقية للعب الكرة. هذا الموقف <span class="warn-tag">نادر للغاية</span> في الواقع.` }
+      ar: { title:'Ø¯Ø®ÙÙ Ø§ÙÙØ§Ø¹Ø¨ Ø¥ÙÙ ÙÙØ¹Ø¨ Ø§ÙØ®ØµÙ', body:`ÙÙÙÙ ÙÙØ§Ø¹Ø¨ Ø¯Ø®ÙÙ ÙÙØ¹Ø¨ Ø§ÙØ®ØµÙ ÙØ¥Ø¹Ø§Ø¯Ø© Ø§ÙÙØ±Ø© ÙÙØ· Ø¥Ø°Ø§ ØªØ¯Ø­Ø±Ø¬Øª Ø§ÙÙØ±Ø© Ø£Ù Ø§Ø±ØªØ¯Øª Ø¹Ø¨Ø± Ø§ÙØ´Ø¨ÙØ© Ø£Ù ØªØ­ØªÙØ§. ÙØ¬Ø¨ Ø£Ù ØªØªØ§Ø­ ÙÙÙØ³ØªÙØ¨Ù ÙØ±ØµØ© Ø­ÙÙÙÙØ© ÙÙØ¹Ø¨ Ø§ÙÙØ±Ø©. ÙØ°Ø§ Ø§ÙÙÙÙÙ <span class="warn-tag">ÙØ§Ø¯Ø± ÙÙØºØ§ÙØ©</span> ÙÙ Ø§ÙÙØ§ÙØ¹.` }
     },
     {
-      en: { title:'Ball hitting a player', body:`If the ball hits a player or their clothing before bouncing twice, the point is awarded to the opponents — even on a legal shot. The ball must be played with the racket only.` },
-      ar: { title:'الكرة تلمس اللاعب', body:`إذا لمست الكرة لاعباً أو ملابسه قبل ارتدادها مرتين، تُمنح النقطة للخصوم — حتى لو كانت الضربة قانونية. يجب لعب الكرة بالمضرب فقط.` }
+      en: { title:'Ball hitting a player', body:`If the ball hits a player or their clothing before bouncing twice, the point is awarded to the opponents â even on a legal shot. The ball must be played with the racket only.` },
+      ar: { title:'Ø§ÙÙØ±Ø© ØªÙÙØ³ Ø§ÙÙØ§Ø¹Ø¨', body:`Ø¥Ø°Ø§ ÙÙØ³Øª Ø§ÙÙØ±Ø© ÙØ§Ø¹Ø¨Ø§Ù Ø£Ù ÙÙØ§Ø¨Ø³Ù ÙØ¨Ù Ø§Ø±ØªØ¯Ø§Ø¯ÙØ§ ÙØ±ØªÙÙØ ØªÙÙÙØ­ Ø§ÙÙÙØ·Ø© ÙÙØ®ØµÙÙ â Ø­ØªÙ ÙÙ ÙØ§ÙØª Ø§ÙØ¶Ø±Ø¨Ø© ÙØ§ÙÙÙÙØ©. ÙØ¬Ø¨ ÙØ¹Ø¨ Ø§ÙÙØ±Ø© Ø¨Ø§ÙÙØ¶Ø±Ø¨ ÙÙØ·.` }
     },
     {
       en: { title:'Distraction & hindrance', body:`Players must not distract opponents through noise, gestures, or movement during a point. A hindrance call (let) can be made by either team. Repeated hindrance by the same team results in a <span class="warn-tag">point penalty</span>.` },
-      ar: { title:'التشتيت والإعاقة', body:`يجب على اللاعبين عدم تشتيت الخصوم بالضوضاء أو الإيماءات أو الحركة خلال النقطة. يمكن لأي فريق طلب إعادة بسبب الإعاقة. التكرار من نفس الفريق يؤدي إلى <span class="warn-tag">عقوبة نقطة</span>.` }
+      ar: { title:'Ø§ÙØªØ´ØªÙØª ÙØ§ÙØ¥Ø¹Ø§ÙØ©', body:`ÙØ¬Ø¨ Ø¹ÙÙ Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø¹Ø¯Ù ØªØ´ØªÙØª Ø§ÙØ®ØµÙÙ Ø¨Ø§ÙØ¶ÙØ¶Ø§Ø¡ Ø£Ù Ø§ÙØ¥ÙÙØ§Ø¡Ø§Øª Ø£Ù Ø§ÙØ­Ø±ÙØ© Ø®ÙØ§Ù Ø§ÙÙÙØ·Ø©. ÙÙÙÙ ÙØ£Ù ÙØ±ÙÙ Ø·ÙØ¨ Ø¥Ø¹Ø§Ø¯Ø© Ø¨Ø³Ø¨Ø¨ Ø§ÙØ¥Ø¹Ø§ÙØ©. Ø§ÙØªÙØ±Ø§Ø± ÙÙ ÙÙØ³ Ø§ÙÙØ±ÙÙ ÙØ¤Ø¯Ù Ø¥ÙÙ <span class="warn-tag">Ø¹ÙÙØ¨Ø© ÙÙØ·Ø©</span>.` }
     },
   ],
   faults: [
     {
-      en: { title:'Double bounce', body:`A ball that bounces twice before being returned loses the point. There is <span class="highlight">no exception</span> — including shots that clip the net post area.` },
-      ar: { title:'الارتداد المزدوج', body:`أي كرة ترتد مرتين قبل الرد تُخسر النقطة. <span class="highlight">لا استثناء</span> — بما في ذلك الضربات التي تلمس منطقة عمود الشبكة.` }
+      en: { title:'Double bounce', body:`A ball that bounces twice before being returned loses the point. There is <span class="highlight">no exception</span> â including shots that clip the net post area.` },
+      ar: { title:'Ø§ÙØ§Ø±ØªØ¯Ø§Ø¯ Ø§ÙÙØ²Ø¯ÙØ¬', body:`Ø£Ù ÙØ±Ø© ØªØ±ØªØ¯ ÙØ±ØªÙÙ ÙØ¨Ù Ø§ÙØ±Ø¯ ØªÙØ®Ø³Ø± Ø§ÙÙÙØ·Ø©. <span class="highlight">ÙØ§ Ø§Ø³ØªØ«ÙØ§Ø¡</span> â Ø¨ÙØ§ ÙÙ Ø°ÙÙ Ø§ÙØ¶Ø±Ø¨Ø§Øª Ø§ÙØªÙ ØªÙÙØ³ ÙÙØ·ÙØ© Ø¹ÙÙØ¯ Ø§ÙØ´Ø¨ÙØ©.` }
     },
     {
-      en: { title:'Ball out of court', body:`If the ball exits the court (passes over or through the fencing) <span class="highlight">without bouncing</span> on the ground first, it is out and the point is lost. If the ball bounces on the court first and then exits, play continues — the receiving player may still play it from outside the court.` },
-      ar: { title:'الكرة خارج الملعب', body:`إذا خرجت الكرة من الملعب (فوق السياج أو عبره) <span class="highlight">دون ارتداد</span> من الأرض أولاً، فهي خارجة وتُخسر النقطة. إذا ارتدت الكرة في الملعب أولاً ثم خرجت، تستمر اللعبة — يمكن للمستقبل لعبها من خارج الملعب.` }
+      en: { title:'Ball out of court', body:`If the ball exits the court (passes over or through the fencing) <span class="highlight">without bouncing</span> on the ground first, it is out and the point is lost. If the ball bounces on the court first and then exits, play continues â the receiving player may still play it from outside the court.` },
+      ar: { title:'Ø§ÙÙØ±Ø© Ø®Ø§Ø±Ø¬ Ø§ÙÙÙØ¹Ø¨', body:`Ø¥Ø°Ø§ Ø®Ø±Ø¬Øª Ø§ÙÙØ±Ø© ÙÙ Ø§ÙÙÙØ¹Ø¨ (ÙÙÙ Ø§ÙØ³ÙØ§Ø¬ Ø£Ù Ø¹Ø¨Ø±Ù) <span class="highlight">Ø¯ÙÙ Ø§Ø±ØªØ¯Ø§Ø¯</span> ÙÙ Ø§ÙØ£Ø±Ø¶ Ø£ÙÙØ§ÙØ ÙÙÙ Ø®Ø§Ø±Ø¬Ø© ÙØªÙØ®Ø³Ø± Ø§ÙÙÙØ·Ø©. Ø¥Ø°Ø§ Ø§Ø±ØªØ¯Øª Ø§ÙÙØ±Ø© ÙÙ Ø§ÙÙÙØ¹Ø¨ Ø£ÙÙØ§Ù Ø«Ù Ø®Ø±Ø¬ØªØ ØªØ³ØªÙØ± Ø§ÙÙØ¹Ø¨Ø© â ÙÙÙÙ ÙÙÙØ³ØªÙØ¨Ù ÙØ¹Ø¨ÙØ§ ÙÙ Ø®Ø§Ø±Ø¬ Ø§ÙÙÙØ¹Ø¨.` }
     },
     {
       en: { title:'Let (replay) situations', body:`A let is called (and the point replayed from scratch) in these situations:<ul><li>Ball clips the net on serve and lands correctly</li><li>External interference (ball from another court, noise, etc.)</li><li>A player genuinely unsighted or hindered</li></ul>` },
-      ar: { title:'حالات الإعادة (Let)', body:`تُعلن الإعادة (وتُعاد النقطة من البداية) في هذه الحالات:<ul><li>لمس الكرة للشبكة عند الإرسال وسقوطها في المكان الصحيح</li><li>تدخل خارجي (كرة من ملعب مجاور، ضوضاء، إلخ)</li><li>عدم رؤية اللاعب للكرة بشكل حقيقي أو إعاقته</li></ul>` }
+      ar: { title:'Ø­Ø§ÙØ§Øª Ø§ÙØ¥Ø¹Ø§Ø¯Ø© (Let)', body:`ØªÙØ¹ÙÙ Ø§ÙØ¥Ø¹Ø§Ø¯Ø© (ÙØªÙØ¹Ø§Ø¯ Ø§ÙÙÙØ·Ø© ÙÙ Ø§ÙØ¨Ø¯Ø§ÙØ©) ÙÙ ÙØ°Ù Ø§ÙØ­Ø§ÙØ§Øª:<ul><li>ÙÙØ³ Ø§ÙÙØ±Ø© ÙÙØ´Ø¨ÙØ© Ø¹ÙØ¯ Ø§ÙØ¥Ø±Ø³Ø§Ù ÙØ³ÙÙØ·ÙØ§ ÙÙ Ø§ÙÙÙØ§Ù Ø§ÙØµØ­ÙØ­</li><li>ØªØ¯Ø®Ù Ø®Ø§Ø±Ø¬Ù (ÙØ±Ø© ÙÙ ÙÙØ¹Ø¨ ÙØ¬Ø§ÙØ±Ø Ø¶ÙØ¶Ø§Ø¡Ø Ø¥ÙØ®)</li><li>Ø¹Ø¯Ù Ø±Ø¤ÙØ© Ø§ÙÙØ§Ø¹Ø¨ ÙÙÙØ±Ø© Ø¨Ø´ÙÙ Ø­ÙÙÙÙ Ø£Ù Ø¥Ø¹Ø§ÙØªÙ</li></ul>` }
     },
     {
-      en: { title:'Code violations', body:`In official competition, a player may receive:<ul><li><span class="highlight">Warning</span> — first offence (time violation, bad behaviour)</li><li><span class="warn-tag">Point penalty</span> — second or serious offence</li><li><span class="warn-tag">Game penalty</span> — continued or major infraction</li><li><span class="warn-tag">Default (disqualification)</span> — extreme behaviour</li></ul>` },
-      ar: { title:'مخالفات قانون اللعب', body:`في المنافسات الرسمية، قد يتلقى اللاعب:<ul><li><span class="highlight">تحذير</span> — المخالفة الأولى (تجاوز الوقت، سلوك سيء)</li><li><span class="warn-tag">عقوبة نقطة</span> — المخالفة الثانية أو الجسيمة</li><li><span class="warn-tag">عقوبة لعبة</span> — مخالفة متكررة أو كبيرة</li><li><span class="warn-tag">الإيقاف (الاستبعاد)</span> — سلوك متطرف</li></ul>` }
+      en: { title:'Code violations', body:`In official competition, a player may receive:<ul><li><span class="highlight">Warning</span> â first offence (time violation, bad behaviour)</li><li><span class="warn-tag">Point penalty</span> â second or serious offence</li><li><span class="warn-tag">Game penalty</span> â continued or major infraction</li><li><span class="warn-tag">Default (disqualification)</span> â extreme behaviour</li></ul>` },
+      ar: { title:'ÙØ®Ø§ÙÙØ§Øª ÙØ§ÙÙÙ Ø§ÙÙØ¹Ø¨', body:`ÙÙ Ø§ÙÙÙØ§ÙØ³Ø§Øª Ø§ÙØ±Ø³ÙÙØ©Ø ÙØ¯ ÙØªÙÙÙ Ø§ÙÙØ§Ø¹Ø¨:<ul><li><span class="highlight">ØªØ­Ø°ÙØ±</span> â Ø§ÙÙØ®Ø§ÙÙØ© Ø§ÙØ£ÙÙÙ (ØªØ¬Ø§ÙØ² Ø§ÙÙÙØªØ Ø³ÙÙÙ Ø³ÙØ¡)</li><li><span class="warn-tag">Ø¹ÙÙØ¨Ø© ÙÙØ·Ø©</span> â Ø§ÙÙØ®Ø§ÙÙØ© Ø§ÙØ«Ø§ÙÙØ© Ø£Ù Ø§ÙØ¬Ø³ÙÙØ©</li><li><span class="warn-tag">Ø¹ÙÙØ¨Ø© ÙØ¹Ø¨Ø©</span> â ÙØ®Ø§ÙÙØ© ÙØªÙØ±Ø±Ø© Ø£Ù ÙØ¨ÙØ±Ø©</li><li><span class="warn-tag">Ø§ÙØ¥ÙÙØ§Ù (Ø§ÙØ§Ø³ØªØ¨Ø¹Ø§Ø¯)</span> â Ø³ÙÙÙ ÙØªØ·Ø±Ù</li></ul>` }
     },
   ],
 };
@@ -1964,23 +1963,23 @@ const RULES = Object.fromEntries(
 const DEBATE_SYSTEMS = [
   {
     id: 'sys1', pill: 'pill-hot', popular: true,
-    en: { title:'Win = +3, Loss = −1', pillLabel:'Most Disputed', formula:'Points = (Wins × 3) − (Losses × 1)', desc:'The system currently used in this app. Rewards winning heavily while penalising losses — incentivises competitive play even when already ahead.', pros:['Strong win incentive','Creates big spread between top & bottom','Penalises losing = takes every game seriously'], cons:['Punishes players who play more games','New players start in deep negative quickly','Activity count inflates losses unfairly'] },
-    ar: { title:'فوز = +3، خسارة = −1', pillLabel:'الأكثر خلافاً', formula:'النقاط = (الانتصارات × 3) − (الخسائر × 1)', desc:'النظام المستخدم حالياً في هذا التطبيق. يكافئ الفوز بقوة مع معاقبة الخسارة — يحفز على اللعب التنافسي حتى عند التفوق.', pros:['حافز قوي للفوز','فارق كبير بين المراتب','معاقبة الخسارة تجعل كل مباراة مهمة'], cons:['يعاقب اللاعبين الأكثر نشاطاً','اللاعبون الجدد يبدأون بنقاط سلبية','عدد المباريات يضخم الخسائر'] }
+    en: { title:'Win = +3, Loss = â1', pillLabel:'Most Disputed', formula:'Points = (Wins Ã 3) â (Losses Ã 1)', desc:'The system currently used in this app. Rewards winning heavily while penalising losses â incentivises competitive play even when already ahead.', pros:['Strong win incentive','Creates big spread between top & bottom','Penalises losing = takes every game seriously'], cons:['Punishes players who play more games','New players start in deep negative quickly','Activity count inflates losses unfairly'] },
+    ar: { title:'ÙÙØ² = +3Ø Ø®Ø³Ø§Ø±Ø© = â1', pillLabel:'Ø§ÙØ£ÙØ«Ø± Ø®ÙØ§ÙØ§Ù', formula:'Ø§ÙÙÙØ§Ø· = (Ø§ÙØ§ÙØªØµØ§Ø±Ø§Øª Ã 3) â (Ø§ÙØ®Ø³Ø§Ø¦Ø± Ã 1)', desc:'Ø§ÙÙØ¸Ø§Ù Ø§ÙÙØ³ØªØ®Ø¯Ù Ø­Ø§ÙÙØ§Ù ÙÙ ÙØ°Ø§ Ø§ÙØªØ·Ø¨ÙÙ. ÙÙØ§ÙØ¦ Ø§ÙÙÙØ² Ø¨ÙÙØ© ÙØ¹ ÙØ¹Ø§ÙØ¨Ø© Ø§ÙØ®Ø³Ø§Ø±Ø© â ÙØ­ÙØ² Ø¹ÙÙ Ø§ÙÙØ¹Ø¨ Ø§ÙØªÙØ§ÙØ³Ù Ø­ØªÙ Ø¹ÙØ¯ Ø§ÙØªÙÙÙ.', pros:['Ø­Ø§ÙØ² ÙÙÙ ÙÙÙÙØ²','ÙØ§Ø±Ù ÙØ¨ÙØ± Ø¨ÙÙ Ø§ÙÙØ±Ø§ØªØ¨','ÙØ¹Ø§ÙØ¨Ø© Ø§ÙØ®Ø³Ø§Ø±Ø© ØªØ¬Ø¹Ù ÙÙ ÙØ¨Ø§Ø±Ø§Ø© ÙÙÙØ©'], cons:['ÙØ¹Ø§ÙØ¨ Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙØ£ÙØ«Ø± ÙØ´Ø§Ø·Ø§Ù','Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙØ¬Ø¯Ø¯ ÙØ¨Ø¯Ø£ÙÙ Ø¨ÙÙØ§Ø· Ø³ÙØ¨ÙØ©','Ø¹Ø¯Ø¯ Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª ÙØ¶Ø®Ù Ø§ÙØ®Ø³Ø§Ø¦Ø±'] }
   },
   {
     id: 'sys2', pill: 'pill-fair', popular: false,
-    en: { title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins ÷ Total Matches × 100', desc:'Pure win percentage — simple and universally understood. Levels the playing field regardless of how many games you\'ve played.', pros:['Activity-neutral','Easy to understand','Standard in most sports'], cons:['Player with 1W/0L = 100% forever','No depth on performance','Doesn\'t reward dominance'] },
-    ar: { title:'نسبة الفوز فقط (%)', pillLabel:'الأكثر عدلاً', formula:'الترتيب = الانتصارات ÷ إجمالي المباريات × 100', desc:'نسبة الفوز الصرفة — بسيطة ومفهومة للجميع. تساوي بين اللاعبين بغض النظر عن عدد المباريات.', pros:['محايدة للنشاط','سهلة الفهم','معيار معتمد في معظم الرياضات'], cons:['اللاعب بـ 1ف/0خ = 100% دائماً','لا عمق في الأداء','لا تكافئ التفوق'] }
+    en: { title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins Ã· Total Matches Ã 100', desc:'Pure win percentage â simple and universally understood. Levels the playing field regardless of how many games you\'ve played.', pros:['Activity-neutral','Easy to understand','Standard in most sports'], cons:['Player with 1W/0L = 100% forever','No depth on performance','Doesn\'t reward dominance'] },
+    ar: { title:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ² ÙÙØ· (%)', pillLabel:'Ø§ÙØ£ÙØ«Ø± Ø¹Ø¯ÙØ§Ù', formula:'Ø§ÙØªØ±ØªÙØ¨ = Ø§ÙØ§ÙØªØµØ§Ø±Ø§Øª Ã· Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª Ã 100', desc:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ² Ø§ÙØµØ±ÙØ© â Ø¨Ø³ÙØ·Ø© ÙÙÙÙÙÙØ© ÙÙØ¬ÙÙØ¹. ØªØ³Ø§ÙÙ Ø¨ÙÙ Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø¨ØºØ¶ Ø§ÙÙØ¸Ø± Ø¹Ù Ø¹Ø¯Ø¯ Ø§ÙÙØ¨Ø§Ø±ÙØ§Øª.', pros:['ÙØ­Ø§ÙØ¯Ø© ÙÙÙØ´Ø§Ø·','Ø³ÙÙØ© Ø§ÙÙÙÙ','ÙØ¹ÙØ§Ø± ÙØ¹ØªÙØ¯ ÙÙ ÙØ¹Ø¸Ù Ø§ÙØ±ÙØ§Ø¶Ø§Øª'], cons:['Ø§ÙÙØ§Ø¹Ø¨ Ø¨Ù 1Ù/0Ø® = 100% Ø¯Ø§Ø¦ÙØ§Ù','ÙØ§ Ø¹ÙÙ ÙÙ Ø§ÙØ£Ø¯Ø§Ø¡','ÙØ§ ØªÙØ§ÙØ¦ Ø§ÙØªÙÙÙ'] }
   },
   {
     id: 'sys3', pill: 'pill-complex', popular: false,
-    en: { title:'ELO Rating System', pillLabel:'Most Accurate', formula:'ELO = 1500 ± K × (Result − Expected)', desc:'The same system used in chess and FIFA rankings. Beating a stronger opponent earns more points. Losing to a weaker opponent costs more.', pros:['Accounts for opponent strength','Self-corrects over time','Industry-standard for skill rating'], cons:['Complex to explain to casual players','Needs many games to stabilise','Requires K-factor tuning'] },
-    ar: { title:'نظام تصنيف ELO', pillLabel:'الأكثر دقة', formula:'ELO = 1500 ± K × (النتيجة − المتوقع)', desc:'نفس النظام المستخدم في الشطرنج وتصنيفات FIFA. الفوز على خصم أقوى يمنح نقاطاً أكثر. الخسارة أمام خصم أضعف تكلف أكثر.', pros:['يأخذ قوة الخصم بعين الاعتبار','يصحح نفسه مع الوقت','معيار صناعي لتصنيف المهارات'], cons:['معقد للاعبين غير الرسميين','يحتاج مباريات كثيرة للاستقرار','يتطلب ضبط معامل K'] }
+    en: { title:'ELO Rating System', pillLabel:'Most Accurate', formula:'ELO = 1500 Â± K Ã (Result â Expected)', desc:'The same system used in chess and FIFA rankings. Beating a stronger opponent earns more points. Losing to a weaker opponent costs more.', pros:['Accounts for opponent strength','Self-corrects over time','Industry-standard for skill rating'], cons:['Complex to explain to casual players','Needs many games to stabilise','Requires K-factor tuning'] },
+    ar: { title:'ÙØ¸Ø§Ù ØªØµÙÙÙ ELO', pillLabel:'Ø§ÙØ£ÙØ«Ø± Ø¯ÙØ©', formula:'ELO = 1500 Â± K Ã (Ø§ÙÙØªÙØ¬Ø© â Ø§ÙÙØªÙÙØ¹)', desc:'ÙÙØ³ Ø§ÙÙØ¸Ø§Ù Ø§ÙÙØ³ØªØ®Ø¯Ù ÙÙ Ø§ÙØ´Ø·Ø±ÙØ¬ ÙØªØµÙÙÙØ§Øª FIFA. Ø§ÙÙÙØ² Ø¹ÙÙ Ø®ØµÙ Ø£ÙÙÙ ÙÙÙØ­ ÙÙØ§Ø·Ø§Ù Ø£ÙØ«Ø±. Ø§ÙØ®Ø³Ø§Ø±Ø© Ø£ÙØ§Ù Ø®ØµÙ Ø£Ø¶Ø¹Ù ØªÙÙÙ Ø£ÙØ«Ø±.', pros:['ÙØ£Ø®Ø° ÙÙØ© Ø§ÙØ®ØµÙ Ø¨Ø¹ÙÙ Ø§ÙØ§Ø¹ØªØ¨Ø§Ø±','ÙØµØ­Ø­ ÙÙØ³Ù ÙØ¹ Ø§ÙÙÙØª','ÙØ¹ÙØ§Ø± ØµÙØ§Ø¹Ù ÙØªØµÙÙÙ Ø§ÙÙÙØ§Ø±Ø§Øª'], cons:['ÙØ¹ÙØ¯ ÙÙØ§Ø¹Ø¨ÙÙ ØºÙØ± Ø§ÙØ±Ø³ÙÙÙÙ','ÙØ­ØªØ§Ø¬ ÙØ¨Ø§Ø±ÙØ§Øª ÙØ«ÙØ±Ø© ÙÙØ§Ø³ØªÙØ±Ø§Ø±','ÙØªØ·ÙØ¨ Ø¶Ø¨Ø· ÙØ¹Ø§ÙÙ K'] }
   },
   {
     id: 'sys4', pill: 'pill-simple', popular: false,
-    en: { title:'Win = +2, Loss = +1, +1 Bonus', pillLabel:'No Negatives', formula:'Win: +2 pts · Loss: +1 pt · Clean set: +1 bonus', desc:'Everyone earns points for playing — wins give more, but losses still contribute. Optional bonus point for winning a set 6-0 or 6-1.', pros:['Encourages participation','Never goes negative','Rewards sportsmanship'], cons:['Less competitive pressure','Active players accumulate points passively','Top players lose distinction'] },
-    ar: { title:'فوز = +2، خسارة = +1، +1 مكافأة', pillLabel:'بدون سلبيات', formula:'فوز: +2 نقطة · خسارة: +1 نقطة · شوط نظيف: +1 مكافأة', desc:'الجميع يكسب نقاطاً بالمشاركة — الفوز يمنح أكثر، لكن الخسارة لا تزال تسهم. نقطة مكافأة اختيارية للفوز بشوط 6-0 أو 6-1.', pros:['يشجع على المشاركة','لا يصل أبداً للسالب','يكافئ الروح الرياضية'], cons:['ضغط تنافسي أقل','اللاعبون النشطون يجمعون نقاطاً تلقائياً','يفقد كبار اللاعبين تميزهم'] }
+    en: { title:'Win = +2, Loss = +1, +1 Bonus', pillLabel:'No Negatives', formula:'Win: +2 pts Â· Loss: +1 pt Â· Clean set: +1 bonus', desc:'Everyone earns points for playing â wins give more, but losses still contribute. Optional bonus point for winning a set 6-0 or 6-1.', pros:['Encourages participation','Never goes negative','Rewards sportsmanship'], cons:['Less competitive pressure','Active players accumulate points passively','Top players lose distinction'] },
+    ar: { title:'ÙÙØ² = +2Ø Ø®Ø³Ø§Ø±Ø© = +1Ø +1 ÙÙØ§ÙØ£Ø©', pillLabel:'Ø¨Ø¯ÙÙ Ø³ÙØ¨ÙØ§Øª', formula:'ÙÙØ²: +2 ÙÙØ·Ø© Â· Ø®Ø³Ø§Ø±Ø©: +1 ÙÙØ·Ø© Â· Ø´ÙØ· ÙØ¸ÙÙ: +1 ÙÙØ§ÙØ£Ø©', desc:'Ø§ÙØ¬ÙÙØ¹ ÙÙØ³Ø¨ ÙÙØ§Ø·Ø§Ù Ø¨Ø§ÙÙØ´Ø§Ø±ÙØ© â Ø§ÙÙÙØ² ÙÙÙØ­ Ø£ÙØ«Ø±Ø ÙÙÙ Ø§ÙØ®Ø³Ø§Ø±Ø© ÙØ§ ØªØ²Ø§Ù ØªØ³ÙÙ. ÙÙØ·Ø© ÙÙØ§ÙØ£Ø© Ø§Ø®ØªÙØ§Ø±ÙØ© ÙÙÙÙØ² Ø¨Ø´ÙØ· 6-0 Ø£Ù 6-1.', pros:['ÙØ´Ø¬Ø¹ Ø¹ÙÙ Ø§ÙÙØ´Ø§Ø±ÙØ©','ÙØ§ ÙØµÙ Ø£Ø¨Ø¯Ø§Ù ÙÙØ³Ø§ÙØ¨','ÙÙØ§ÙØ¦ Ø§ÙØ±ÙØ­ Ø§ÙØ±ÙØ§Ø¶ÙØ©'], cons:['Ø¶ØºØ· ØªÙØ§ÙØ³Ù Ø£ÙÙ','Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙÙØ´Ø·ÙÙ ÙØ¬ÙØ¹ÙÙ ÙÙØ§Ø·Ø§Ù ØªÙÙØ§Ø¦ÙØ§Ù','ÙÙÙØ¯ ÙØ¨Ø§Ø± Ø§ÙÙØ§Ø¹Ø¨ÙÙ ØªÙÙØ²ÙÙ'] }
   },
 ];
 
@@ -2006,10 +2005,10 @@ function renderRulesTab() {
       </div>
       <div class="debate-vote-row">
         <button class="vote-btn${v.voted==='up'?' voted':''}" onclick="castVote('${sys.id}','up')">
-          👍 <span class="vote-count" id="vc-up-${sys.id}">${v.up}</span>
+          ð <span class="vote-count" id="vc-up-${sys.id}">${v.up}</span>
         </button>
         <button class="vote-btn${v.voted==='down'?' voted':''}" onclick="castVote('${sys.id}','down')">
-          👎 <span class="vote-count" id="vc-down-${sys.id}">${v.down}</span>
+          ð <span class="vote-count" id="vc-down-${sys.id}">${v.down}</span>
         </button>
       </div>
     </div>`;
@@ -2041,7 +2040,7 @@ function renderRulesCat(id) {
       <div class="rule-header" onclick="toggleRule(this)">
         <div class="rule-num">${i+1}</div>
         <div class="rule-title">${r.title}</div>
-        <div class="rule-chevron">▼</div>
+        <div class="rule-chevron">â¼</div>
       </div>
       <div class="rule-body">${r.body}</div>
     </div>`
@@ -2102,11 +2101,11 @@ function renderProfile() {
     ${s ? `
     <div class="profile-stats-row">
       <div class="stat-card"><div class="stat-label">${t('rank')}</div><div class="stat-val accent">#${rank}</div><div class="stat-sub">${t('ofPlayers')} ${state.players.length} ${t('ofPlayersLabel')}</div></div>
-      <div class="stat-card"><div class="stat-label">${t('points')}</div><div class="stat-val">${s.pts}</div><div class="stat-sub">${s.wins}W · ${s.losses}L</div></div>
-      <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${s.total?Math.round(s.wr)+'%':'–'}</div><div class="stat-sub">${s.total} ${t('played')}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('points')}</div><div class="stat-val">${s.pts}</div><div class="stat-sub">${s.wins}W Â· ${s.losses}L</div></div>
+      <div class="stat-card"><div class="stat-label">${t('winRate')}</div><div class="stat-val accent">${s.total?Math.round(s.wr)+'%':'â'}</div><div class="stat-sub">${s.total} ${t('played')}</div></div>
       <div class="stat-card"><div class="stat-label">${t('goalDiff')}</div><div class="stat-val" style="color:${s.totalGF-s.totalGA>=0?'var(--accent)':'var(--danger)'};">${s.totalGF-s.totalGA>=0?'+':''}${s.totalGF-s.totalGA}</div><div class="stat-sub">GF:${s.totalGF} GA:${s.totalGA}</div></div>
     </div>
-    ${streak && streak.count>=2?`<div style="margin-bottom:14px;"><span class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'🔥':'❄️'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</span></div>`:''}
+    ${streak && streak.count>=2?`<div style="margin-bottom:14px;"><span class="streak-badge streak-${streak.type.toLowerCase()}">${streak.type==='W'?'ð¥':'âï¸'} ${streak.count} ${t(streak.type==='W'?'winStreak':'loseStreak')}</span></div>`:''}
     ` : ''}
 
     <div class="profile-history">
@@ -2125,7 +2124,7 @@ function renderProfile() {
             <div style="font-weight:500;">${t('with')} ${partner?partner.name:'?'} ${t('vs')} ${opponents.map(p=>p.name).join(' & ')}</div>
             <div class="pmr-date">${fmtDate(m.date)}</div>
           </div>
-          <div class="pmr-score">${m.scoreA}–${m.scoreB}</div>
+          <div class="pmr-score">${m.scoreA}â${m.scoreB}</div>
         </div>`;
       }).join('') : `<div style="color:var(--muted);font-size:13px;padding:12px 0;">${t('noMatchesYet')}</div>`}
     </div>
@@ -2137,7 +2136,7 @@ function renderProfile() {
   `;
 }
 
-// ─── INFOGRAPHICS ─────────────────────────────────────
+// âââ INFOGRAPHICS âââââââââââââââââââââââââââââââââââââ
 let _chartInstances = {};
 
 function destroyCharts() {
@@ -2151,14 +2150,14 @@ function renderInfographics() {
   destroyCharts();
 
   if(state.matches.length < 1 || state.players.length < 2) {
-    el.innerHTML = `<div class="infographics-empty"><div class="ei-icon">📊</div><p>${t('infographicsEmpty')}</p></div>`;
+    el.innerHTML = `<div class="infographics-empty"><div class="ei-icon">ð</div><p>${t('infographicsEmpty')}</p></div>`;
     return;
   }
 
   const sorted = sortedPlayers();
   const avColors = ['#00e5a0','#4facfe','#f5c842','#ff5f6d','#a78bfa','#fb923c','#34d399','#ec4899','#38bdf8','#a3e635'];
 
-  // ── AWARDS DATA ──
+  // ââ AWARDS DATA ââ
   const statsAll = sorted.map(p => ({p, s: playerStats(p.id), streak: getStreak(p.id)}));
   const mostWinsP = [...statsAll].sort((a,b)=>b.s.wins-a.s.wins)[0];
   const bestWrP = [...statsAll].filter(x=>x.s.total>=2).sort((a,b)=>b.s.wr-a.s.wr)[0];
@@ -2175,7 +2174,7 @@ function renderInfographics() {
   pairs.sort((a,b)=>b.s.wr-a.s.wr);
   const bestPairP = pairs[0];
 
-  // ── RECENT FORM ──
+  // ââ RECENT FORM ââ
   function recentForm(pid, n=5) {
     return state.matches
       .filter(m=>m.teamA.includes(pid)||m.teamB.includes(pid))
@@ -2184,7 +2183,7 @@ function renderInfographics() {
       .map(m=>{ const aWin=parseInt(m.scoreA)>parseInt(m.scoreB); return m.teamA.includes(pid)?aWin:!aWin; });
   }
 
-  // ── BUILD HTML ──
+  // ââ BUILD HTML ââ
   const topN = sorted.slice(0,6);
   const isAr = currentLang==='ar';
 
@@ -2242,11 +2241,11 @@ function renderInfographics() {
 
   </div>`;
 
-  // ── PODIUM ──
+  // ââ PODIUM ââ
   const podiumOrder = sorted.slice(0,3);
   const podiumDisplay = podiumOrder.length>=2 ? [podiumOrder[1], podiumOrder[0], podiumOrder[2]].filter(Boolean) : podiumOrder;
   const podiumClasses = podiumOrder.length>=2 ? ['podium-2','podium-1','podium-3'] : ['podium-1'];
-  const podiumEmoji = ['🥈','🥇','🥉'];
+  const podiumEmoji = ['ð¥','ð¥','ð¥'];
   document.getElementById('podium-render').innerHTML = podiumDisplay.map((p,i)=>{
     const s = playerStats(p.id);
     const ci = state.players.findIndex(pl=>pl.id===p.id);
@@ -2260,14 +2259,14 @@ function renderInfographics() {
     </div>`;
   }).join('');
 
-  // ── AWARDS ──
+  // ââ AWARDS ââ
   const awards = [
-    { icon:'🏆', val: mostWinsP?.s.wins??'–', name: mostWinsP?.p.name??'–', label: t('mostWins') },
-    { icon:'🎯', val: bestWrP ? Math.round(bestWrP.s.wr)+'%' : '–', name: bestWrP?.p.name??'–', label: t('bestWinRate') },
-    { icon:'⚡', val: mostMatchesP?.s.total??'–', name: mostMatchesP?.p.name??'–', label: t('mostMatches') },
-    { icon:'⚽', val: topScorerP?.s.totalGF??'–', name: topScorerP?.p.name??'–', label: t('topScorer') },
-    { icon:'🤝', val: bestPairP ? Math.round(bestPairP.s.wr)+'%' : '–', name: bestPairP ? bestPairP.p1.name+' & '+bestPairP.p2.name : '–', label: t('bestPartner') },
-    { icon:'🔥', val: bestStreakP ? bestStreakP.streak.count : '–', name: bestStreakP?.p.name??'–', label: t('longestStreak') },
+    { icon:'ð', val: mostWinsP?.s.wins??'â', name: mostWinsP?.p.name??'â', label: t('mostWins') },
+    { icon:'ð¯', val: bestWrP ? Math.round(bestWrP.s.wr)+'%' : 'â', name: bestWrP?.p.name??'â', label: t('bestWinRate') },
+    { icon:'â¡', val: mostMatchesP?.s.total??'â', name: mostMatchesP?.p.name??'â', label: t('mostMatches') },
+    { icon:'â½', val: topScorerP?.s.totalGF??'â', name: topScorerP?.p.name??'â', label: t('topScorer') },
+    { icon:'ð¤', val: bestPairP ? Math.round(bestPairP.s.wr)+'%' : 'â', name: bestPairP ? bestPairP.p1.name+' & '+bestPairP.p2.name : 'â', label: t('bestPartner') },
+    { icon:'ð¥', val: bestStreakP ? bestStreakP.streak.count : 'â', name: bestStreakP?.p.name??'â', label: t('longestStreak') },
   ];
   document.getElementById('awards-render').innerHTML = awards.map(a=>`
     <div class="stat-badge">
@@ -2277,7 +2276,7 @@ function renderInfographics() {
       <div class="sb-label">${a.label}</div>
     </div>`).join('');
 
-  // ── WIN RATE HORIZONTAL BARS ──
+  // ââ WIN RATE HORIZONTAL BARS ââ
   const wrData = topN.map((p,i)=>({ name:p.name, val:Math.round(playerStats(p.id).wr), color:avColors[state.players.findIndex(pl=>pl.id===p.id)%avColors.length] }))
     .sort((a,b)=>b.val-a.val);
   document.getElementById('winrate-bars').innerHTML = wrData.map(d=>`
@@ -2290,7 +2289,7 @@ function renderInfographics() {
       </div>
     </div>`).join('');
 
-  // ── POINTS BAR CHART (Chart.js) ──
+  // ââ POINTS BAR CHART (Chart.js) ââ
   setTimeout(()=>{
     if(!window.Chart) return;
     const pLabels = topN.map(p=>p.name);
@@ -2305,7 +2304,7 @@ function renderInfographics() {
           y:{ ticks:{color:'#8b95b0',font:{size:11}}, grid:{color:'rgba(255,255,255,0.05)'} } } }
     });
 
-    // ── GOAL DIFF BAR CHART ──
+    // ââ GOAL DIFF BAR CHART ââ
     const gdData = topN.map(p=>{ const s=playerStats(p.id); return {name:p.name, val:s.totalGF-s.totalGA, color:avColors[state.players.findIndex(pl=>pl.id===p.id)%avColors.length]}; })
       .sort((a,b)=>b.val-a.val);
     const ctx2 = document.getElementById('chart-goaldiff');
@@ -2318,7 +2317,7 @@ function renderInfographics() {
     });
   }, 80);
 
-  // ── PAIRS BARS ──
+  // ââ PAIRS BARS ââ
   const topPairs = pairs.slice(0,5);
   document.getElementById('pairs-bars').innerHTML = topPairs.length ? topPairs.map((pr,i)=>`
     <div class="hbar-row">
@@ -2330,14 +2329,14 @@ function renderInfographics() {
       </div>
     </div>`).join('') : `<div style="color:var(--muted);font-size:12px;padding:12px 0;">${t('needOneMatch')}</div>`;
 
-  // ── RECENT FORM GRID ──
+  // ââ RECENT FORM GRID ââ
   document.getElementById('form-grid').innerHTML = topN.map(p=>{
     const form = recentForm(p.id, 5);
     const ci = state.players.findIndex(pl=>pl.id===p.id);
     const dots = Array(5).fill(null).map((_,i)=>{
-      if(i>=form.length) return `<div style="width:28px;height:28px;border-radius:6px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted2);">–</div>`;
+      if(i>=form.length) return `<div style="width:28px;height:28px;border-radius:6px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted2);">â</div>`;
       const w=form[i];
-      return `<div style="width:28px;height:28px;border-radius:6px;background:${w?'rgba(0,229,160,0.18)':'rgba(255,95,109,0.18)'};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${w?'var(--accent)':'var(--danger);'};">${w?(isAr?'ف':'W'):(isAr?'خ':'L')}</div>`;
+      return `<div style="width:28px;height:28px;border-radius:6px;background:${w?'rgba(0,229,160,0.18)':'rgba(255,95,109,0.18)'};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${w?'var(--accent)':'var(--danger);'};">${w?(isAr?'Ù':'W'):(isAr?'Ø®':'L')}</div>`;
     }).join('');
     return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
       <div class="avatar ${avColor(ci)}" style="width:28px;height:28px;font-size:10px;flex-shrink:0;">${initials(p.name)}</div>
@@ -2347,7 +2346,7 @@ function renderInfographics() {
   }).join('');
 }
 
-// ─── GAME SELECTION ──────────────────────────────────
+// âââ GAME SELECTION ââââââââââââââââââââââââââââââââââ
 let currentGame = sessionStorage.getItem('allin_game') || null;
 
 async function selectGame(game) {
@@ -2377,8 +2376,8 @@ function renderGameBadge() {
   if(!currentGame || !el) return;
   const isPadel = currentGame === 'padel';
   el.innerHTML = `<div class="game-badge ${currentGame}" onclick="switchGame()" title="Switch game">
-    ${isPadel ? '🎾 Padel' : '🎲 Jackaroo'}
-    <span style="font-size:9px;opacity:0.7;margin-left:3px;">⇄</span>
+    ${isPadel ? 'ð¾ Padel' : 'ð² Jackaroo'}
+    <span style="font-size:9px;opacity:0.7;margin-left:3px;">â</span>
   </div>`;
 }
 
@@ -2389,18 +2388,18 @@ function switchGame() {
   const user = getCurrentUser();
   if(user) {
     document.getElementById('picker-greeting').textContent = currentLang==='ar'
-      ? `مرحباً ${user.name} 👋` : `Welcome back, ${user.name} 👋`;
+      ? `ÙØ±Ø­Ø¨Ø§Ù ${user.name} ð` : `Welcome back, ${user.name} ð`;
     document.getElementById('picker-sub').textContent = currentLang==='ar'
-      ? 'ماذا نلعب الليلة؟' : "What are we playing tonight?";
+      ? 'ÙØ§Ø°Ø§ ÙÙØ¹Ø¨ Ø§ÙÙÙÙØ©Ø' : "What are we playing tonight?";
   }
 }
 
-// ─── JACKAROO STATE ──────────────────────────────────
-// state lives in the Supabase layer above — jkState is declared there
+// âââ JACKAROO STATE ââââââââââââââââââââââââââââââââââ
+// state lives in the Supabase layer above â jkState is declared there
 let jkFormat = '1v1';
 
-// ─── JACKAROO STATS ──────────────────────────────────
-// Points: 2v2 Win = +3, 1v1 Win = +1, Any Loss = −1
+// âââ JACKAROO STATS ââââââââââââââââââââââââââââââââââ
+// Points: 2v2 Win = +3, 1v1 Win = +1, Any Loss = â1
 function jkPlayerStats(pid) {
   let totalPts = 0, wins = 0, losses = 0, played = 0;
   let wins2v2 = 0, wins1v1 = 0;
@@ -2444,7 +2443,7 @@ function jkSortedPlayers() {
   });
 }
 
-// ─── JACKAROO NAV ────────────────────────────────────
+// âââ JACKAROO NAV ââââââââââââââââââââââââââââââââââââ
 function showJkTab(id) {
   document.querySelectorAll('.jk-section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -2463,7 +2462,7 @@ function renderJkAll() {
   renderJkRulesTab();
 }
 
-// ─── FORMAT TOGGLE ────────────────────────────────────
+// âââ FORMAT TOGGLE ââââââââââââââââââââââââââââââââââââ
 function setJkFormat(fmt) {
   jkFormat = fmt;
   document.getElementById('fmt-1v1').className = fmt==='1v1' ? 'btn' : 'btn-outline';
@@ -2474,7 +2473,7 @@ function setJkFormat(fmt) {
   document.getElementById('jk-form-2v2').style.display = fmt==='2v2' ? 'block' : 'none';
 }
 
-// ─── JACKAROO DASHBOARD ──────────────────────────────
+// âââ JACKAROO DASHBOARD ââââââââââââââââââââââââââââââ
 function renderJkDashboard() {
   const totalR = jkState.rounds.length;
   const totalP = jkState.players.length;
@@ -2486,11 +2485,11 @@ function renderJkDashboard() {
 
   document.getElementById('jk-dash-stats').innerHTML = `
     <div class="jk-stat-card"><div class="stat-label">Players</div><div class="stat-val" style="color:var(--gold);">${totalP}</div><div class="stat-sub">registered</div></div>
-    <div class="jk-stat-card"><div class="stat-label">Rounds</div><div class="stat-val">${totalR}</div><div class="stat-sub">${v1} solo · ${v2} team</div></div>
-    <div class="jk-stat-card"><div class="stat-label">Top Player</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'–'}</div><div class="stat-sub">${topS?topS.totalPts+' pts':''}</div></div>
-    <div class="jk-stat-card"><div class="stat-label">Most Wins</div><div class="stat-val" style="color:var(--gold);">${topS?topS.wins:'–'}</div><div class="stat-sub">${topS&&topS.played?topS.wins2v2+'× 2v2 · '+topS.wins1v1+'× 1v1':''}</div></div>`;
+    <div class="jk-stat-card"><div class="stat-label">Rounds</div><div class="stat-val">${totalR}</div><div class="stat-sub">${v1} solo Â· ${v2} team</div></div>
+    <div class="jk-stat-card"><div class="stat-label">Top Player</div><div class="stat-val" style="font-size:18px;">${topP?topP.name:'â'}</div><div class="stat-sub">${topS?topS.totalPts+' pts':''}</div></div>
+    <div class="jk-stat-card"><div class="stat-label">Most Wins</div><div class="stat-val" style="color:var(--gold);">${topS?topS.wins:'â'}</div><div class="stat-sub">${topS&&topS.played?topS.wins2v2+'Ã 2v2 Â· '+topS.wins1v1+'Ã 1v1':''}</div></div>`;
 
-  const medals = ['🥇','🥈','🥉'];
+  const medals = ['ð¥','ð¥','ð¥'];
   document.getElementById('jk-dash-leaderboard').innerHTML = sorted.length ? sorted.slice(0,5).map((p,i) => {
     const s = jkPlayerStats(p.id);
     const ci = jkState.players.findIndex(pl=>pl.id===p.id);
@@ -2500,14 +2499,14 @@ function renderJkDashboard() {
       <span class="lb-name">${p.name}</span>
       <div style="text-align:right;">
         <div class="jk-pts">${s.totalPts}pts</div>
-        <div class="lb-wr">${s.wins}W (${s.wins2v2}×2v2 · ${s.wins1v1}×1v1)</div>
+        <div class="lb-wr">${s.wins}W (${s.wins2v2}Ã2v2 Â· ${s.wins1v1}Ã1v1)</div>
       </div>
     </div>`;
   }).join('<hr class="jk-sep">') : `<div class="jk-empty">Add players and log rounds to see rankings</div>`;
 
   const recent = [...jkState.rounds].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,4);
   document.getElementById('jk-dash-recent').innerHTML = recent.length ? recent.map(r => {
-    let winnerName = '–', winnerScore = 0;
+    let winnerName = 'â', winnerScore = 0;
     if(r.format === '2v2') {
       const winTeam = r.teams?.reduce((a,b)=>a.score>b.score?a:b, r.teams[0]);
       if(winTeam) {
@@ -2516,20 +2515,20 @@ function renderJkDashboard() {
       }
     } else {
       const winner = r.scores?.reduce((a,b)=>a.score>b.score?a:b, r.scores[0]);
-      winnerName = jkState.players.find(p=>p.id===winner?.pid)?.name || '–';
+      winnerName = jkState.players.find(p=>p.id===winner?.pid)?.name || 'â';
       winnerScore = winner?.score || 0;
     }
     return `<div class="match-mini">
       <div class="mm-teams">
         <div style="font-weight:500;font-size:12px;">${r.format==='2v2'?'2v2 Team':'1v1 Solo'}</div>
-        <div style="font-size:11px;color:var(--muted);">🏆 ${winnerName} (${winnerScore}pts)</div>
+        <div style="font-size:11px;color:var(--muted);">ð ${winnerName} (${winnerScore}pts)</div>
       </div>
       <div style="font-size:11px;color:var(--muted2);">${fmtDate(r.date)}</div>
     </div>`;
   }).join('') : `<div class="jk-empty">No rounds yet</div>`;
 }
 
-// ─── 1V1 INPUTS ──────────────────────────────────────
+// âââ 1V1 INPUTS ââââââââââââââââââââââââââââââââââââââ
 function renderJk1v1Inputs() {
   const el = document.getElementById('jk-1v1-inputs');
   if(!el) return;
@@ -2546,7 +2545,7 @@ function renderJk1v1Inputs() {
   ).join('');
 }
 
-// ─── 2V2 SELECTS ─────────────────────────────────────
+// âââ 2V2 SELECTS âââââââââââââââââââââââââââââââââââââ
 function renderJk2v2Selects() {
   const selIds = ['jk-a1','jk-a2','jk-b1','jk-b2'];
   selIds.forEach(id => {
@@ -2559,7 +2558,7 @@ function renderJk2v2Selects() {
   });
 }
 
-// ─── LOG ROUND ───────────────────────────────────────
+// âââ LOG ROUND âââââââââââââââââââââââââââââââââââââââ
 function clearJkForm() {
   jkState.players.forEach(p => { const el = document.getElementById('jk-score-'+p.id); if(el) el.value='0'; });
   ['jk-a1','jk-a2','jk-b1','jk-b2'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
@@ -2595,15 +2594,15 @@ function logJkRound() {
   saveJk();
   clearJkForm();
   renderJkAll();
-  toast('Round saved! 🎲');
+  toast('Round saved! ð²');
 }
 
-// ─── JACKAROO PLAYERS GRID ───────────────────────────
+// âââ JACKAROO PLAYERS GRID âââââââââââââââââââââââââââ
 function renderJkPlayersGrid() {
   const el = document.getElementById('jk-players-grid');
   if(!el) return;
   if(!jkState.players.length) {
-    el.innerHTML = `<div class="empty-state"><p>No players yet — add some above!</p></div>`; return;
+    el.innerHTML = `<div class="empty-state"><p>No players yet â add some above!</p></div>`; return;
   }
   el.innerHTML = jkState.players.map((p,i) => {
     const s = jkPlayerStats(p.id);
@@ -2618,16 +2617,16 @@ function renderJkPlayersGrid() {
       </div>
       <div class="player-stats-grid">
         <div class="psm"><div class="psm-label">Total Pts</div><div class="psm-val" style="color:var(--gold);">${s.totalPts}</div></div>
-        <div class="psm"><div class="psm-label">Win Rate</div><div class="psm-val">${s.played?wr+'%':'–'}</div></div>
+        <div class="psm"><div class="psm-label">Win Rate</div><div class="psm-val">${s.played?wr+'%':'â'}</div></div>
         <div class="psm"><div class="psm-label">2v2 Wins</div><div class="psm-val" style="color:var(--win);">${s.wins2v2}</div></div>
         <div class="psm"><div class="psm-label">1v1 Wins</div><div class="psm-val" style="color:var(--info);">${s.wins1v1}</div></div>
       </div>
       <div class="win-rate-bar" style="margin-top:10px;">
-        <div class="wr-label"><span>Win rate</span><span>${s.played?wr+'%':'–'}</span></div>
+        <div class="wr-label"><span>Win rate</span><span>${s.played?wr+'%':'â'}</span></div>
         <div class="bar-track"><div class="jk-bar-fill" style="width:${wr}%"></div></div>
       </div>
       <div style="margin-top:8px;font-size:11px;color:var(--muted2);">
-        2v2: +3pts win · 1v1: +1pt win · any loss: −1pt
+        2v2: +3pts win Â· 1v1: +1pt win Â· any loss: â1pt
       </div>
       <div style="margin-top:10px;display:flex;justify-content:flex-end;">
         <button class="btn-danger" onclick="removeJkPlayer('${p.id}')">Remove</button>
@@ -2636,13 +2635,13 @@ function renderJkPlayersGrid() {
   }).join('');
 }
 
-// ─── JACKAROO RANKINGS ────────────────────────────────
+// âââ JACKAROO RANKINGS ââââââââââââââââââââââââââââââââ
 function renderJkRankings() {
   const el = document.getElementById('jk-rankings-list');
   if(!el) return;
   const sorted = jkSortedPlayers();
   if(!sorted.length) { el.innerHTML = `<div class="jk-empty">No players yet</div>`; return; }
-  const medals = ['🥇','🥈','🥉'];
+  const medals = ['ð¥','ð¥','ð¥'];
   // Best pair
   let bestPair = null, bestPairWr = -1;
   for(let i=0;i<jkState.players.length;i++) for(let j=i+1;j<jkState.players.length;j++) {
@@ -2650,7 +2649,7 @@ function renderJkRankings() {
     if(ps.total >= 2 && ps.wr > bestPairWr) { bestPairWr = ps.wr; bestPair = {p1:jkState.players[i],p2:jkState.players[j],ps}; }
   }
   const pairHtml = bestPair ? `<div class="card" style="margin-top:16px;border-color:rgba(245,200,66,0.3);">
-    <div class="card-title" style="color:var(--gold);">🤝 Best Team Pair</div>
+    <div class="card-title" style="color:var(--gold);">ð¤ Best Team Pair</div>
     <div style="display:flex;align-items:center;gap:10px;">
       <div class="avatar ${avColor(jkState.players.findIndex(p=>p.id===bestPair.p1.id))}" style="width:32px;height:32px;font-size:11px;">${initials(bestPair.p1.name)}</div>
       <span style="font-weight:700;">${bestPair.p1.name}</span>
@@ -2671,7 +2670,7 @@ function renderJkRankings() {
           <div class="avatar ${avColor(i)}" style="width:34px;height:34px;font-size:12px;">${initials(p.name)}</div>
           <div style="flex:1;">
             <div style="font-weight:500;">${p.name}</div>
-            <div style="font-size:11px;color:var(--muted);">${s.wins2v2}× 2v2 win · ${s.wins1v1}× 1v1 win · ${s.losses}L · ${s.played} rounds</div>
+            <div style="font-size:11px;color:var(--muted);">${s.wins2v2}Ã 2v2 win Â· ${s.wins1v1}Ã 1v1 win Â· ${s.losses}L Â· ${s.played} rounds</div>
           </div>
           <div style="text-align:right;">
             <div class="jk-pts">${s.totalPts}pts</div>
@@ -2683,14 +2682,14 @@ function renderJkRankings() {
     ${pairHtml}`;
 }
 
-// ─── JACKAROO HISTORY ─────────────────────────────────
+// âââ JACKAROO HISTORY âââââââââââââââââââââââââââââââââ
 function renderJkHistory() {
   const el = document.getElementById('jk-history-list');
   if(!el) return;
   const sorted = [...jkState.rounds].sort((a,b)=>new Date(b.date)-new Date(a.date));
   if(!sorted.length) { el.innerHTML = `<div class="jk-empty">No rounds logged yet</div>`; return; }
   el.innerHTML = sorted.map(r => {
-    let winnerLabel = '–';
+    let winnerLabel = 'â';
     let scoreHtml = '';
 
     if(r.format === '2v2') {
@@ -2706,12 +2705,12 @@ function renderJkHistory() {
             <div style="font-weight:600;font-size:12px;">${names}</div>
             <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:${idx===0?'var(--gold)':'var(--muted)'};">${tm.score}</div>
           </div>`;
-        }).join('<div style="text-align:center;font-size:16px;color:var(--muted2);">–</div>')}
+        }).join('<div style="text-align:center;font-size:16px;color:var(--muted2);">â</div>')}
       </div>`;
     } else {
       const scores = [...(r.scores||[])].sort((a,b)=>b.score-a.score);
       const maxSc = scores[0]?.score || 0;
-      winnerLabel = jkState.players.find(p=>p.id===scores[0]?.pid)?.name || '–';
+      winnerLabel = jkState.players.find(p=>p.id===scores[0]?.pid)?.name || 'â';
       scoreHtml = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-top:8px;">
         ${scores.map((s,idx) => {
           const p = jkState.players.find(pl=>pl.id===s.pid);
@@ -2728,11 +2727,11 @@ function renderJkHistory() {
     return `<div class="jk-round-card">
       <div class="jk-round-header">
         <div>
-          <span class="jk-round-num">${r.format==='2v2'?'2v2 Team':'1v1 Solo'} · ${fmtDate(r.date)}</span>
+          <span class="jk-round-num">${r.format==='2v2'?'2v2 Team':'1v1 Solo'} Â· ${fmtDate(r.date)}</span>
         </div>
         <div style="display:flex;gap:6px;align-items:center;">
-          <span class="jk-winner-badge">🏆 ${winnerLabel}</span>
-          <button class="btn-danger" onclick="deleteJkRound('${r.id}')">✕</button>
+          <span class="jk-winner-badge">ð ${winnerLabel}</span>
+          <button class="btn-danger" onclick="deleteJkRound('${r.id}')">â</button>
         </div>
       </div>
       ${scoreHtml}
@@ -2740,92 +2739,92 @@ function renderJkHistory() {
   }).join('');
 }
 
-// ─── JACKAROO RULES DATA ─────────────────────────────
+// âââ JACKAROO RULES DATA âââââââââââââââââââââââââââââ
 const JK_RULES_CATEGORIES = [
-  { id:'basics',   en:'The Basics',      ar:'الأساسيات' },
-  { id:'movement', en:'Movement & Cards', ar:'الحركة والأوراق' },
-  { id:'special',  en:'Special Cards',   ar:'الأوراق الخاصة' },
-  { id:'teams',    en:'Teams & Winning', ar:'الفرق والفوز' },
-  { id:'disputes', en:'House Rules',     ar:'قواعد المنزل' },
+  { id:'basics',   en:'The Basics',      ar:'Ø§ÙØ£Ø³Ø§Ø³ÙØ§Øª' },
+  { id:'movement', en:'Movement & Cards', ar:'Ø§ÙØ­Ø±ÙØ© ÙØ§ÙØ£ÙØ±Ø§Ù' },
+  { id:'special',  en:'Special Cards',   ar:'Ø§ÙØ£ÙØ±Ø§Ù Ø§ÙØ®Ø§ØµØ©' },
+  { id:'teams',    en:'Teams & Winning', ar:'Ø§ÙÙØ±Ù ÙØ§ÙÙÙØ²' },
+  { id:'disputes', en:'House Rules',     ar:'ÙÙØ§Ø¹Ø¯ Ø§ÙÙÙØ²Ù' },
 ];
 
 const JK_RULES_DATA = {
   basics: [
     {
-      en:{ title:'What is Jackaroo?', body:`Jackaroo (also spelled Jackaroo or Jocaro) is a Middle Eastern strategy board game for <span class="highlight">2–4 players or 2 teams of 2</span>. It is played on a cross-shaped board similar to Ludo, using a standard deck of playing cards instead of dice.<ul><li>Each player controls <span class="highlight">4 marbles</span></li><li>Goal: get all 4 of your marbles safely to your home base before the opponents</li><li>Cards dictate all movement — no dice involved</li></ul>` },
-      ar:{ title:'ما هو الجاكارو؟', body:`الجاكارو لعبة استراتيجية شرق أوسطية لـ <span class="highlight">2-4 لاعبين أو فريقين من لاعبَين</span>. تُلعب على لوحة على شكل صليب مشابهة للبلدو، باستخدام ورق اللعب العادي بدلاً من النرد.<ul><li>كل لاعب يتحكم بـ <span class="highlight">4 كرات</span></li><li>الهدف: إيصال كل كراتك الأربع إلى قاعدتك قبل الخصم</li><li>الأوراق تحدد كل الحركات — لا نرد في اللعبة</li></ul>` }
+      en:{ title:'What is Jackaroo?', body:`Jackaroo (also spelled Jackaroo or Jocaro) is a Middle Eastern strategy board game for <span class="highlight">2â4 players or 2 teams of 2</span>. It is played on a cross-shaped board similar to Ludo, using a standard deck of playing cards instead of dice.<ul><li>Each player controls <span class="highlight">4 marbles</span></li><li>Goal: get all 4 of your marbles safely to your home base before the opponents</li><li>Cards dictate all movement â no dice involved</li></ul>` },
+      ar:{ title:'ÙØ§ ÙÙ Ø§ÙØ¬Ø§ÙØ§Ø±ÙØ', body:`Ø§ÙØ¬Ø§ÙØ§Ø±Ù ÙØ¹Ø¨Ø© Ø§Ø³ØªØ±Ø§ØªÙØ¬ÙØ© Ø´Ø±Ù Ø£ÙØ³Ø·ÙØ© ÙÙ <span class="highlight">2-4 ÙØ§Ø¹Ø¨ÙÙ Ø£Ù ÙØ±ÙÙÙÙ ÙÙ ÙØ§Ø¹Ø¨ÙÙÙ</span>. ØªÙÙØ¹Ø¨ Ø¹ÙÙ ÙÙØ­Ø© Ø¹ÙÙ Ø´ÙÙ ØµÙÙØ¨ ÙØ´Ø§Ø¨ÙØ© ÙÙØ¨ÙØ¯ÙØ Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù ÙØ±Ù Ø§ÙÙØ¹Ø¨ Ø§ÙØ¹Ø§Ø¯Ù Ø¨Ø¯ÙØ§Ù ÙÙ Ø§ÙÙØ±Ø¯.<ul><li>ÙÙ ÙØ§Ø¹Ø¨ ÙØªØ­ÙÙ Ø¨Ù <span class="highlight">4 ÙØ±Ø§Øª</span></li><li>Ø§ÙÙØ¯Ù: Ø¥ÙØµØ§Ù ÙÙ ÙØ±Ø§ØªÙ Ø§ÙØ£Ø±Ø¨Ø¹ Ø¥ÙÙ ÙØ§Ø¹Ø¯ØªÙ ÙØ¨Ù Ø§ÙØ®ØµÙ</li><li>Ø§ÙØ£ÙØ±Ø§Ù ØªØ­Ø¯Ø¯ ÙÙ Ø§ÙØ­Ø±ÙØ§Øª â ÙØ§ ÙØ±Ø¯ ÙÙ Ø§ÙÙØ¹Ø¨Ø©</li></ul>` }
     },
     {
       en:{ title:'Setup', body:`<ul><li>Each player places their <span class="highlight">4 marbles in their starting yard</span></li><li>Shuffle and deal <span class="highlight">4 cards</span> to each player at the start</li><li>After each turn, one card is played and a new card is drawn from the deck</li><li>When the deck runs out, reshuffle the discard pile</li></ul>Players sit across from their teammate in 2v2 format.` },
-      ar:{ title:'الإعداد', body:`<ul><li>يضع كل لاعب <span class="highlight">كراته الأربع في ساحته البدائية</span></li><li>اخلط ووزع <span class="highlight">4 أوراق</span> لكل لاعب في البداية</li><li>بعد كل دور، تُلعب ورقة وتُسحب ورقة جديدة من الحزمة</li><li>عند نفاد الحزمة، اخلط أوراق المهملات من جديد</li></ul>في صيغة 2v2، يجلس الزميل مقابل شريكه.` }
+      ar:{ title:'Ø§ÙØ¥Ø¹Ø¯Ø§Ø¯', body:`<ul><li>ÙØ¶Ø¹ ÙÙ ÙØ§Ø¹Ø¨ <span class="highlight">ÙØ±Ø§ØªÙ Ø§ÙØ£Ø±Ø¨Ø¹ ÙÙ Ø³Ø§Ø­ØªÙ Ø§ÙØ¨Ø¯Ø§Ø¦ÙØ©</span></li><li>Ø§Ø®ÙØ· ÙÙØ²Ø¹ <span class="highlight">4 Ø£ÙØ±Ø§Ù</span> ÙÙÙ ÙØ§Ø¹Ø¨ ÙÙ Ø§ÙØ¨Ø¯Ø§ÙØ©</li><li>Ø¨Ø¹Ø¯ ÙÙ Ø¯ÙØ±Ø ØªÙÙØ¹Ø¨ ÙØ±ÙØ© ÙØªÙØ³Ø­Ø¨ ÙØ±ÙØ© Ø¬Ø¯ÙØ¯Ø© ÙÙ Ø§ÙØ­Ø²ÙØ©</li><li>Ø¹ÙØ¯ ÙÙØ§Ø¯ Ø§ÙØ­Ø²ÙØ©Ø Ø§Ø®ÙØ· Ø£ÙØ±Ø§Ù Ø§ÙÙÙÙÙØ§Øª ÙÙ Ø¬Ø¯ÙØ¯</li></ul>ÙÙ ØµÙØºØ© 2v2Ø ÙØ¬ÙØ³ Ø§ÙØ²ÙÙÙ ÙÙØ§Ø¨Ù Ø´Ø±ÙÙÙ.` }
     },
     {
       en:{ title:'Turn order', body:`Players take turns in <span class="highlight">clockwise order</span>. On your turn you must play exactly one card from your hand and move a marble accordingly. If you cannot play any card legally, you <span class="warn-tag">burn one card</span> face-up and your turn ends.` },
-      ar:{ title:'ترتيب الأدوار', body:`يتناوب اللاعبون بالترتيب <span class="highlight">في اتجاه عقارب الساعة</span>. في دورك يجب أن تلعب ورقة واحدة بالضبط وتحرك كرة وفقاً لها. إذا لم تستطع لعب أي ورقة بشكل قانوني، <span class="warn-tag">تحرق ورقة واحدة</span> وجهاً للأعلى وينتهي دورك.` }
+      ar:{ title:'ØªØ±ØªÙØ¨ Ø§ÙØ£Ø¯ÙØ§Ø±', body:`ÙØªÙØ§ÙØ¨ Ø§ÙÙØ§Ø¹Ø¨ÙÙ Ø¨Ø§ÙØªØ±ØªÙØ¨ <span class="highlight">ÙÙ Ø§ØªØ¬Ø§Ù Ø¹ÙØ§Ø±Ø¨ Ø§ÙØ³Ø§Ø¹Ø©</span>. ÙÙ Ø¯ÙØ±Ù ÙØ¬Ø¨ Ø£Ù ØªÙØ¹Ø¨ ÙØ±ÙØ© ÙØ§Ø­Ø¯Ø© Ø¨Ø§ÙØ¶Ø¨Ø· ÙØªØ­Ø±Ù ÙØ±Ø© ÙÙÙØ§Ù ÙÙØ§. Ø¥Ø°Ø§ ÙÙ ØªØ³ØªØ·Ø¹ ÙØ¹Ø¨ Ø£Ù ÙØ±ÙØ© Ø¨Ø´ÙÙ ÙØ§ÙÙÙÙØ <span class="warn-tag">ØªØ­Ø±Ù ÙØ±ÙØ© ÙØ§Ø­Ø¯Ø©</span> ÙØ¬ÙØ§Ù ÙÙØ£Ø¹ÙÙ ÙÙÙØªÙÙ Ø¯ÙØ±Ù.` }
     },
   ],
   movement: [
     {
       en:{ title:'Entering the board (Ace / Jack)', body:`A marble can only leave its starting yard and enter the main track by playing an <span class="highlight">Ace (A)</span> or a <span class="highlight">Jack (J)</span>. The marble is placed on that player's entry square. You cannot move a marble that is still in the yard with any other card.` },
-      ar:{ title:'دخول اللوحة (آس / جاك)', body:`يمكن للكرة مغادرة ساحتها البدائية والدخول للمسار الرئيسي فقط بلعب <span class="highlight">آس (A)</span> أو <span class="highlight">جاك (J)</span>. تُوضع الكرة على مربع دخول اللاعب. لا يمكن تحريك كرة لا تزال في الساحة بأي ورقة أخرى.` }
+      ar:{ title:'Ø¯Ø®ÙÙ Ø§ÙÙÙØ­Ø© (Ø¢Ø³ / Ø¬Ø§Ù)', body:`ÙÙÙÙ ÙÙÙØ±Ø© ÙØºØ§Ø¯Ø±Ø© Ø³Ø§Ø­ØªÙØ§ Ø§ÙØ¨Ø¯Ø§Ø¦ÙØ© ÙØ§ÙØ¯Ø®ÙÙ ÙÙÙØ³Ø§Ø± Ø§ÙØ±Ø¦ÙØ³Ù ÙÙØ· Ø¨ÙØ¹Ø¨ <span class="highlight">Ø¢Ø³ (A)</span> Ø£Ù <span class="highlight">Ø¬Ø§Ù (J)</span>. ØªÙÙØ¶Ø¹ Ø§ÙÙØ±Ø© Ø¹ÙÙ ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙ Ø§ÙÙØ§Ø¹Ø¨. ÙØ§ ÙÙÙÙ ØªØ­Ø±ÙÙ ÙØ±Ø© ÙØ§ ØªØ²Ø§Ù ÙÙ Ø§ÙØ³Ø§Ø­Ø© Ø¨Ø£Ù ÙØ±ÙØ© Ø£Ø®Ø±Ù.` }
     },
     {
-      en:{ title:'Number cards', body:`Number cards move a marble forward by that number of spaces:<ul><li><span class="highlight">2–9</span>: move forward the exact number of spaces</li><li><span class="highlight">10</span>: move forward 10 spaces</li><li><span class="highlight">Queen (Q)</span>: move forward 12 spaces</li><li><span class="highlight">King (K)</span>: move forward 13 spaces</li></ul>You can split a <span class="highlight">7</span> between two of your own marbles (e.g. 3 + 4, 5 + 2).` },
-      ar:{ title:'الأوراق الرقمية', body:`الأوراق الرقمية تحرك الكرة للأمام بعدد المربعات المقابل:<ul><li><span class="highlight">2–9</span>: تحرك للأمام بالعدد المحدد</li><li><span class="highlight">10</span>: تحرك 10 مربعات للأمام</li><li><span class="highlight">كويني (Q)</span>: تحرك 12 مربعاً</li><li><span class="highlight">كينج (K)</span>: تحرك 13 مربعاً</li></ul>يمكن تقسيم <span class="highlight">الـ 7</span> بين اثنتين من كراتك (مثل 3+4 أو 5+2).` }
+      en:{ title:'Number cards', body:`Number cards move a marble forward by that number of spaces:<ul><li><span class="highlight">2â9</span>: move forward the exact number of spaces</li><li><span class="highlight">10</span>: move forward 10 spaces</li><li><span class="highlight">Queen (Q)</span>: move forward 12 spaces</li><li><span class="highlight">King (K)</span>: move forward 13 spaces</li></ul>You can split a <span class="highlight">7</span> between two of your own marbles (e.g. 3 + 4, 5 + 2).` },
+      ar:{ title:'Ø§ÙØ£ÙØ±Ø§Ù Ø§ÙØ±ÙÙÙØ©', body:`Ø§ÙØ£ÙØ±Ø§Ù Ø§ÙØ±ÙÙÙØ© ØªØ­Ø±Ù Ø§ÙÙØ±Ø© ÙÙØ£ÙØ§Ù Ø¨Ø¹Ø¯Ø¯ Ø§ÙÙØ±Ø¨Ø¹Ø§Øª Ø§ÙÙÙØ§Ø¨Ù:<ul><li><span class="highlight">2â9</span>: ØªØ­Ø±Ù ÙÙØ£ÙØ§Ù Ø¨Ø§ÙØ¹Ø¯Ø¯ Ø§ÙÙØ­Ø¯Ø¯</li><li><span class="highlight">10</span>: ØªØ­Ø±Ù 10 ÙØ±Ø¨Ø¹Ø§Øª ÙÙØ£ÙØ§Ù</li><li><span class="highlight">ÙÙÙÙÙ (Q)</span>: ØªØ­Ø±Ù 12 ÙØ±Ø¨Ø¹Ø§Ù</li><li><span class="highlight">ÙÙÙØ¬ (K)</span>: ØªØ­Ø±Ù 13 ÙØ±Ø¨Ø¹Ø§Ù</li></ul>ÙÙÙÙ ØªÙØ³ÙÙ <span class="highlight">Ø§ÙÙ 7</span> Ø¨ÙÙ Ø§Ø«ÙØªÙÙ ÙÙ ÙØ±Ø§ØªÙ (ÙØ«Ù 3+4 Ø£Ù 5+2).` }
     },
     {
-      en:{ title:'Hitting opponents', body:`If your marble lands on a square <span class="highlight">occupied by an opponent's marble</span>, their marble is sent back to their starting yard. However, you <span class="warn-tag">cannot hit your own teammate's marbles</span> in 2v2.<br><br>A marble sitting on its own <span class="highlight">entry square acts as a blocker</span> — no marble (including yours) can pass over or land on it.` },
-      ar:{ title:'ضرب الخصوم', body:`إذا وقعت كرتك على مربع <span class="highlight">تشغله كرة خصم</span>، ترسل كرته إلى ساحته البدائية. لكن <span class="warn-tag">لا يمكنك ضرب كرات شريكك</span> في صيغة 2v2.<br><br>كرة تجلس على <span class="highlight">مربع دخولها الخاص تعمل كحاجز</span> — لا يمكن لأي كرة (حتى كرتك) المرور فوقها أو النزول عليها.` }
+      en:{ title:'Hitting opponents', body:`If your marble lands on a square <span class="highlight">occupied by an opponent's marble</span>, their marble is sent back to their starting yard. However, you <span class="warn-tag">cannot hit your own teammate's marbles</span> in 2v2.<br><br>A marble sitting on its own <span class="highlight">entry square acts as a blocker</span> â no marble (including yours) can pass over or land on it.` },
+      ar:{ title:'Ø¶Ø±Ø¨ Ø§ÙØ®ØµÙÙ', body:`Ø¥Ø°Ø§ ÙÙØ¹Øª ÙØ±ØªÙ Ø¹ÙÙ ÙØ±Ø¨Ø¹ <span class="highlight">ØªØ´ØºÙÙ ÙØ±Ø© Ø®ØµÙ</span>Ø ØªØ±Ø³Ù ÙØ±ØªÙ Ø¥ÙÙ Ø³Ø§Ø­ØªÙ Ø§ÙØ¨Ø¯Ø§Ø¦ÙØ©. ÙÙÙ <span class="warn-tag">ÙØ§ ÙÙÙÙÙ Ø¶Ø±Ø¨ ÙØ±Ø§Øª Ø´Ø±ÙÙÙ</span> ÙÙ ØµÙØºØ© 2v2.<br><br>ÙØ±Ø© ØªØ¬ÙØ³ Ø¹ÙÙ <span class="highlight">ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙÙØ§ Ø§ÙØ®Ø§Øµ ØªØ¹ÙÙ ÙØ­Ø§Ø¬Ø²</span> â ÙØ§ ÙÙÙÙ ÙØ£Ù ÙØ±Ø© (Ø­ØªÙ ÙØ±ØªÙ) Ø§ÙÙØ±ÙØ± ÙÙÙÙØ§ Ø£Ù Ø§ÙÙØ²ÙÙ Ø¹ÙÙÙØ§.` }
     },
   ],
   special: [
     {
-      en:{ title:'Ace (A) — enter or move 1', body:`The Ace has two uses:<ul><li><span class="highlight">Enter the board</span>: bring a marble from your yard onto your entry square</li><li><span class="highlight">Move 1 space</span>: move any marble already on the board forward 1</li></ul>If your entry square is occupied by your own marble, you can still use the Ace to move 1 space with another marble.` },
-      ar:{ title:'الآس (A) — دخول أو تحرك 1', body:`للآس استخدامان:<ul><li><span class="highlight">الدخول للوحة</span>: أخرج كرة من ساحتك إلى مربع دخولك</li><li><span class="highlight">التحرك مربعاً واحداً</span>: حرك أي كرة على اللوحة للأمام مربعاً واحداً</li></ul>إذا كان مربع دخولك مشغولاً بكرتك، يمكنك استخدام الآس لتحريك كرة أخرى مربعاً.` }
+      en:{ title:'Ace (A) â enter or move 1', body:`The Ace has two uses:<ul><li><span class="highlight">Enter the board</span>: bring a marble from your yard onto your entry square</li><li><span class="highlight">Move 1 space</span>: move any marble already on the board forward 1</li></ul>If your entry square is occupied by your own marble, you can still use the Ace to move 1 space with another marble.` },
+      ar:{ title:'Ø§ÙØ¢Ø³ (A) â Ø¯Ø®ÙÙ Ø£Ù ØªØ­Ø±Ù 1', body:`ÙÙØ¢Ø³ Ø§Ø³ØªØ®Ø¯Ø§ÙØ§Ù:<ul><li><span class="highlight">Ø§ÙØ¯Ø®ÙÙ ÙÙÙØ­Ø©</span>: Ø£Ø®Ø±Ø¬ ÙØ±Ø© ÙÙ Ø³Ø§Ø­ØªÙ Ø¥ÙÙ ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙÙ</li><li><span class="highlight">Ø§ÙØªØ­Ø±Ù ÙØ±Ø¨Ø¹Ø§Ù ÙØ§Ø­Ø¯Ø§Ù</span>: Ø­Ø±Ù Ø£Ù ÙØ±Ø© Ø¹ÙÙ Ø§ÙÙÙØ­Ø© ÙÙØ£ÙØ§Ù ÙØ±Ø¨Ø¹Ø§Ù ÙØ§Ø­Ø¯Ø§Ù</li></ul>Ø¥Ø°Ø§ ÙØ§Ù ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙÙ ÙØ´ØºÙÙØ§Ù Ø¨ÙØ±ØªÙØ ÙÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù Ø§ÙØ¢Ø³ ÙØªØ­Ø±ÙÙ ÙØ±Ø© Ø£Ø®Ø±Ù ÙØ±Ø¨Ø¹Ø§Ù.` }
     },
     {
-      en:{ title:'Jack (J) — enter or swap', body:`The Jack also has two uses:<ul><li><span class="highlight">Enter the board</span>: same as the Ace</li><li><span class="highlight">Swap</span>: swap any one of your marbles on the board with any one of an opponent's marbles on the board</li></ul>The swap <span class="warn-tag">cannot be used</span> on marbles that are in the home stretch (final path to base) or on entry squares acting as blockers.` },
-      ar:{ title:'الجاك (J) — دخول أو تبادل', body:`للجاك أيضاً استخدامان:<ul><li><span class="highlight">الدخول للوحة</span>: مثل الآس</li><li><span class="highlight">التبادل</span>: بادل أي كرة من كراتك على اللوحة مع أي كرة للخصم على اللوحة</li></ul><span class="warn-tag">لا يُستخدم التبادل</span> على الكرات في المسار الأخير (الطريق الأخير للقاعدة) أو على مربعات الدخول التي تعمل كحواجز.` }
+      en:{ title:'Jack (J) â enter or swap', body:`The Jack also has two uses:<ul><li><span class="highlight">Enter the board</span>: same as the Ace</li><li><span class="highlight">Swap</span>: swap any one of your marbles on the board with any one of an opponent's marbles on the board</li></ul>The swap <span class="warn-tag">cannot be used</span> on marbles that are in the home stretch (final path to base) or on entry squares acting as blockers.` },
+      ar:{ title:'Ø§ÙØ¬Ø§Ù (J) â Ø¯Ø®ÙÙ Ø£Ù ØªØ¨Ø§Ø¯Ù', body:`ÙÙØ¬Ø§Ù Ø£ÙØ¶Ø§Ù Ø§Ø³ØªØ®Ø¯Ø§ÙØ§Ù:<ul><li><span class="highlight">Ø§ÙØ¯Ø®ÙÙ ÙÙÙØ­Ø©</span>: ÙØ«Ù Ø§ÙØ¢Ø³</li><li><span class="highlight">Ø§ÙØªØ¨Ø§Ø¯Ù</span>: Ø¨Ø§Ø¯Ù Ø£Ù ÙØ±Ø© ÙÙ ÙØ±Ø§ØªÙ Ø¹ÙÙ Ø§ÙÙÙØ­Ø© ÙØ¹ Ø£Ù ÙØ±Ø© ÙÙØ®ØµÙ Ø¹ÙÙ Ø§ÙÙÙØ­Ø©</li></ul><span class="warn-tag">ÙØ§ ÙÙØ³ØªØ®Ø¯Ù Ø§ÙØªØ¨Ø§Ø¯Ù</span> Ø¹ÙÙ Ø§ÙÙØ±Ø§Øª ÙÙ Ø§ÙÙØ³Ø§Ø± Ø§ÙØ£Ø®ÙØ± (Ø§ÙØ·Ø±ÙÙ Ø§ÙØ£Ø®ÙØ± ÙÙÙØ§Ø¹Ø¯Ø©) Ø£Ù Ø¹ÙÙ ÙØ±Ø¨Ø¹Ø§Øª Ø§ÙØ¯Ø®ÙÙ Ø§ÙØªÙ ØªØ¹ÙÙ ÙØ­ÙØ§Ø¬Ø².` }
     },
     {
-      en:{ title:'4 — move backwards', body:`The <span class="highlight">4 card</span> is the only card that moves a marble <span class="highlight">backwards 4 spaces</span>. This can be used strategically to dodge a blocker or reach your home path when you've overshot.` },
-      ar:{ title:'الـ 4 — تحرك للخلف', body:`ورقة <span class="highlight">الـ 4</span> هي الورقة الوحيدة التي تحرك كرة <span class="highlight">للخلف 4 مربعات</span>. يمكن استخدامها بذكاء لتجنب حاجز أو الوصول لمسار قاعدتك إذا تجاوزته.` }
+      en:{ title:'4 â move backwards', body:`The <span class="highlight">4 card</span> is the only card that moves a marble <span class="highlight">backwards 4 spaces</span>. This can be used strategically to dodge a blocker or reach your home path when you've overshot.` },
+      ar:{ title:'Ø§ÙÙ 4 â ØªØ­Ø±Ù ÙÙØ®ÙÙ', body:`ÙØ±ÙØ© <span class="highlight">Ø§ÙÙ 4</span> ÙÙ Ø§ÙÙØ±ÙØ© Ø§ÙÙØ­ÙØ¯Ø© Ø§ÙØªÙ ØªØ­Ø±Ù ÙØ±Ø© <span class="highlight">ÙÙØ®ÙÙ 4 ÙØ±Ø¨Ø¹Ø§Øª</span>. ÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§ÙÙØ§ Ø¨Ø°ÙØ§Ø¡ ÙØªØ¬ÙØ¨ Ø­Ø§Ø¬Ø² Ø£Ù Ø§ÙÙØµÙÙ ÙÙØ³Ø§Ø± ÙØ§Ø¹Ø¯ØªÙ Ø¥Ø°Ø§ ØªØ¬Ø§ÙØ²ØªÙ.` }
     },
     {
-      en:{ title:'7 — split move', body:`The <span class="highlight">7 card</span> can be split between any two of your marbles (or your teammate's in 2v2). The split must add up to exactly 7. Common splits: 1+6, 2+5, 3+4. You cannot use both halves on the same marble.` },
-      ar:{ title:'الـ 7 — حركة مقسّمة', body:`يمكن تقسيم ورقة <span class="highlight">الـ 7</span> بين أي اثنتين من كراتك (أو كرات شريكك في 2v2). يجب أن يكون مجموع التقسيم 7 بالضبط. أشيع التقسيمات: 1+6، 2+5، 3+4. لا يمكن استخدام الجزأين على نفس الكرة.` }
+      en:{ title:'7 â split move', body:`The <span class="highlight">7 card</span> can be split between any two of your marbles (or your teammate's in 2v2). The split must add up to exactly 7. Common splits: 1+6, 2+5, 3+4. You cannot use both halves on the same marble.` },
+      ar:{ title:'Ø§ÙÙ 7 â Ø­Ø±ÙØ© ÙÙØ³ÙÙØ©', body:`ÙÙÙÙ ØªÙØ³ÙÙ ÙØ±ÙØ© <span class="highlight">Ø§ÙÙ 7</span> Ø¨ÙÙ Ø£Ù Ø§Ø«ÙØªÙÙ ÙÙ ÙØ±Ø§ØªÙ (Ø£Ù ÙØ±Ø§Øª Ø´Ø±ÙÙÙ ÙÙ 2v2). ÙØ¬Ø¨ Ø£Ù ÙÙÙÙ ÙØ¬ÙÙØ¹ Ø§ÙØªÙØ³ÙÙ 7 Ø¨Ø§ÙØ¶Ø¨Ø·. Ø£Ø´ÙØ¹ Ø§ÙØªÙØ³ÙÙØ§Øª: 1+6Ø 2+5Ø 3+4. ÙØ§ ÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù Ø§ÙØ¬Ø²Ø£ÙÙ Ø¹ÙÙ ÙÙØ³ Ø§ÙÙØ±Ø©.` }
     },
   ],
   teams: [
     {
       en:{ title:'2v2 team rules', body:`In 2v2, teammates sit <span class="highlight">opposite each other</span>. Key team rules:<ul><li>You can use your cards to move <span class="highlight">your teammate's marbles</span></li><li>You <span class="warn-tag">cannot hit</span> your teammate's marbles with your own</li><li>A team wins when <span class="highlight">both players</span> have all 4 marbles in home base</li><li>If your marbles are all home, you play only for your partner</li></ul>` },
-      ar:{ title:'قواعد 2v2', body:`في 2v2، يجلس الشركاء <span class="highlight">مقابل بعضهم</span>. قواعد الفريق الأساسية:<ul><li>يمكنك استخدام أوراقك لتحريك <span class="highlight">كرات شريكك</span></li><li><span class="warn-tag">لا يمكنك ضرب</span> كرات شريكك بكراتك</li><li>يفوز الفريق عندما يُدخل <span class="highlight">كلا اللاعبَين</span> كراتهم الأربع للقاعدة</li><li>إذا أدخلت كل كراتك، تلعب لصالح شريكك فقط</li></ul>` }
+      ar:{ title:'ÙÙØ§Ø¹Ø¯ 2v2', body:`ÙÙ 2v2Ø ÙØ¬ÙØ³ Ø§ÙØ´Ø±ÙØ§Ø¡ <span class="highlight">ÙÙØ§Ø¨Ù Ø¨Ø¹Ø¶ÙÙ</span>. ÙÙØ§Ø¹Ø¯ Ø§ÙÙØ±ÙÙ Ø§ÙØ£Ø³Ø§Ø³ÙØ©:<ul><li>ÙÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù Ø£ÙØ±Ø§ÙÙ ÙØªØ­Ø±ÙÙ <span class="highlight">ÙØ±Ø§Øª Ø´Ø±ÙÙÙ</span></li><li><span class="warn-tag">ÙØ§ ÙÙÙÙÙ Ø¶Ø±Ø¨</span> ÙØ±Ø§Øª Ø´Ø±ÙÙÙ Ø¨ÙØ±Ø§ØªÙ</li><li>ÙÙÙØ² Ø§ÙÙØ±ÙÙ Ø¹ÙØ¯ÙØ§ ÙÙØ¯Ø®Ù <span class="highlight">ÙÙØ§ Ø§ÙÙØ§Ø¹Ø¨ÙÙÙ</span> ÙØ±Ø§ØªÙÙ Ø§ÙØ£Ø±Ø¨Ø¹ ÙÙÙØ§Ø¹Ø¯Ø©</li><li>Ø¥Ø°Ø§ Ø£Ø¯Ø®ÙØª ÙÙ ÙØ±Ø§ØªÙØ ØªÙØ¹Ø¨ ÙØµØ§ÙØ­ Ø´Ø±ÙÙÙ ÙÙØ·</li></ul>` }
     },
     {
-      en:{ title:'1v1 rules', body:`In 1v1, each player controls all <span class="highlight">4 marbles</span> solo. Rules are the same as team play except:<ul><li>No ally — you play entirely for yourself</li><li>First player to get all 4 marbles to their home base <span class="highlight">wins the round</span></li><li>No marble-sharing with a partner</li></ul>` },
-      ar:{ title:'قواعد 1v1', body:`في 1v1، يتحكم كل لاعب بجميع <span class="highlight">الكرات الأربع</span> بمفرده. القواعد مشابهة للعب الجماعي إلا أن:<ul><li>لا حليف — تلعب لنفسك بالكامل</li><li>أول من يُدخل كراته الأربع لقاعدته <span class="highlight">يفوز بالجولة</span></li><li>لا مشاركة للكرات مع شريك</li></ul>` }
+      en:{ title:'1v1 rules', body:`In 1v1, each player controls all <span class="highlight">4 marbles</span> solo. Rules are the same as team play except:<ul><li>No ally â you play entirely for yourself</li><li>First player to get all 4 marbles to their home base <span class="highlight">wins the round</span></li><li>No marble-sharing with a partner</li></ul>` },
+      ar:{ title:'ÙÙØ§Ø¹Ø¯ 1v1', body:`ÙÙ 1v1Ø ÙØªØ­ÙÙ ÙÙ ÙØ§Ø¹Ø¨ Ø¨Ø¬ÙÙØ¹ <span class="highlight">Ø§ÙÙØ±Ø§Øª Ø§ÙØ£Ø±Ø¨Ø¹</span> Ø¨ÙÙØ±Ø¯Ù. Ø§ÙÙÙØ§Ø¹Ø¯ ÙØ´Ø§Ø¨ÙØ© ÙÙØ¹Ø¨ Ø§ÙØ¬ÙØ§Ø¹Ù Ø¥ÙØ§ Ø£Ù:<ul><li>ÙØ§ Ø­ÙÙÙ â ØªÙØ¹Ø¨ ÙÙÙØ³Ù Ø¨Ø§ÙÙØ§ÙÙ</li><li>Ø£ÙÙ ÙÙ ÙÙØ¯Ø®Ù ÙØ±Ø§ØªÙ Ø§ÙØ£Ø±Ø¨Ø¹ ÙÙØ§Ø¹Ø¯ØªÙ <span class="highlight">ÙÙÙØ² Ø¨Ø§ÙØ¬ÙÙØ©</span></li><li>ÙØ§ ÙØ´Ø§Ø±ÙØ© ÙÙÙØ±Ø§Øª ÙØ¹ Ø´Ø±ÙÙ</li></ul>` }
     },
     {
-      en:{ title:'Winning & scoring (All In system)', body:`The All In app uses this points system:<ul><li><span class="highlight">2v2 win: +3 points</span> per player on winning team</li><li><span class="highlight">1v1 win: +1 point</span></li><li><span class="warn-tag">Any loss: −1 point</span></li></ul>2v2 wins are worth more because team coordination is harder. Over time, players who dominate 2v2 will climb the ranking faster.` },
-      ar:{ title:'الفوز والنقاط (نظام All In)', body:`يستخدم تطبيق All In هذا النظام:<ul><li><span class="highlight">فوز 2v2: +3 نقاط</span> لكل لاعب في الفريق الفائز</li><li><span class="highlight">فوز 1v1: +1 نقطة</span></li><li><span class="warn-tag">أي خسارة: −1 نقطة</span></li></ul>فوز 2v2 يساوي أكثر لأن التنسيق مع الشريك أصعب. مع الوقت، من يتفوق في 2v2 سيتصدر الترتيب بشكل أسرع.` }
+      en:{ title:'Winning & scoring (All In system)', body:`The All In app uses this points system:<ul><li><span class="highlight">2v2 win: +3 points</span> per player on winning team</li><li><span class="highlight">1v1 win: +1 point</span></li><li><span class="warn-tag">Any loss: â1 point</span></li></ul>2v2 wins are worth more because team coordination is harder. Over time, players who dominate 2v2 will climb the ranking faster.` },
+      ar:{ title:'Ø§ÙÙÙØ² ÙØ§ÙÙÙØ§Ø· (ÙØ¸Ø§Ù All In)', body:`ÙØ³ØªØ®Ø¯Ù ØªØ·Ø¨ÙÙ All In ÙØ°Ø§ Ø§ÙÙØ¸Ø§Ù:<ul><li><span class="highlight">ÙÙØ² 2v2: +3 ÙÙØ§Ø·</span> ÙÙÙ ÙØ§Ø¹Ø¨ ÙÙ Ø§ÙÙØ±ÙÙ Ø§ÙÙØ§Ø¦Ø²</li><li><span class="highlight">ÙÙØ² 1v1: +1 ÙÙØ·Ø©</span></li><li><span class="warn-tag">Ø£Ù Ø®Ø³Ø§Ø±Ø©: â1 ÙÙØ·Ø©</span></li></ul>ÙÙØ² 2v2 ÙØ³Ø§ÙÙ Ø£ÙØ«Ø± ÙØ£Ù Ø§ÙØªÙØ³ÙÙ ÙØ¹ Ø§ÙØ´Ø±ÙÙ Ø£ØµØ¹Ø¨. ÙØ¹ Ø§ÙÙÙØªØ ÙÙ ÙØªÙÙÙ ÙÙ 2v2 Ø³ÙØªØµØ¯Ø± Ø§ÙØªØ±ØªÙØ¨ Ø¨Ø´ÙÙ Ø£Ø³Ø±Ø¹.` }
     },
   ],
   disputes: [
     {
-      en:{ title:'Can you enter on a blocked entry square?', body:`<span class="warn-tag">Most disputed rule.</span> Some houses say if your own marble is sitting on your entry square (acting as a blocker), you <strong>cannot</strong> use an Ace/Jack to bring another marble out. Others allow it. <br><br>Recommended house rule: <span class="highlight">you cannot enter while your entry is blocked</span> — it forces strategic decisions about when to advance your blocker.` },
-      ar:{ title:'هل يمكن الدخول إذا كان مربع الدخول مسدوداً؟', body:`<span class="warn-tag">القاعدة الأكثر خلافاً.</span> بعض البيوت تقول إذا كانت كرتك على مربع دخولك (كحاجز)، <strong>لا يمكنك</strong> استخدام آس/جاك لإخراج كرة أخرى. والبعض يسمح بذلك.<br><br>القاعدة المنزلية المقترحة: <span class="highlight">لا يمكن الدخول والمربع مسدود</span> — يجبرك على اتخاذ قرارات استراتيجية بشأن متى تتقدم بالحاجز.` }
+      en:{ title:'Can you enter on a blocked entry square?', body:`<span class="warn-tag">Most disputed rule.</span> Some houses say if your own marble is sitting on your entry square (acting as a blocker), you <strong>cannot</strong> use an Ace/Jack to bring another marble out. Others allow it. <br><br>Recommended house rule: <span class="highlight">you cannot enter while your entry is blocked</span> â it forces strategic decisions about when to advance your blocker.` },
+      ar:{ title:'ÙÙ ÙÙÙÙ Ø§ÙØ¯Ø®ÙÙ Ø¥Ø°Ø§ ÙØ§Ù ÙØ±Ø¨Ø¹ Ø§ÙØ¯Ø®ÙÙ ÙØ³Ø¯ÙØ¯Ø§ÙØ', body:`<span class="warn-tag">Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙØ£ÙØ«Ø± Ø®ÙØ§ÙØ§Ù.</span> Ø¨Ø¹Ø¶ Ø§ÙØ¨ÙÙØª ØªÙÙÙ Ø¥Ø°Ø§ ÙØ§ÙØª ÙØ±ØªÙ Ø¹ÙÙ ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙÙ (ÙØ­Ø§Ø¬Ø²)Ø <strong>ÙØ§ ÙÙÙÙÙ</strong> Ø§Ø³ØªØ®Ø¯Ø§Ù Ø¢Ø³/Ø¬Ø§Ù ÙØ¥Ø®Ø±Ø§Ø¬ ÙØ±Ø© Ø£Ø®Ø±Ù. ÙØ§ÙØ¨Ø¹Ø¶ ÙØ³ÙØ­ Ø¨Ø°ÙÙ.<br><br>Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙÙÙØ²ÙÙØ© Ø§ÙÙÙØªØ±Ø­Ø©: <span class="highlight">ÙØ§ ÙÙÙÙ Ø§ÙØ¯Ø®ÙÙ ÙØ§ÙÙØ±Ø¨Ø¹ ÙØ³Ø¯ÙØ¯</span> â ÙØ¬Ø¨Ø±Ù Ø¹ÙÙ Ø§ØªØ®Ø§Ø° ÙØ±Ø§Ø±Ø§Øª Ø§Ø³ØªØ±Ø§ØªÙØ¬ÙØ© Ø¨Ø´Ø£Ù ÙØªÙ ØªØªÙØ¯Ù Ø¨Ø§ÙØ­Ø§Ø¬Ø².` }
     },
     {
-      en:{ title:'Can you use the Jack swap on a blocker?', body:`Another classic argument. A marble sitting on an entry square acting as a blocker — can the opponent Jack-swap it away? <br><br>Standard rule: <span class="warn-tag">No</span> — blockers on entry squares are immune to swaps. This is the rule most competitive groups follow.` },
-      ar:{ title:'هل يمكن استخدام الجاك على حاجز؟', body:`جدال كلاسيكي آخر. كرة تجلس على مربع دخول كحاجز — هل يمكن للخصم مبادلتها بالجاك؟<br><br>القاعدة المعيارية: <span class="warn-tag">لا</span> — الحواجز على مربعات الدخول محمية من التبادل. هذه هي القاعدة التي تتبعها معظم المجموعات التنافسية.` }
+      en:{ title:'Can you use the Jack swap on a blocker?', body:`Another classic argument. A marble sitting on an entry square acting as a blocker â can the opponent Jack-swap it away? <br><br>Standard rule: <span class="warn-tag">No</span> â blockers on entry squares are immune to swaps. This is the rule most competitive groups follow.` },
+      ar:{ title:'ÙÙ ÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù Ø§ÙØ¬Ø§Ù Ø¹ÙÙ Ø­Ø§Ø¬Ø²Ø', body:`Ø¬Ø¯Ø§Ù ÙÙØ§Ø³ÙÙÙ Ø¢Ø®Ø±. ÙØ±Ø© ØªØ¬ÙØ³ Ø¹ÙÙ ÙØ±Ø¨Ø¹ Ø¯Ø®ÙÙ ÙØ­Ø§Ø¬Ø² â ÙÙ ÙÙÙÙ ÙÙØ®ØµÙ ÙØ¨Ø§Ø¯ÙØªÙØ§ Ø¨Ø§ÙØ¬Ø§ÙØ<br><br>Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙÙØ¹ÙØ§Ø±ÙØ©: <span class="warn-tag">ÙØ§</span> â Ø§ÙØ­ÙØ§Ø¬Ø² Ø¹ÙÙ ÙØ±Ø¨Ø¹Ø§Øª Ø§ÙØ¯Ø®ÙÙ ÙØ­ÙÙØ© ÙÙ Ø§ÙØªØ¨Ø§Ø¯Ù. ÙØ°Ù ÙÙ Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙØªÙ ØªØªØ¨Ø¹ÙØ§ ÙØ¹Ø¸Ù Ø§ÙÙØ¬ÙÙØ¹Ø§Øª Ø§ÙØªÙØ§ÙØ³ÙØ©.` }
     },
     {
-      en:{ title:'7-split: can you use it to enter the board?', body:`Can half of a 7 be used to bring a marble out of the yard (acting like an Ace)? <br><br>Standard rule: <span class="warn-tag">No</span> — the 7-split can only move marbles already on the board. Only Aces and Jacks can bring marbles out of the yard.` },
-      ar:{ title:'تقسيم الـ 7: هل يمكن استخدامه للدخول؟', body:`هل يمكن استخدام نصف الـ 7 لإخراج كرة من الساحة (كالآس)؟<br><br>القاعدة المعيارية: <span class="warn-tag">لا</span> — تقسيم الـ 7 يُستخدم فقط لتحريك كرات على اللوحة بالفعل. فقط الآس والجاك يخرجان الكرات من الساحة.` }
+      en:{ title:'7-split: can you use it to enter the board?', body:`Can half of a 7 be used to bring a marble out of the yard (acting like an Ace)? <br><br>Standard rule: <span class="warn-tag">No</span> â the 7-split can only move marbles already on the board. Only Aces and Jacks can bring marbles out of the yard.` },
+      ar:{ title:'ØªÙØ³ÙÙ Ø§ÙÙ 7: ÙÙ ÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§ÙÙ ÙÙØ¯Ø®ÙÙØ', body:`ÙÙ ÙÙÙÙ Ø§Ø³ØªØ®Ø¯Ø§Ù ÙØµÙ Ø§ÙÙ 7 ÙØ¥Ø®Ø±Ø§Ø¬ ÙØ±Ø© ÙÙ Ø§ÙØ³Ø§Ø­Ø© (ÙØ§ÙØ¢Ø³)Ø<br><br>Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙÙØ¹ÙØ§Ø±ÙØ©: <span class="warn-tag">ÙØ§</span> â ØªÙØ³ÙÙ Ø§ÙÙ 7 ÙÙØ³ØªØ®Ø¯Ù ÙÙØ· ÙØªØ­Ø±ÙÙ ÙØ±Ø§Øª Ø¹ÙÙ Ø§ÙÙÙØ­Ø© Ø¨Ø§ÙÙØ¹Ù. ÙÙØ· Ø§ÙØ¢Ø³ ÙØ§ÙØ¬Ø§Ù ÙØ®Ø±Ø¬Ø§Ù Ø§ÙÙØ±Ø§Øª ÙÙ Ø§ÙØ³Ø§Ø­Ø©.` }
     },
     {
-      en:{ title:'Must you play a card if all moves are harmful?', body:`If every card in your hand would hurt your own team, must you still play? <br><br>Standard rule: <span class="highlight">Yes</span> — you must play a card every turn. If no card can legally move any marble, burn one card and pass. This is why hand management is critical.` },
-      ar:{ title:'هل يجب اللعب إذا كانت كل الحركات ضارة؟', body:`إذا كانت كل ورقة في يدك ستضر بفريقك، هل يجب عليك اللعب؟<br><br>القاعدة المعيارية: <span class="highlight">نعم</span> — يجب لعب ورقة في كل دور. إذا لم تستطع تحريك أي كرة بشكل قانوني، أحرق ورقة واحدة ومرر. لهذا تُعدّ إدارة الأوراق أمراً حاسماً.` }
+      en:{ title:'Must you play a card if all moves are harmful?', body:`If every card in your hand would hurt your own team, must you still play? <br><br>Standard rule: <span class="highlight">Yes</span> â you must play a card every turn. If no card can legally move any marble, burn one card and pass. This is why hand management is critical.` },
+      ar:{ title:'ÙÙ ÙØ¬Ø¨ Ø§ÙÙØ¹Ø¨ Ø¥Ø°Ø§ ÙØ§ÙØª ÙÙ Ø§ÙØ­Ø±ÙØ§Øª Ø¶Ø§Ø±Ø©Ø', body:`Ø¥Ø°Ø§ ÙØ§ÙØª ÙÙ ÙØ±ÙØ© ÙÙ ÙØ¯Ù Ø³ØªØ¶Ø± Ø¨ÙØ±ÙÙÙØ ÙÙ ÙØ¬Ø¨ Ø¹ÙÙÙ Ø§ÙÙØ¹Ø¨Ø<br><br>Ø§ÙÙØ§Ø¹Ø¯Ø© Ø§ÙÙØ¹ÙØ§Ø±ÙØ©: <span class="highlight">ÙØ¹Ù</span> â ÙØ¬Ø¨ ÙØ¹Ø¨ ÙØ±ÙØ© ÙÙ ÙÙ Ø¯ÙØ±. Ø¥Ø°Ø§ ÙÙ ØªØ³ØªØ·Ø¹ ØªØ­Ø±ÙÙ Ø£Ù ÙØ±Ø© Ø¨Ø´ÙÙ ÙØ§ÙÙÙÙØ Ø£Ø­Ø±Ù ÙØ±ÙØ© ÙØ§Ø­Ø¯Ø© ÙÙØ±Ø±. ÙÙØ°Ø§ ØªÙØ¹Ø¯Ù Ø¥Ø¯Ø§Ø±Ø© Ø§ÙØ£ÙØ±Ø§Ù Ø£ÙØ±Ø§Ù Ø­Ø§Ø³ÙØ§Ù.` }
     },
   ],
 };
@@ -2833,18 +2832,18 @@ const JK_RULES_DATA = {
 const JK_DISPUTE_SYSTEMS = [
   {
     id:'jd1', pill:'pill-hot', popular:true,
-    en:{ title:'2v2 +3 / 1v1 +1 / Loss −1', pillLabel:'Current System', formula:'2v2 Win: +3 · 1v1 Win: +1 · Loss: −1', desc:'Used in the All In app. 2v2 wins worth more — rewards team coordination. Losses hurt both formats equally.', pros:['Rewards harder team play','Creates real separation in rankings','Consistent loss penalty'], cons:['1v1 feels less meaningful','Active 1v1 players accumulate losses faster','2v2 partners can unfairly drag each other down'] },
-    ar:{ title:'2v2: +3 / 1v1: +1 / خسارة −1', pillLabel:'النظام الحالي', formula:'فوز 2v2: +3 · فوز 1v1: +1 · خسارة: −1', desc:'المستخدم في تطبيق All In. فوز 2v2 أكثر قيمة — يكافئ التنسيق الجماعي. الخسارة تؤثر بشكل متساوٍ.', pros:['يكافئ اللعب الجماعي الأصعب','يخلق فوارق حقيقية في الترتيب','عقوبة خسارة ثابتة'], cons:['1v1 يبدو أقل أهمية','لاعبو 1v1 النشطون يراكمون الخسائر أسرع','الشريك الضعيف قد يضر ترتيبك'] }
+    en:{ title:'2v2 +3 / 1v1 +1 / Loss â1', pillLabel:'Current System', formula:'2v2 Win: +3 Â· 1v1 Win: +1 Â· Loss: â1', desc:'Used in the All In app. 2v2 wins worth more â rewards team coordination. Losses hurt both formats equally.', pros:['Rewards harder team play','Creates real separation in rankings','Consistent loss penalty'], cons:['1v1 feels less meaningful','Active 1v1 players accumulate losses faster','2v2 partners can unfairly drag each other down'] },
+    ar:{ title:'2v2: +3 / 1v1: +1 / Ø®Ø³Ø§Ø±Ø© â1', pillLabel:'Ø§ÙÙØ¸Ø§Ù Ø§ÙØ­Ø§ÙÙ', formula:'ÙÙØ² 2v2: +3 Â· ÙÙØ² 1v1: +1 Â· Ø®Ø³Ø§Ø±Ø©: â1', desc:'Ø§ÙÙØ³ØªØ®Ø¯Ù ÙÙ ØªØ·Ø¨ÙÙ All In. ÙÙØ² 2v2 Ø£ÙØ«Ø± ÙÙÙØ© â ÙÙØ§ÙØ¦ Ø§ÙØªÙØ³ÙÙ Ø§ÙØ¬ÙØ§Ø¹Ù. Ø§ÙØ®Ø³Ø§Ø±Ø© ØªØ¤Ø«Ø± Ø¨Ø´ÙÙ ÙØªØ³Ø§ÙÙ.', pros:['ÙÙØ§ÙØ¦ Ø§ÙÙØ¹Ø¨ Ø§ÙØ¬ÙØ§Ø¹Ù Ø§ÙØ£ØµØ¹Ø¨','ÙØ®ÙÙ ÙÙØ§Ø±Ù Ø­ÙÙÙÙØ© ÙÙ Ø§ÙØªØ±ØªÙØ¨','Ø¹ÙÙØ¨Ø© Ø®Ø³Ø§Ø±Ø© Ø«Ø§Ø¨ØªØ©'], cons:['1v1 ÙØ¨Ø¯Ù Ø£ÙÙ Ø£ÙÙÙØ©','ÙØ§Ø¹Ø¨Ù 1v1 Ø§ÙÙØ´Ø·ÙÙ ÙØ±Ø§ÙÙÙÙ Ø§ÙØ®Ø³Ø§Ø¦Ø± Ø£Ø³Ø±Ø¹','Ø§ÙØ´Ø±ÙÙ Ø§ÙØ¶Ø¹ÙÙ ÙØ¯ ÙØ¶Ø± ØªØ±ØªÙØ¨Ù'] }
   },
   {
     id:'jd2', pill:'pill-fair', popular:false,
-    en:{ title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins ÷ Total Rounds × 100', desc:'Pure win percentage — ignores format and volume. Fairest for players who mix 1v1 and 2v2 frequently.', pros:['Format-neutral','No negative scores','Easy to explain'], cons:['1 win = 100% forever','Rewards low activity','No distinction between formats'] },
-    ar:{ title:'نسبة الفوز فقط (%)', pillLabel:'الأكثر عدلاً', formula:'الترتيب = الانتصارات ÷ إجمالي الجولات × 100', desc:'نسبة الفوز الصرفة — تتجاهل الصيغة والحجم. الأعدل للاعبين الذين يخلطون بين 1v1 و2v2.', pros:['محايدة للصيغة','لا نقاط سلبية','سهلة الشرح'], cons:['1 فوز = 100% للأبد','تكافئ قلة النشاط','لا تمييز بين الصيغتين'] }
+    en:{ title:'Win Rate Only (%)', pillLabel:'Most Fair', formula:'Rank = Wins Ã· Total Rounds Ã 100', desc:'Pure win percentage â ignores format and volume. Fairest for players who mix 1v1 and 2v2 frequently.', pros:['Format-neutral','No negative scores','Easy to explain'], cons:['1 win = 100% forever','Rewards low activity','No distinction between formats'] },
+    ar:{ title:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ² ÙÙØ· (%)', pillLabel:'Ø§ÙØ£ÙØ«Ø± Ø¹Ø¯ÙØ§Ù', formula:'Ø§ÙØªØ±ØªÙØ¨ = Ø§ÙØ§ÙØªØµØ§Ø±Ø§Øª Ã· Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ¬ÙÙØ§Øª Ã 100', desc:'ÙØ³Ø¨Ø© Ø§ÙÙÙØ² Ø§ÙØµØ±ÙØ© â ØªØªØ¬Ø§ÙÙ Ø§ÙØµÙØºØ© ÙØ§ÙØ­Ø¬Ù. Ø§ÙØ£Ø¹Ø¯Ù ÙÙØ§Ø¹Ø¨ÙÙ Ø§ÙØ°ÙÙ ÙØ®ÙØ·ÙÙ Ø¨ÙÙ 1v1 Ù2v2.', pros:['ÙØ­Ø§ÙØ¯Ø© ÙÙØµÙØºØ©','ÙØ§ ÙÙØ§Ø· Ø³ÙØ¨ÙØ©','Ø³ÙÙØ© Ø§ÙØ´Ø±Ø­'], cons:['1 ÙÙØ² = 100% ÙÙØ£Ø¨Ø¯','ØªÙØ§ÙØ¦ ÙÙØ© Ø§ÙÙØ´Ø§Ø·','ÙØ§ ØªÙÙÙØ² Ø¨ÙÙ Ø§ÙØµÙØºØªÙÙ'] }
   },
   {
     id:'jd3', pill:'pill-complex', popular:false,
-    en:{ title:'Equal points: Win +2 / Loss −1', pillLabel:'No Format Bias', formula:'Any Win: +2 · Any Loss: −1', desc:'Same reward regardless of 1v1 or 2v2. Simpler to track and removes the debate about which format is harder.', pros:['No format discrimination','Simple to remember','Balanced activity incentive'], cons:['Doesn\'t reflect 2v2 difficulty','Less incentive to play team games','Flatter ranking over time'] },
-    ar:{ title:'نقاط متساوية: فوز +2 / خسارة −1', pillLabel:'بلا تحيّز للصيغة', formula:'أي فوز: +2 · أي خسارة: −1', desc:'نفس المكافأة بغض النظر عن 1v1 أو 2v2. أبسط للتتبع ويزيل الجدال حول أي الصيغتين أصعب.', pros:['لا تمييز بين الصيغتين','سهلة التذكر','حافز نشاط متوازن'], cons:['لا تعكس صعوبة 2v2','حافز أقل للعب الجماعي','ترتيب أكثر تسطحاً مع الوقت'] }
+    en:{ title:'Equal points: Win +2 / Loss â1', pillLabel:'No Format Bias', formula:'Any Win: +2 Â· Any Loss: â1', desc:'Same reward regardless of 1v1 or 2v2. Simpler to track and removes the debate about which format is harder.', pros:['No format discrimination','Simple to remember','Balanced activity incentive'], cons:['Doesn\'t reflect 2v2 difficulty','Less incentive to play team games','Flatter ranking over time'] },
+    ar:{ title:'ÙÙØ§Ø· ÙØªØ³Ø§ÙÙØ©: ÙÙØ² +2 / Ø®Ø³Ø§Ø±Ø© â1', pillLabel:'Ø¨ÙØ§ ØªØ­ÙÙØ² ÙÙØµÙØºØ©', formula:'Ø£Ù ÙÙØ²: +2 Â· Ø£Ù Ø®Ø³Ø§Ø±Ø©: â1', desc:'ÙÙØ³ Ø§ÙÙÙØ§ÙØ£Ø© Ø¨ØºØ¶ Ø§ÙÙØ¸Ø± Ø¹Ù 1v1 Ø£Ù 2v2. Ø£Ø¨Ø³Ø· ÙÙØªØªØ¨Ø¹ ÙÙØ²ÙÙ Ø§ÙØ¬Ø¯Ø§Ù Ø­ÙÙ Ø£Ù Ø§ÙØµÙØºØªÙÙ Ø£ØµØ¹Ø¨.', pros:['ÙØ§ ØªÙÙÙØ² Ø¨ÙÙ Ø§ÙØµÙØºØªÙÙ','Ø³ÙÙØ© Ø§ÙØªØ°ÙØ±','Ø­Ø§ÙØ² ÙØ´Ø§Ø· ÙØªÙØ§Ø²Ù'], cons:['ÙØ§ ØªØ¹ÙØ³ ØµØ¹ÙØ¨Ø© 2v2','Ø­Ø§ÙØ² Ø£ÙÙ ÙÙØ¹Ø¨ Ø§ÙØ¬ÙØ§Ø¹Ù','ØªØ±ØªÙØ¨ Ø£ÙØ«Ø± ØªØ³Ø·Ø­Ø§Ù ÙØ¹ Ø§ÙÙÙØª'] }
   },
 ];
 
@@ -2860,10 +2859,10 @@ function renderJkRulesTab() {
   const ddEl = document.getElementById('jk-disputes-desc');
   const rhEl = document.getElementById('jk-rules-heading');
   const rdEl = document.getElementById('jk-rules-desc');
-  if(dtEl) dtEl.textContent = isAr ? 'نزاعات نظام النقاط' : 'Points System Disputes';
-  if(ddEl) ddEl.textContent = isAr ? 'أكثر المواضيع جدلاً في مجموعة الجاكارو — النقاط والصيغ والقواعد المنزلية.' : 'The most argued topics in your Jackaroo group — scoring, formats, and house rules.';
-  if(rhEl) rhEl.textContent = isAr ? 'القواعد الرسمية وطريقة اللعب' : 'Official Rules & How to Play';
-  if(rdEl) rdEl.textContent = isAr ? 'قواعد لعبة الجاكارو — اللعبة الكلاسيكية المفضلة في الشرق الأوسط' : 'Jackaroo board game rules — the classic Middle Eastern favourite';
+  if(dtEl) dtEl.textContent = isAr ? 'ÙØ²Ø§Ø¹Ø§Øª ÙØ¸Ø§Ù Ø§ÙÙÙØ§Ø·' : 'Points System Disputes';
+  if(ddEl) ddEl.textContent = isAr ? 'Ø£ÙØ«Ø± Ø§ÙÙÙØ§Ø¶ÙØ¹ Ø¬Ø¯ÙØ§Ù ÙÙ ÙØ¬ÙÙØ¹Ø© Ø§ÙØ¬Ø§ÙØ§Ø±Ù â Ø§ÙÙÙØ§Ø· ÙØ§ÙØµÙØº ÙØ§ÙÙÙØ§Ø¹Ø¯ Ø§ÙÙÙØ²ÙÙØ©.' : 'The most argued topics in your Jackaroo group â scoring, formats, and house rules.';
+  if(rhEl) rhEl.textContent = isAr ? 'Ø§ÙÙÙØ§Ø¹Ø¯ Ø§ÙØ±Ø³ÙÙØ© ÙØ·Ø±ÙÙØ© Ø§ÙÙØ¹Ø¨' : 'Official Rules & How to Play';
+  if(rdEl) rdEl.textContent = isAr ? 'ÙÙØ§Ø¹Ø¯ ÙØ¹Ø¨Ø© Ø§ÙØ¬Ø§ÙØ§Ø±Ù â Ø§ÙÙØ¹Ø¨Ø© Ø§ÙÙÙØ§Ø³ÙÙÙØ© Ø§ÙÙÙØ¶ÙØ© ÙÙ Ø§ÙØ´Ø±Ù Ø§ÙØ£ÙØ³Ø·' : 'Jackaroo board game rules â the classic Middle Eastern favourite';
 
   // dispute cards
   const votes = JSON.parse(localStorage.getItem('allin_jk_votes') || '{}');
@@ -2880,8 +2879,8 @@ function renderJkRulesTab() {
         <div class="pro-con-box"><div class="pc-label con-label">${t('against')}</div>${d.cons.map(c=>`<div class="pc-item">${c}</div>`).join('')}</div>
       </div>
       <div class="debate-vote-row">
-        <button class="vote-btn${v.voted==='up'?' voted':''}" onclick="castJkVote('${sys.id}','up')">👍 <span class="vote-count">${v.up}</span></button>
-        <button class="vote-btn${v.voted==='down'?' voted':''}" onclick="castJkVote('${sys.id}','down')">👎 <span class="vote-count">${v.down}</span></button>
+        <button class="vote-btn${v.voted==='up'?' voted':''}" onclick="castJkVote('${sys.id}','up')">ð <span class="vote-count">${v.up}</span></button>
+        <button class="vote-btn${v.voted==='down'?' voted':''}" onclick="castJkVote('${sys.id}','down')">ð <span class="vote-count">${v.down}</span></button>
       </div>
     </div>`;
   }).join('');
@@ -2911,7 +2910,7 @@ function renderJkRulesCat(id) {
       <div class="rule-header" onclick="toggleRule(this)">
         <div class="rule-num">${i+1}</div>
         <div class="rule-title">${r.title}</div>
-        <div class="rule-chevron">▼</div>
+        <div class="rule-chevron">â¼</div>
       </div>
       <div class="rule-body">${r.body}</div>
     </div>`).join('');
@@ -2931,11 +2930,11 @@ document.getElementById('jkNewPlayerName').addEventListener('keydown',e=>{if(e.k
 document.getElementById('si-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doSignIn();});
 document.getElementById('reg-pass2').addEventListener('keydown',e=>{if(e.key==='Enter')doRegister();});
 
-// ─── SET DEFAULT DATE ─────────────────────────────────
+// âââ SET DEFAULT DATE âââââââââââââââââââââââââââââââââ
 document.getElementById('matchDate').value = new Date().toISOString().split('T')[0];
 document.getElementById('jkMatchDate').value = new Date().toISOString().split('T')[0];
 
-// ─── BOOTSTRAP ───────────────────────────────────────
+// âââ BOOTSTRAP âââââââââââââââââââââââââââââââââââââââ
 (function() {
   applyLang();
   const user = getCurrentUser();
